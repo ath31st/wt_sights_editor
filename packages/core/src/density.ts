@@ -74,7 +74,9 @@ export function marksFromDensity(params: DensityParams): DistanceMark[] {
       marks.push({
         meters,
         label,
-        sideOffset: right ? -0.004 : 0.0027,
+        // Tick only (p3.z). distancePos 0.005 pulls ticks left; -0.01 puts them
+        // on the drop line. Same for L and R so left stubs are not leftover dots.
+        sideOffset: -0.01,
         textPosX: right ? (index >= 3 ? 0.03 : 0.024) : 0,
       });
     } else {

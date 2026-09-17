@@ -40,6 +40,8 @@ textPos:p2=-0.00001,0
 textAlign:i=1
 textShift:r=0.01
 drawAdditionalLines:b=no
+crosshairDistHorSizeMain:p2=0,0
+crosshairDistHorSizeAdditional:p2=0.0,0.0
 drawDistanceCorrection:b=no
 ` + distances;
     for (const mark of model.marks) {

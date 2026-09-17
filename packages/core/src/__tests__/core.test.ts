@@ -32,6 +32,11 @@ describe("density", () => {
     expect(d.layout).toBe("alternateLR");
     expect(d.stepM).toBe(400);
     expect(d.fontSizeMult).toBeLessThan(0.5);
+    const marks = sightFromZoom("APDS", 10).marks;
+    expect(marks[0]?.sideOffset).toBeCloseTo(-0.01);
+    expect(marks[1]?.sideOffset).toBeCloseTo(-0.01);
+    expect(marks[0]?.textPosX).toBe(0);
+    expect(marks[1]?.textPosX).toBeGreaterThan(0);
   });
 });
 
@@ -59,6 +64,13 @@ describe("blk parse/emit", () => {
     const parsed = parseBlk(emitBlk(original));
     expect(parsed.layout).toBe("alternateLR");
     expect(parsed.marks.map((m) => m.meters)).toEqual(original.marks.map((m) => m.meters));
+  });
+
+  it("does not emit leftover additional ticks on APDS", () => {
+    const text = emitBlk(sightFromZoom("APDS", 10));
+    const last = [...text.matchAll(/crosshairDistHorSizeAdditional:p2=([0-9.]+),([0-9.]+)/g)].at(-1);
+    expect(last?.[1]).toBe("0.0");
+    expect(last?.[2]).toBe("0.0");
   });
 });
 
