@@ -58,9 +58,9 @@ export function SightPreview({ model }: Props) {
       ctx.lineTo(cx + 6, y);
       ctx.stroke();
       if (mark.label > 0) {
-        const left = model.layout === "alternateLR" && mark.textPosX > 0;
-        ctx.textAlign = left ? "left" : "right";
-        ctx.fillText(String(mark.label), left ? cx + 14 : cx - 14, y + 4);
+        const right = model.layout === "alternateLR" && mark.textPosX > 0;
+        ctx.textAlign = right ? "left" : "right";
+        ctx.fillText(String(mark.label), right ? cx + 16 : cx - 16, y + 4);
       }
     });
 
