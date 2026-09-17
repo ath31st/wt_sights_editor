@@ -1,0 +1,131 @@
+:root {
+  font-family: Inter, Segoe UI, sans-serif;
+  color: #ececec;
+  background: #111;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body,
+html,
+#root {
+  margin: 0;
+  height: 100%;
+}
+
+.app {
+  display: grid;
+  grid-template-columns: 280px 1fr 320px;
+  height: 100%;
+}
+
+.sidebar,
+.inspector {
+  padding: 12px;
+  overflow: auto;
+  background: #1a1a1a;
+}
+
+.brand {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+button {
+  background: #2d4a78;
+  color: white;
+  border: 0;
+  border-radius: 6px;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+button.active {
+  background: #4a7ad4;
+}
+
+input {
+  width: 100%;
+  margin: 8px 0;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #333;
+  background: #111;
+  color: #fff;
+}
+
+.path,
+.muted,
+.status {
+  color: #aaa;
+  font-size: 12px;
+  word-break: break-all;
+}
+
+.warn {
+  color: #f0c14b;
+  font-size: 13px;
+}
+
+.countries {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0;
+}
+
+.countries button {
+  padding: 4px 8px;
+  font-size: 12px;
+}
+
+.tank-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tank-list button {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+}
+
+.tank-list button.active {
+  background: #243652;
+}
+
+.tank-list small {
+  color: #888;
+}
+
+.preview-pane {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0b0b0b;
+}
+
+.preview-canvas {
+  border: 1px solid #333;
+}
+
+.actions,
+.row,
+.sights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+label {
+  display: block;
+  font-size: 13px;
+  margin-top: 8px;
+}
