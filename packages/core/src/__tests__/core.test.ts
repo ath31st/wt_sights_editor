@@ -21,22 +21,32 @@ describe("countryFromUnitId", () => {
 
 describe("density", () => {
   it("uses a left column and 200 m steps for AP at Somua-like zoom", () => {
-    const d = densityFor(6, "AP");
+    const d = densityFor(6, "AP", 6);
     expect(d.layout).toBe("singleLeft");
     expect(d.stepM).toBe(200);
     expect(d.fontSizeMult).toBeGreaterThan(0.8);
   });
 
-  it("uses L/R marks and a small font for APDS at Abrams zoom", () => {
-    const d = densityFor(10, "APDS");
+  it("uses L/R marks for APDS at Abrams zoom", () => {
+    const d = densityFor(10, "APDS", 3);
     expect(d.layout).toBe("alternateLR");
     expect(d.stepM).toBe(400);
-    expect(d.fontSizeMult).toBeLessThan(0.5);
-    const marks = sightFromZoom("APDS", 10).marks;
+    expect(d.fontSizeMult).toBeGreaterThanOrEqual(0.6);
+    expect(d.fontSizeMult).toBeLessThanOrEqual(0.8);
+    const marks = sightFromZoom("APDS", 10, {}, 3).marks;
     expect(marks[0]?.sideOffset).toBeCloseTo(-0.01);
     expect(marks[1]?.sideOffset).toBeCloseTo(-0.01);
     expect(marks[0]?.textPosX).toBe(0);
     expect(marks[1]?.textPosX).toBeGreaterThan(0);
+  });
+
+  it("keeps larger APDS font on fixed high-power optics like Scimitar", () => {
+    const d = densityFor(10, "APDS", 9.8);
+    expect(d.fontSizeMult).toBeGreaterThanOrEqual(0.85);
+  });
+
+  it("targets ~0.7 APDS for Badger-like 2–8× zoom", () => {
+    expect(densityFor(8, "APDS", 2).fontSizeMult).toBeCloseTo(0.7);
   });
 });
 
@@ -60,14 +70,14 @@ describe("blk parse/emit", () => {
   });
 
   it("round-trips generated APDS", () => {
-    const original = sightFromZoom("APDS", 10);
+    const original = sightFromZoom("APDS", 10, {}, 3);
     const parsed = parseBlk(emitBlk(original));
     expect(parsed.layout).toBe("alternateLR");
     expect(parsed.marks.map((m) => m.meters)).toEqual(original.marks.map((m) => m.meters));
   });
 
   it("does not emit leftover additional ticks on APDS", () => {
-    const text = emitBlk(sightFromZoom("APDS", 10));
+    const text = emitBlk(sightFromZoom("APDS", 10, {}, 3));
     const last = [...text.matchAll(/crosshairDistHorSizeAdditional:p2=([0-9.]+),([0-9.]+)/g)].at(-1);
     expect(last?.[1]).toBe("0.0");
     expect(last?.[2]).toBe("0.0");

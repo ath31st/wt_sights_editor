@@ -71,11 +71,16 @@ export default function App() {
   const previewAmmo = selected?.sights[0] ?? "AP";
   const previewModel = useMemo(() => {
     if (!selected) {
-      return sightFromZoom("AP", 6);
+      return sightFromZoom("AP", 6, {}, 6);
     }
-    return sightFromZoom(previewAmmo, selected.zoomMax, {
-      fontSizeMult: fontOverride ?? undefined,
-    });
+    return sightFromZoom(
+      previewAmmo,
+      selected.zoomMax,
+      {
+        fontSizeMult: fontOverride ?? undefined,
+      },
+      selected.zoomMin,
+    );
   }, [selected, previewAmmo, fontOverride]);
 
   useEffect(() => {

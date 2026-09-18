@@ -367,10 +367,10 @@
       ]
     },
     {
-      "id": "cn_m48a1_patton_iii",
+      "id": "cn_m48a1_patton_III",
       "country": "cn",
-      "nameEn": "cn_m48a1_patton_iii",
-      "nameRu": "cn_m48a1_patton_iii",
+      "nameEn": "␗M48A1",
+      "nameRu": "␗M48A1",
       "zoomMin": 9.9,
       "zoomMax": 10,
       "sights": [
@@ -880,10 +880,10 @@
       ]
     },
     {
-      "id": "cn_type_63_i",
+      "id": "cn_type_63_I",
       "country": "cn",
-      "nameEn": "cn_type_63_i",
-      "nameRu": "cn_type_63_i",
+      "nameEn": "Type 63",
+      "nameRu": "Type 63",
       "zoomMin": 3.5,
       "zoomMax": 7,
       "sights": [
@@ -1535,10 +1535,10 @@
       ]
     },
     {
-      "id": "fr_amx_30_acra",
+      "id": "fr_amx_30_ACRA",
       "country": "fr",
-      "nameEn": "fr_amx_30_acra",
-      "nameRu": "fr_amx_30_acra",
+      "nameEn": "AMX-30 ACRA",
+      "nameRu": "AMX-30 ACRA",
       "zoomMin": 9.9,
       "zoomMax": 10,
       "sights": [
@@ -2405,10 +2405,10 @@
       ]
     },
     {
-      "id": "fr_pzkpfw_v_panther_dauphine",
+      "id": "fr_pzkpfw_V_panther_dauphine",
       "country": "fr",
-      "nameEn": "fr_pzkpfw_v_panther_dauphine",
-      "nameRu": "fr_pzkpfw_v_panther_dauphine",
+      "nameEn": "Panther \"Dauphiné\"",
+      "nameRu": "Panther \"Dauphiné\"",
       "zoomMin": 2.5,
       "zoomMax": 5,
       "sights": [
@@ -2823,10 +2823,10 @@
       ]
     },
     {
-      "id": "germ_flakpanzer_38t_gepard",
+      "id": "germ_flakpanzer_38t_Gepard",
       "country": "germ",
-      "nameEn": "germ_flakpanzer_38t_gepard",
-      "nameRu": "germ_flakpanzer_38t_gepard",
+      "nameEn": "Flakpanzer 38",
+      "nameRu": "Flakpanzer 38",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -2835,10 +2835,10 @@
       ]
     },
     {
-      "id": "germ_flakpanzer_i_ausf_a",
+      "id": "germ_flakpanzer_I_ausf_A",
       "country": "germ",
-      "nameEn": "germ_flakpanzer_i_ausf_a",
-      "nameRu": "germ_flakpanzer_i_ausf_a",
+      "nameEn": "Flakpanzer I",
+      "nameRu": "Flakpanzer I",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -2847,10 +2847,10 @@
       ]
     },
     {
-      "id": "germ_flakpanzer_iv_kugelblitz",
+      "id": "germ_flakpanzer_IV_Kugelblitz",
       "country": "germ",
-      "nameEn": "germ_flakpanzer_iv_kugelblitz",
-      "nameRu": "germ_flakpanzer_iv_kugelblitz",
+      "nameEn": "Kugelblitz",
+      "nameRu": "Kugelblitz",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -2859,10 +2859,10 @@
       ]
     },
     {
-      "id": "germ_flakpanzer_iv_ostwind",
+      "id": "germ_flakpanzer_IV_Ostwind",
       "country": "germ",
-      "nameEn": "germ_flakpanzer_iv_ostwind",
-      "nameRu": "germ_flakpanzer_iv_ostwind",
+      "nameEn": "Ostwind",
+      "nameRu": "Ostwind",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -2871,10 +2871,10 @@
       ]
     },
     {
-      "id": "germ_flakpanzer_iv_ostwind_2",
+      "id": "germ_flakpanzer_IV_Ostwind_2",
       "country": "germ",
-      "nameEn": "germ_flakpanzer_iv_ostwind_2",
-      "nameRu": "germ_flakpanzer_iv_ostwind_2",
+      "nameEn": "Ostwind II",
+      "nameRu": "Ostwind II",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -2883,10 +2883,10 @@
       ]
     },
     {
-      "id": "germ_flakpanzer_iv_ostwind_2_net",
+      "id": "germ_flakpanzer_IV_Ostwind_2_net",
       "country": "germ",
-      "nameEn": "germ_flakpanzer_iv_ostwind_2_net",
-      "nameRu": "germ_flakpanzer_iv_ostwind_2_net",
+      "nameEn": "Ostwind Ost",
+      "nameRu": "Ostwind Ost",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -2895,10 +2895,10 @@
       ]
     },
     {
-      "id": "germ_flakpanzer_iv_wirbelwind",
+      "id": "germ_flakpanzer_IV_Wirbelwind",
       "country": "germ",
-      "nameEn": "germ_flakpanzer_iv_wirbelwind",
-      "nameRu": "germ_flakpanzer_iv_wirbelwind",
+      "nameEn": "Wirbelwind",
+      "nameRu": "Wirbelwind",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -2907,10 +2907,10 @@
       ]
     },
     {
-      "id": "germ_flakpanzer_v_coelian",
+      "id": "germ_flakpanzer_V_Coelian",
       "country": "germ",
-      "nameEn": "germ_flakpanzer_v_coelian",
-      "nameRu": "germ_flakpanzer_v_coelian",
+      "nameEn": "Flakpanzer 341",
+      "nameRu": "Flakpanzer 341",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -2930,10 +2930,10 @@
       ]
     },
     {
-      "id": "germ_flakpz_1a2_gepard",
+      "id": "germ_flakpz_1a2_Gepard",
       "country": "germ",
-      "nameEn": "germ_flakpz_1a2_gepard",
-      "nameRu": "germ_flakpz_1a2_gepard",
+      "nameEn": "Gepard 1A2",
+      "nameRu": "Gepard 1A2",
       "zoomMin": 1.5,
       "zoomMax": 6,
       "sights": [
@@ -2942,10 +2942,10 @@
       ]
     },
     {
-      "id": "germ_flakpz_i_gepard",
+      "id": "germ_flakpz_I_Gepard",
       "country": "germ",
-      "nameEn": "germ_flakpz_i_gepard",
-      "nameRu": "germ_flakpz_i_gepard",
+      "nameEn": "Gepard",
+      "nameRu": "Gepard",
       "zoomMin": 1.5,
       "zoomMax": 6,
       "sights": [
@@ -3070,10 +3070,10 @@
       ]
     },
     {
-      "id": "germ_jgdpz_iv_l48",
+      "id": "germ_jgdpz_IV_L48",
       "country": "germ",
-      "nameEn": "germ_jgdpz_iv_l48",
-      "nameRu": "germ_jgdpz_iv_l48",
+      "nameEn": "Jagdpanzer IV",
+      "nameRu": "Jagdpanzer IV",
       "zoomMin": 4.7,
       "zoomMax": 5,
       "sights": [
@@ -3137,10 +3137,10 @@
       ]
     },
     {
-      "id": "germ_kv_1b_finland",
+      "id": "germ_kv_1B_finland",
       "country": "germ",
-      "nameEn": "germ_kv_1b_finland",
-      "nameRu": "germ_kv_1b_finland",
+      "nameEn": "▀KV-IB",
+      "nameRu": "▀KV-IB",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -3403,10 +3403,10 @@
       ]
     },
     {
-      "id": "germ_leopard_i",
+      "id": "germ_leopard_I",
       "country": "germ",
-      "nameEn": "germ_leopard_i",
-      "nameRu": "germ_leopard_i",
+      "nameEn": "Leopard I",
+      "nameRu": "Leopard I",
       "zoomMin": 4,
       "zoomMax": 20,
       "sights": [
@@ -3416,10 +3416,10 @@
       ]
     },
     {
-      "id": "germ_leopard_i_a1",
+      "id": "germ_leopard_I_a1",
       "country": "germ",
-      "nameEn": "germ_leopard_i_a1",
-      "nameRu": "germ_leopard_i_a1",
+      "nameEn": "Leopard A1A1",
+      "nameRu": "Leopard A1A1",
       "zoomMin": 4,
       "zoomMax": 20,
       "sights": [
@@ -3576,10 +3576,10 @@
       ]
     },
     {
-      "id": "germ_nbfz_vi",
+      "id": "germ_nbfz_VI",
       "country": "germ",
-      "nameEn": "germ_nbfz_vi",
-      "nameRu": "germ_nbfz_vi",
+      "nameEn": "Nb.Fz.",
+      "nameRu": "Nb.Fz.",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -3589,10 +3589,10 @@
       ]
     },
     {
-      "id": "germ_panther_ii",
+      "id": "germ_panther_II",
       "country": "germ",
-      "nameEn": "germ_panther_ii",
-      "nameRu": "germ_panther_ii",
+      "nameEn": "Panther II",
+      "nameRu": "Panther II",
       "zoomMin": 2.5,
       "zoomMax": 6,
       "sights": [
@@ -3602,10 +3602,10 @@
       ]
     },
     {
-      "id": "germ_panther_ii_tutorial",
+      "id": "germ_panther_II_tutorial",
       "country": "germ",
-      "nameEn": "germ_panther_ii_tutorial",
-      "nameRu": "germ_panther_ii_tutorial",
+      "nameEn": "Panther II",
+      "nameRu": "Panther II",
       "zoomMin": 2.5,
       "zoomMax": 6,
       "sights": [
@@ -3615,10 +3615,10 @@
       ]
     },
     {
-      "id": "germ_panzerbefelhswagen_iv_ausf_j",
+      "id": "germ_panzerbefelhswagen_IV_ausf_J",
       "country": "germ",
-      "nameEn": "germ_panzerbefelhswagen_iv_ausf_j",
-      "nameRu": "germ_panzerbefelhswagen_iv_ausf_j",
+      "nameEn": "Pz.Bef.Wg.IV J",
+      "nameRu": "Pz.Bef.Wg.IV J",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -3641,10 +3641,10 @@
       ]
     },
     {
-      "id": "germ_panzerbefelhswagen_vi_p",
+      "id": "germ_panzerbefelhswagen_VI_P",
       "country": "germ",
-      "nameEn": "germ_panzerbefelhswagen_vi_p",
-      "nameRu": "germ_panzerbefelhswagen_vi_p",
+      "nameEn": "Pz.Bef.Wg.VI P",
+      "nameRu": "Pz.Bef.Wg.VI P",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -3704,10 +3704,10 @@
       ]
     },
     {
-      "id": "germ_panzerjager_tiger_p_elefant",
+      "id": "germ_panzerjager_tiger_P_elefant",
       "country": "germ",
-      "nameEn": "germ_panzerjager_tiger_p_elefant",
-      "nameRu": "germ_panzerjager_tiger_p_elefant",
+      "nameEn": "Elefant",
+      "nameRu": "Elefant",
       "zoomMin": 4.7,
       "zoomMax": 5,
       "sights": [
@@ -3717,10 +3717,10 @@
       ]
     },
     {
-      "id": "germ_panzerjager_tiger_p_ferdinand",
+      "id": "germ_panzerjager_tiger_P_ferdinand",
       "country": "germ",
-      "nameEn": "germ_panzerjager_tiger_p_ferdinand",
-      "nameRu": "germ_panzerjager_tiger_p_ferdinand",
+      "nameEn": "Ferdinand",
+      "nameRu": "Ferdinand",
       "zoomMin": 4.7,
       "zoomMax": 5,
       "sights": [
@@ -3789,10 +3789,10 @@
       ]
     },
     {
-      "id": "germ_pz_iv_l70",
+      "id": "germ_pz_IV_L70",
       "country": "germ",
-      "nameEn": "germ_pz_iv_l70",
-      "nameRu": "germ_pz_iv_l70",
+      "nameEn": "Panzer IV/70(V)",
+      "nameRu": "Panzer IV/70(V)",
       "zoomMin": 4.7,
       "zoomMax": 5,
       "sights": [
@@ -3801,10 +3801,10 @@
       ]
     },
     {
-      "id": "germ_pz_iv_l70_a",
+      "id": "germ_pz_IV_L70_A",
       "country": "germ",
-      "nameEn": "germ_pz_iv_l70_a",
-      "nameRu": "germ_pz_iv_l70_a",
+      "nameEn": "Panzer IV/70(A)",
+      "nameRu": "Panzer IV/70(A)",
       "zoomMin": 4.7,
       "zoomMax": 5,
       "sights": [
@@ -3848,10 +3848,10 @@
       ]
     },
     {
-      "id": "germ_pzkpfw_38t_aufklarungspanzer",
+      "id": "germ_pzkpfw_38t_Aufklarungspanzer",
       "country": "germ",
-      "nameEn": "germ_pzkpfw_38t_aufklarungspanzer",
-      "nameRu": "germ_pzkpfw_38t_aufklarungspanzer",
+      "nameEn": "Sd.Kfz. 140/1",
+      "nameRu": "Sd.Kfz. 140/1",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -3860,10 +3860,10 @@
       ]
     },
     {
-      "id": "germ_pzkpfw_38t_ausf_a",
+      "id": "germ_pzkpfw_38t_ausf_A",
       "country": "germ",
-      "nameEn": "germ_pzkpfw_38t_ausf_a",
-      "nameRu": "germ_pzkpfw_38t_ausf_a",
+      "nameEn": "Pz.38(t) A",
+      "nameRu": "Pz.38(t) A",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -3872,10 +3872,10 @@
       ]
     },
     {
-      "id": "germ_pzkpfw_38t_ausf_f",
+      "id": "germ_pzkpfw_38t_ausf_F",
       "country": "germ",
-      "nameEn": "germ_pzkpfw_38t_ausf_f",
-      "nameRu": "germ_pzkpfw_38t_ausf_f",
+      "nameEn": "Pz.38(t) F",
+      "nameRu": "Pz.38(t) F",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -3884,10 +3884,10 @@
       ]
     },
     {
-      "id": "germ_pzkpfw_38t_marder_iii",
+      "id": "germ_pzkpfw_38t_Marder_III",
       "country": "germ",
-      "nameEn": "germ_pzkpfw_38t_marder_iii",
-      "nameRu": "germ_pzkpfw_38t_marder_iii",
+      "nameEn": "Marder III",
+      "nameRu": "Marder III",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -3897,10 +3897,10 @@
       ]
     },
     {
-      "id": "germ_pzkpfw_38t_marder_iii_ausf_h",
+      "id": "germ_pzkpfw_38t_Marder_III_ausf_H",
       "country": "germ",
-      "nameEn": "germ_pzkpfw_38t_marder_iii_ausf_h",
-      "nameRu": "germ_pzkpfw_38t_marder_iii_ausf_h",
+      "nameEn": "Marder III H",
+      "nameRu": "Marder III H",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -3935,10 +3935,10 @@
       ]
     },
     {
-      "id": "germ_pzkpfw_ii_ausf_c",
+      "id": "germ_pzkpfw_II_ausf_C",
       "country": "germ",
-      "nameEn": "germ_pzkpfw_ii_ausf_c",
-      "nameRu": "germ_pzkpfw_ii_ausf_c",
+      "nameEn": "Pz.II C",
+      "nameRu": "Pz.II C",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -3947,10 +3947,10 @@
       ]
     },
     {
-      "id": "germ_pzkpfw_ii_ausf_c_dak",
+      "id": "germ_pzkpfw_II_ausf_C_DAK",
       "country": "germ",
-      "nameEn": "germ_pzkpfw_ii_ausf_c_dak",
-      "nameRu": "germ_pzkpfw_ii_ausf_c_dak",
+      "nameEn": "Pz.II C (DAK)",
+      "nameRu": "Pz.II C (DAK)",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -3959,10 +3959,10 @@
       ]
     },
     {
-      "id": "germ_pzkpfw_ii_ausf_c_td",
+      "id": "germ_pzkpfw_II_ausf_C_td",
       "country": "germ",
-      "nameEn": "germ_pzkpfw_ii_ausf_c_td",
-      "nameRu": "germ_pzkpfw_ii_ausf_c_td",
+      "nameEn": "Pz.II C TD",
+      "nameRu": "Pz.II C TD",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -3971,10 +3971,10 @@
       ]
     },
     {
-      "id": "germ_pzkpfw_ii_ausf_f",
+      "id": "germ_pzkpfw_II_ausf_F",
       "country": "germ",
-      "nameEn": "germ_pzkpfw_ii_ausf_f",
-      "nameRu": "germ_pzkpfw_ii_ausf_f",
+      "nameEn": "Pz.II F",
+      "nameRu": "Pz.II F",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -3983,10 +3983,10 @@
       ]
     },
     {
-      "id": "germ_pzkpfw_ii_ausf_h",
+      "id": "germ_pzkpfw_II_ausf_H",
       "country": "germ",
-      "nameEn": "germ_pzkpfw_ii_ausf_h",
-      "nameRu": "germ_pzkpfw_ii_ausf_h",
+      "nameEn": "Pz.Sfl.Ic",
+      "nameRu": "Pz.Sfl.Ic",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -3995,10 +3995,10 @@
       ]
     },
     {
-      "id": "germ_pzkpfw_iii_ausf_b",
+      "id": "germ_pzkpfw_III_ausf_B",
       "country": "germ",
-      "nameEn": "germ_pzkpfw_iii_ausf_b",
-      "nameRu": "germ_pzkpfw_iii_ausf_b",
+      "nameEn": "Pz.III B",
+      "nameRu": "Pz.III B",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -4007,10 +4007,10 @@
       ]
     },
     {
-      "id": "germ_pzkpfw_iii_ausf_e",
+      "id": "germ_pzkpfw_III_ausf_E",
       "country": "germ",
-      "nameEn": "germ_pzkpfw_iii_ausf_e",
-      "nameRu": "germ_pzkpfw_iii_ausf_e",
+      "nameEn": "Pz.III E",
+      "nameRu": "Pz.III E",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -4019,10 +4019,10 @@
       ]
     },
     {
-      "id": "germ_pzkpfw_iii_ausf_f",
+      "id": "germ_pzkpfw_III_ausf_F",
       "country": "germ",
-      "nameEn": "germ_pzkpfw_iii_ausf_f",
-      "nameRu": "germ_pzkpfw_iii_ausf_f",
+      "nameEn": "Pz.III F",
+      "nameRu": "Pz.III F",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -4031,10 +4031,10 @@
       ]
     },
     {
-      "id": "germ_pzkpfw_iii_ausf_j",
+      "id": "germ_pzkpfw_III_ausf_J",
       "country": "germ",
-      "nameEn": "germ_pzkpfw_iii_ausf_j",
-      "nameRu": "germ_pzkpfw_iii_ausf_j",
+      "nameEn": "Pz.III J1",
+      "nameRu": "Pz.III J1",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -4043,10 +4043,10 @@
       ]
     },
     {
-      "id": "germ_pzkpfw_iii_ausf_j_l42",
+      "id": "germ_pzkpfw_III_ausf_J_L42",
       "country": "germ",
-      "nameEn": "germ_pzkpfw_iii_ausf_j_l42",
-      "nameRu": "germ_pzkpfw_iii_ausf_j_l42",
+      "nameEn": "Pz.III J",
+      "nameRu": "Pz.III J",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -4055,10 +4055,10 @@
       ]
     },
     {
-      "id": "germ_pzkpfw_iii_ausf_j_td",
+      "id": "germ_pzkpfw_III_ausf_J_td",
       "country": "germ",
-      "nameEn": "germ_pzkpfw_iii_ausf_j_td",
-      "nameRu": "germ_pzkpfw_iii_ausf_j_td",
+      "nameEn": "Pz.III J1 TD",
+      "nameRu": "Pz.III J1 TD",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -4067,10 +4067,10 @@
       ]
     },
     {
-      "id": "germ_pzkpfw_iii_ausf_l",
+      "id": "germ_pzkpfw_III_ausf_L",
       "country": "germ",
-      "nameEn": "germ_pzkpfw_iii_ausf_l",
-      "nameRu": "germ_pzkpfw_iii_ausf_l",
+      "nameEn": "Pz.III L",
+      "nameRu": "Pz.III L",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -4079,10 +4079,10 @@
       ]
     },
     {
-      "id": "germ_pzkpfw_iii_ausf_l_tutorial",
+      "id": "germ_pzkpfw_III_ausf_L_tutorial",
       "country": "germ",
-      "nameEn": "germ_pzkpfw_iii_ausf_l_tutorial",
-      "nameRu": "germ_pzkpfw_iii_ausf_l_tutorial",
+      "nameEn": "Pz.III L",
+      "nameRu": "Pz.III L",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -4091,10 +4091,10 @@
       ]
     },
     {
-      "id": "germ_pzkpfw_iii_ausf_m",
+      "id": "germ_pzkpfw_III_ausf_M",
       "country": "germ",
-      "nameEn": "germ_pzkpfw_iii_ausf_m",
-      "nameRu": "germ_pzkpfw_iii_ausf_m",
+      "nameEn": "Pz.III M",
+      "nameRu": "Pz.III M",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -4103,23 +4103,10 @@
       ]
     },
     {
-      "id": "germ_pzkpfw_iii_ausf_n",
+      "id": "germ_pzkpfw_III_ausf_N",
       "country": "germ",
-      "nameEn": "germ_pzkpfw_iii_ausf_n",
-      "nameRu": "germ_pzkpfw_iii_ausf_n",
-      "zoomMin": 1.8,
-      "zoomMax": 3.5,
-      "sights": [
-        "AP",
-        "HEAT",
-        "HE"
-      ]
-    },
-    {
-      "id": "germ_pzkpfw_iv_ausf_c",
-      "country": "germ",
-      "nameEn": "germ_pzkpfw_iv_ausf_c",
-      "nameRu": "germ_pzkpfw_iv_ausf_c",
+      "nameEn": "Pz.III N",
+      "nameRu": "Pz.III N",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -4129,10 +4116,10 @@
       ]
     },
     {
-      "id": "germ_pzkpfw_iv_ausf_e",
+      "id": "germ_pzkpfw_IV_ausf_C",
       "country": "germ",
-      "nameEn": "germ_pzkpfw_iv_ausf_e",
-      "nameRu": "germ_pzkpfw_iv_ausf_e",
+      "nameEn": "Pz.IV C",
+      "nameRu": "Pz.IV C",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -4142,10 +4129,10 @@
       ]
     },
     {
-      "id": "germ_pzkpfw_iv_ausf_f",
+      "id": "germ_pzkpfw_IV_ausf_E",
       "country": "germ",
-      "nameEn": "germ_pzkpfw_iv_ausf_f",
-      "nameRu": "germ_pzkpfw_iv_ausf_f",
+      "nameEn": "Pz.IV E",
+      "nameRu": "Pz.IV E",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -4155,10 +4142,10 @@
       ]
     },
     {
-      "id": "germ_pzkpfw_iv_ausf_f2",
+      "id": "germ_pzkpfw_IV_ausf_F",
       "country": "germ",
-      "nameEn": "germ_pzkpfw_iv_ausf_f2",
-      "nameRu": "germ_pzkpfw_iv_ausf_f2",
+      "nameEn": "Pz.IV F1",
+      "nameRu": "Pz.IV F1",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -4168,10 +4155,10 @@
       ]
     },
     {
-      "id": "germ_pzkpfw_iv_ausf_g",
+      "id": "germ_pzkpfw_IV_ausf_F2",
       "country": "germ",
-      "nameEn": "germ_pzkpfw_iv_ausf_g",
-      "nameRu": "germ_pzkpfw_iv_ausf_g",
+      "nameEn": "Pz.IV F2",
+      "nameRu": "Pz.IV F2",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -4181,10 +4168,10 @@
       ]
     },
     {
-      "id": "germ_pzkpfw_iv_ausf_h",
+      "id": "germ_pzkpfw_IV_ausf_G",
       "country": "germ",
-      "nameEn": "germ_pzkpfw_iv_ausf_h",
-      "nameRu": "germ_pzkpfw_iv_ausf_h",
+      "nameEn": "Pz.IV G",
+      "nameRu": "Pz.IV G",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -4194,10 +4181,10 @@
       ]
     },
     {
-      "id": "germ_pzkpfw_iv_ausf_j",
+      "id": "germ_pzkpfw_IV_ausf_H",
       "country": "germ",
-      "nameEn": "germ_pzkpfw_iv_ausf_j",
-      "nameRu": "germ_pzkpfw_iv_ausf_j",
+      "nameEn": "Pz.IV H",
+      "nameRu": "Pz.IV H",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -4207,10 +4194,23 @@
       ]
     },
     {
-      "id": "germ_pzkpfw_maus",
+      "id": "germ_pzkpfw_IV_ausf_J",
       "country": "germ",
-      "nameEn": "germ_pzkpfw_maus",
-      "nameRu": "germ_pzkpfw_maus",
+      "nameEn": "Pz.IV J",
+      "nameRu": "Pz.IV J",
+      "zoomMin": 1.8,
+      "zoomMax": 3.5,
+      "sights": [
+        "AP",
+        "HEAT",
+        "HE"
+      ]
+    },
+    {
+      "id": "germ_pzkpfw_Maus",
+      "country": "germ",
+      "nameEn": "Maus",
+      "nameRu": "Maus",
       "zoomMin": 9.2,
       "zoomMax": 10,
       "sights": [
@@ -4220,10 +4220,10 @@
       ]
     },
     {
-      "id": "germ_pzkpfw_v_ausf_a_panther",
+      "id": "germ_pzkpfw_V_ausf_a_panther",
       "country": "germ",
-      "nameEn": "germ_pzkpfw_v_ausf_a_panther",
-      "nameRu": "germ_pzkpfw_v_ausf_a_panther",
+      "nameEn": "Panther A",
+      "nameRu": "Panther A",
       "zoomMin": 2.5,
       "zoomMax": 5,
       "sights": [
@@ -4232,10 +4232,10 @@
       ]
     },
     {
-      "id": "germ_pzkpfw_v_ausf_d_panther",
+      "id": "germ_pzkpfw_V_ausf_d_panther",
       "country": "germ",
-      "nameEn": "germ_pzkpfw_v_ausf_d_panther",
-      "nameRu": "germ_pzkpfw_v_ausf_d_panther",
+      "nameEn": "Panther D",
+      "nameRu": "Panther D",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -4244,10 +4244,10 @@
       ]
     },
     {
-      "id": "germ_pzkpfw_v_ausf_d_panther_tutorial",
+      "id": "germ_pzkpfw_V_ausf_d_panther_tutorial",
       "country": "germ",
-      "nameEn": "germ_pzkpfw_v_ausf_d_panther_tutorial",
-      "nameRu": "germ_pzkpfw_v_ausf_d_panther_tutorial",
+      "nameEn": "Panther D",
+      "nameRu": "Panther D",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -4256,10 +4256,10 @@
       ]
     },
     {
-      "id": "germ_pzkpfw_v_ausf_f_panther",
+      "id": "germ_pzkpfw_V_ausf_f_panther",
       "country": "germ",
-      "nameEn": "germ_pzkpfw_v_ausf_f_panther",
-      "nameRu": "germ_pzkpfw_v_ausf_f_panther",
+      "nameEn": "Panther F",
+      "nameRu": "Panther F",
       "zoomMin": 2.5,
       "zoomMax": 6,
       "sights": [
@@ -4268,10 +4268,10 @@
       ]
     },
     {
-      "id": "germ_pzkpfw_v_ausf_g_panther",
+      "id": "germ_pzkpfw_V_ausf_g_panther",
       "country": "germ",
-      "nameEn": "germ_pzkpfw_v_ausf_g_panther",
-      "nameRu": "germ_pzkpfw_v_ausf_g_panther",
+      "nameEn": "Panther G",
+      "nameRu": "Panther G",
       "zoomMin": 2.5,
       "zoomMax": 5,
       "sights": [
@@ -4280,10 +4280,10 @@
       ]
     },
     {
-      "id": "germ_pzkpfw_v_ersatz_m10",
+      "id": "germ_pzkpfw_V_ersatz_m10",
       "country": "germ",
-      "nameEn": "germ_pzkpfw_v_ersatz_m10",
-      "nameRu": "germ_pzkpfw_v_ersatz_m10",
+      "nameEn": "Ersatz M10",
+      "nameRu": "Ersatz M10",
       "zoomMin": 2.5,
       "zoomMax": 5,
       "sights": [
@@ -4292,35 +4292,10 @@
       ]
     },
     {
-      "id": "germ_pzkpfw_vi_ausf_b_tiger_iih",
+      "id": "germ_pzkpfw_VI_ausf_b_tiger_IIh",
       "country": "germ",
-      "nameEn": "germ_pzkpfw_vi_ausf_b_tiger_iih",
-      "nameRu": "germ_pzkpfw_vi_ausf_b_tiger_iih",
-      "zoomMin": 2.5,
-      "zoomMax": 5,
-      "sights": [
-        "AP",
-        "HEAT",
-        "HE"
-      ]
-    },
-    {
-      "id": "germ_pzkpfw_vi_ausf_b_tiger_iih_kwk46",
-      "country": "germ",
-      "nameEn": "germ_pzkpfw_vi_ausf_b_tiger_iih_kwk46",
-      "nameRu": "germ_pzkpfw_vi_ausf_b_tiger_iih_kwk46",
-      "zoomMin": 2.5,
-      "zoomMax": 5,
-      "sights": [
-        "AP",
-        "HE"
-      ]
-    },
-    {
-      "id": "germ_pzkpfw_vi_ausf_b_tiger_iih_sla",
-      "country": "germ",
-      "nameEn": "germ_pzkpfw_vi_ausf_b_tiger_iih_sla",
-      "nameRu": "germ_pzkpfw_vi_ausf_b_tiger_iih_sla",
+      "nameEn": "Tiger II",
+      "nameRu": "Tiger II",
       "zoomMin": 2.5,
       "zoomMax": 5,
       "sights": [
@@ -4330,23 +4305,22 @@
       ]
     },
     {
-      "id": "germ_pzkpfw_vi_ausf_b_tiger_iip",
+      "id": "germ_pzkpfw_VI_ausf_b_tiger_IIh_kwk46",
       "country": "germ",
-      "nameEn": "germ_pzkpfw_vi_ausf_b_tiger_iip",
-      "nameRu": "germ_pzkpfw_vi_ausf_b_tiger_iip",
-      "zoomMin": 1.8,
-      "zoomMax": 3.5,
+      "nameEn": "Tiger II (10.5 cm Kw.K)",
+      "nameRu": "Tiger II (10.5 cm Kw.K)",
+      "zoomMin": 2.5,
+      "zoomMax": 5,
       "sights": [
         "AP",
-        "HEAT",
         "HE"
       ]
     },
     {
-      "id": "germ_pzkpfw_vi_ausf_e_tiger",
+      "id": "germ_pzkpfw_VI_ausf_b_tiger_IIh_sla",
       "country": "germ",
-      "nameEn": "germ_pzkpfw_vi_ausf_e_tiger",
-      "nameRu": "germ_pzkpfw_vi_ausf_e_tiger",
+      "nameEn": "Tiger II (Sla.16)",
+      "nameRu": "Tiger II (Sla.16)",
       "zoomMin": 2.5,
       "zoomMax": 5,
       "sights": [
@@ -4356,10 +4330,10 @@
       ]
     },
     {
-      "id": "germ_pzkpfw_vi_ausf_h1_tiger",
+      "id": "germ_pzkpfw_VI_ausf_b_tiger_IIp",
       "country": "germ",
-      "nameEn": "germ_pzkpfw_vi_ausf_h1_tiger",
-      "nameRu": "germ_pzkpfw_vi_ausf_h1_tiger",
+      "nameEn": "Tiger II (Nr.1-50)",
+      "nameRu": "Tiger II (Nr.1-50)",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -4369,10 +4343,23 @@
       ]
     },
     {
-      "id": "germ_pzkpfw_vi_ausf_h1_tiger_animal_version",
+      "id": "germ_pzkpfw_VI_ausf_e_tiger",
       "country": "germ",
-      "nameEn": "germ_pzkpfw_vi_ausf_h1_tiger_animal_version",
-      "nameRu": "germ_pzkpfw_vi_ausf_h1_tiger_animal_version",
+      "nameEn": "Tiger E",
+      "nameRu": "Tiger E",
+      "zoomMin": 2.5,
+      "zoomMax": 5,
+      "sights": [
+        "AP",
+        "HEAT",
+        "HE"
+      ]
+    },
+    {
+      "id": "germ_pzkpfw_VI_ausf_h1_tiger",
+      "country": "germ",
+      "nameEn": "Tiger H1",
+      "nameRu": "Tiger H1",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -4382,10 +4369,10 @@
       ]
     },
     {
-      "id": "germ_pzkpfw_vi_ausf_h1_tiger_east",
+      "id": "germ_pzkpfw_VI_ausf_h1_tiger_animal_version",
       "country": "germ",
-      "nameEn": "germ_pzkpfw_vi_ausf_h1_tiger_east",
-      "nameRu": "germ_pzkpfw_vi_ausf_h1_tiger_east",
+      "nameEn": "␠Tiger",
+      "nameRu": "␠Tiger",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -4395,10 +4382,10 @@
       ]
     },
     {
-      "id": "germ_pzkpfw_vi_ausf_h1_tiger_tutorial",
+      "id": "germ_pzkpfw_VI_ausf_h1_tiger_east",
       "country": "germ",
-      "nameEn": "germ_pzkpfw_vi_ausf_h1_tiger_tutorial",
-      "nameRu": "germ_pzkpfw_vi_ausf_h1_tiger_tutorial",
+      "nameEn": "Tiger Ost",
+      "nameRu": "Tiger Ost",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -4408,10 +4395,10 @@
       ]
     },
     {
-      "id": "germ_pzkpfw_vi_ausf_h1_tiger_west",
+      "id": "germ_pzkpfw_VI_ausf_h1_tiger_tutorial",
       "country": "germ",
-      "nameEn": "germ_pzkpfw_vi_ausf_h1_tiger_west",
-      "nameRu": "germ_pzkpfw_vi_ausf_h1_tiger_west",
+      "nameEn": "Tiger H1",
+      "nameRu": "Tiger H1",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -4421,10 +4408,10 @@
       ]
     },
     {
-      "id": "germ_pzkpfw_vi_tiger_p",
+      "id": "germ_pzkpfw_VI_ausf_h1_tiger_west",
       "country": "germ",
-      "nameEn": "germ_pzkpfw_vi_tiger_p",
-      "nameRu": "germ_pzkpfw_vi_tiger_p",
+      "nameEn": "Tiger West",
+      "nameRu": "Tiger West",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -4434,10 +4421,23 @@
       ]
     },
     {
-      "id": "germ_pzsfl_iva_dickermax",
+      "id": "germ_pzkpfw_VI_tiger_P",
       "country": "germ",
-      "nameEn": "germ_pzsfl_iva_dickermax",
-      "nameRu": "germ_pzsfl_iva_dickermax",
+      "nameEn": "VK 45.01 (P)",
+      "nameRu": "VK 45.01 (P)",
+      "zoomMin": 1.8,
+      "zoomMax": 3.5,
+      "sights": [
+        "AP",
+        "HEAT",
+        "HE"
+      ]
+    },
+    {
+      "id": "germ_pzsfl_IVa_dickermax",
+      "country": "germ",
+      "nameEn": "Dicker Max",
+      "nameRu": "Dicker Max",
       "zoomMin": 5,
       "zoomMax": 9.2,
       "sights": [
@@ -4775,10 +4775,10 @@
       ]
     },
     {
-      "id": "germ_stug_iii_ausf_a",
+      "id": "germ_stug_III_ausf_A",
       "country": "germ",
-      "nameEn": "germ_stug_iii_ausf_a",
-      "nameRu": "germ_stug_iii_ausf_a",
+      "nameEn": "StuG III A",
+      "nameRu": "StuG III A",
       "zoomMin": 3.8,
       "zoomMax": 4,
       "sights": [
@@ -4788,10 +4788,10 @@
       ]
     },
     {
-      "id": "germ_stug_iii_ausf_f",
+      "id": "germ_stug_III_ausf_F",
       "country": "germ",
-      "nameEn": "germ_stug_iii_ausf_f",
-      "nameRu": "germ_stug_iii_ausf_f",
+      "nameEn": "StuG III F",
+      "nameRu": "StuG III F",
       "zoomMin": 4.7,
       "zoomMax": 5,
       "sights": [
@@ -4801,10 +4801,10 @@
       ]
     },
     {
-      "id": "germ_stug_iii_ausf_g",
+      "id": "germ_stug_III_ausf_G",
       "country": "germ",
-      "nameEn": "germ_stug_iii_ausf_g",
-      "nameRu": "germ_stug_iii_ausf_g",
+      "nameEn": "StuG III G",
+      "nameRu": "StuG III G",
       "zoomMin": 4.7,
       "zoomMax": 5,
       "sights": [
@@ -4814,10 +4814,10 @@
       ]
     },
     {
-      "id": "germ_stuh_iii_ausf_g",
+      "id": "germ_stuh_III_ausf_G",
       "country": "germ",
-      "nameEn": "germ_stuh_iii_ausf_g",
-      "nameRu": "germ_stuh_iii_ausf_g",
+      "nameEn": "StuH 42 G",
+      "nameRu": "StuH 42 G",
       "zoomMin": 4.7,
       "zoomMax": 5,
       "sights": [
@@ -4849,10 +4849,10 @@
       ]
     },
     {
-      "id": "germ_sturmpanzer_ii",
+      "id": "germ_sturmpanzer_II",
       "country": "germ",
-      "nameEn": "germ_sturmpanzer_ii",
-      "nameRu": "germ_sturmpanzer_ii",
+      "nameEn": "15cm sIG 33 B Sfl",
+      "nameRu": "15cm sIG 33 B Sfl",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -4861,10 +4861,10 @@
       ]
     },
     {
-      "id": "germ_sturmpanzer_iv_brummbar",
+      "id": "germ_sturmpanzer_IV_brummbar",
       "country": "germ",
-      "nameEn": "germ_sturmpanzer_iv_brummbar",
-      "nameRu": "germ_sturmpanzer_iv_brummbar",
+      "nameEn": "Brummbär",
+      "nameRu": "Brummbär",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -5262,10 +5262,10 @@
       ]
     },
     {
-      "id": "il_m48a1_patton_iii",
+      "id": "il_m48a1_patton_III",
       "country": "il",
-      "nameEn": "il_m48a1_patton_iii",
-      "nameRu": "il_m48a1_patton_iii",
+      "nameEn": "Magach 1",
+      "nameRu": "Magach 1",
       "zoomMin": 9.9,
       "zoomMax": 10,
       "sights": [
@@ -6739,10 +6739,10 @@
       ]
     },
     {
-      "id": "it_pzkpfw_iii_ausf_n",
+      "id": "it_pzkpfw_III_ausf_N",
       "country": "it",
-      "nameEn": "it_pzkpfw_iii_ausf_n",
-      "nameRu": "it_pzkpfw_iii_ausf_n",
+      "nameEn": "▄Pz.III N",
+      "nameRu": "▄Pz.III N",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -6752,10 +6752,10 @@
       ]
     },
     {
-      "id": "it_pzkpfw_iv_ausf_g",
+      "id": "it_pzkpfw_IV_ausf_G",
       "country": "it",
-      "nameEn": "it_pzkpfw_iv_ausf_g",
-      "nameRu": "it_pzkpfw_iv_ausf_g",
+      "nameEn": "▄Pz.IV G",
+      "nameRu": "▄Pz.IV G",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -6765,10 +6765,10 @@
       ]
     },
     {
-      "id": "it_pzkpfw_vi_ausf_e_tiger",
+      "id": "it_pzkpfw_VI_ausf_e_tiger",
       "country": "it",
-      "nameEn": "it_pzkpfw_vi_ausf_e_tiger",
-      "nameRu": "it_pzkpfw_vi_ausf_e_tiger",
+      "nameEn": "Tigris",
+      "nameRu": "Tigris",
       "zoomMin": 2.5,
       "zoomMax": 5,
       "sights": [
@@ -6961,10 +6961,10 @@
       ]
     },
     {
-      "id": "it_sherman_vii",
+      "id": "it_sherman_VII",
       "country": "it",
-      "nameEn": "it_sherman_vii",
-      "nameRu": "it_sherman_vii",
+      "nameEn": "Sherman Ic",
+      "nameRu": "Sherman Ic",
       "zoomMin": 4.3,
       "zoomMax": 5,
       "sights": [
@@ -6974,10 +6974,10 @@
       ]
     },
     {
-      "id": "it_stug_iii_ausf_g",
+      "id": "it_stug_III_ausf_G",
       "country": "it",
-      "nameEn": "it_stug_iii_ausf_g",
-      "nameRu": "it_stug_iii_ausf_g",
+      "nameEn": "▄StuG III G",
+      "nameRu": "▄StuG III G",
       "zoomMin": 4.7,
       "zoomMax": 5,
       "sights": [
@@ -7001,10 +7001,10 @@
       ]
     },
     {
-      "id": "it_toldi_ii_a",
+      "id": "it_toldi_II_a",
       "country": "it",
-      "nameEn": "it_toldi_ii_a",
-      "nameRu": "it_toldi_ii_a",
+      "nameEn": "Toldi IIA",
+      "nameRu": "Toldi IIA",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -7278,10 +7278,10 @@
       ]
     },
     {
-      "id": "jp_m47_patton_ii",
+      "id": "jp_m47_patton_II",
       "country": "jp",
-      "nameEn": "jp_m47_patton_ii",
-      "nameRu": "jp_m47_patton_ii",
+      "nameEn": "▅M47",
+      "nameRu": "▅M47",
       "zoomMin": 7.9,
       "zoomMax": 8,
       "sights": [
@@ -7342,10 +7342,10 @@
       ]
     },
     {
-      "id": "jp_pzkpfw_vi_ausf_e_tiger",
+      "id": "jp_pzkpfw_VI_ausf_e_tiger",
       "country": "jp",
-      "nameEn": "jp_pzkpfw_vi_ausf_e_tiger",
-      "nameRu": "jp_pzkpfw_vi_ausf_e_tiger",
+      "nameEn": "▅Heavy Tank No.6",
+      "nameRu": "▅Heavy Tank No.6",
       "zoomMin": 2.5,
       "zoomMax": 5,
       "sights": [
@@ -7625,10 +7625,10 @@
       ]
     },
     {
-      "id": "jp_type_3_ho_ni_i",
+      "id": "jp_type_3_ho_ni_I",
       "country": "jp",
-      "nameEn": "jp_type_3_ho_ni_i",
-      "nameRu": "jp_type_3_ho_ni_i",
+      "nameEn": "Ho-Ni I",
+      "nameRu": "Ho-Ni I",
       "zoomMin": 3.8,
       "zoomMax": 4,
       "sights": [
@@ -7637,10 +7637,10 @@
       ]
     },
     {
-      "id": "jp_type_3_ho_ni_iii",
+      "id": "jp_type_3_ho_ni_III",
       "country": "jp",
-      "nameEn": "jp_type_3_ho_ni_iii",
-      "nameRu": "jp_type_3_ho_ni_iii",
+      "nameEn": "Ho-Ni III",
+      "nameRu": "Ho-Ni III",
       "zoomMin": 3.8,
       "zoomMax": 4,
       "sights": [
@@ -8507,10 +8507,10 @@
       ]
     },
     {
-      "id": "sw_l_62_anti_ii",
+      "id": "sw_l_62_anti_II",
       "country": "sw",
-      "nameEn": "sw_l_62_anti_ii",
-      "nameRu": "sw_l_62_anti_ii",
+      "nameEn": "L-62 ANTI II",
+      "nameRu": "L-62 ANTI II",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -8747,10 +8747,10 @@
       ]
     },
     {
-      "id": "sw_pvkv_ii",
+      "id": "sw_pvkv_II",
       "country": "sw",
-      "nameEn": "sw_pvkv_ii",
-      "nameRu": "sw_pvkv_ii",
+      "nameEn": "Pvkv II",
+      "nameRu": "Pvkv II",
       "zoomMin": 8,
       "zoomMax": 15.9,
       "sights": [
@@ -8759,10 +8759,10 @@
       ]
     },
     {
-      "id": "sw_pvkv_iii",
+      "id": "sw_pvkv_III",
       "country": "sw",
-      "nameEn": "sw_pvkv_iii",
-      "nameRu": "sw_pvkv_iii",
+      "nameEn": "Pvkv III",
+      "nameRu": "Pvkv III",
       "zoomMin": 7,
       "zoomMax": 10,
       "sights": [
@@ -8833,10 +8833,10 @@
       ]
     },
     {
-      "id": "sw_pzkpfw_iv_ausf_j",
+      "id": "sw_pzkpfw_IV_ausf_J",
       "country": "sw",
-      "nameEn": "sw_pzkpfw_iv_ausf_j",
-      "nameRu": "sw_pzkpfw_iv_ausf_j",
+      "nameEn": "▄Pz.IV",
+      "nameRu": "▄Pz.IV",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -10145,10 +10145,10 @@
       ]
     },
     {
-      "id": "uk_challenger_ii",
+      "id": "uk_challenger_II",
       "country": "uk",
-      "nameEn": "uk_challenger_ii",
-      "nameRu": "uk_challenger_ii",
+      "nameEn": "Challenger 2",
+      "nameRu": "Challenger 2",
       "zoomMin": 4,
       "zoomMax": 10,
       "sights": [
@@ -10157,10 +10157,10 @@
       ]
     },
     {
-      "id": "uk_challenger_ii_yt_cup_2019",
+      "id": "uk_challenger_II_yt_cup_2019",
       "country": "uk",
-      "nameEn": "uk_challenger_ii_yt_cup_2019",
-      "nameRu": "uk_challenger_ii_yt_cup_2019",
+      "nameEn": "␙Challenger 2",
+      "nameRu": "␙Challenger 2",
       "zoomMin": 4,
       "zoomMax": 10,
       "sights": [
@@ -10920,10 +10920,10 @@
       ]
     },
     {
-      "id": "uk_sherman_ii",
+      "id": "uk_sherman_II",
       "country": "uk",
-      "nameEn": "uk_sherman_ii",
-      "nameRu": "uk_sherman_ii",
+      "nameEn": "Sherman II",
+      "nameRu": "Sherman II",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -12426,10 +12426,10 @@
       ]
     },
     {
-      "id": "us_m47_patton_ii",
+      "id": "us_m47_patton_II",
       "country": "us",
-      "nameEn": "us_m47_patton_ii",
-      "nameRu": "us_m47_patton_ii",
+      "nameEn": "M47",
+      "nameRu": "M47",
       "zoomMin": 7.9,
       "zoomMax": 8,
       "sights": [
@@ -12439,10 +12439,10 @@
       ]
     },
     {
-      "id": "us_m48a1_patton_iii",
+      "id": "us_m48a1_patton_III",
       "country": "us",
-      "nameEn": "us_m48a1_patton_iii",
-      "nameRu": "us_m48a1_patton_iii",
+      "nameEn": "M48A1",
+      "nameRu": "M48A1",
       "zoomMin": 9.9,
       "zoomMax": 10,
       "sights": [
@@ -13715,10 +13715,10 @@
       ]
     },
     {
-      "id": "ussr_a_12_mk_2_matilda_2a_f96",
+      "id": "ussr_a_12_mk_2_matilda_2A_F96",
       "country": "ussr",
-      "nameEn": "ussr_a_12_mk_2_matilda_2a_f96",
-      "nameRu": "ussr_a_12_mk_2_matilda_2a_f96",
+      "nameEn": "▂MK-II \"Matilda\"",
+      "nameRu": "▂МК-II \"Матильда\"",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -14556,10 +14556,10 @@
       ]
     },
     {
-      "id": "ussr_kv_1_l_11",
+      "id": "ussr_kv_1_L_11",
       "country": "ussr",
-      "nameEn": "ussr_kv_1_l_11",
-      "nameRu": "ussr_kv_1_l_11",
+      "nameEn": "KV-1 (L-11)",
+      "nameRu": "КВ-1 (Л-11)",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -14956,10 +14956,10 @@
       ]
     },
     {
-      "id": "ussr_pzkpfw_iii_ausf_j_l42",
+      "id": "ussr_pzkpfw_III_ausf_J_L42",
       "country": "ussr",
-      "nameEn": "ussr_pzkpfw_iii_ausf_j_l42",
-      "nameRu": "ussr_pzkpfw_iii_ausf_j_l42",
+      "nameEn": "▂T-III",
+      "nameRu": "▂T-III",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -14968,10 +14968,10 @@
       ]
     },
     {
-      "id": "ussr_pzkpfw_v",
+      "id": "ussr_pzkpfw_V",
       "country": "ussr",
-      "nameEn": "ussr_pzkpfw_v",
-      "nameRu": "ussr_pzkpfw_v",
+      "nameEn": "▂T-V",
+      "nameRu": "▂T-V",
       "zoomMin": 2.5,
       "zoomMax": 5,
       "sights": [
@@ -15254,10 +15254,10 @@
       ]
     },
     {
-      "id": "ussr_su_100y",
+      "id": "ussr_su_100Y",
       "country": "ussr",
-      "nameEn": "ussr_su_100y",
-      "nameRu": "ussr_su_100y",
+      "nameEn": "SU-100Y",
+      "nameRu": "СУ-100Y",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -15292,10 +15292,10 @@
       ]
     },
     {
-      "id": "ussr_su_122p",
+      "id": "ussr_su_122P",
       "country": "ussr",
-      "nameEn": "ussr_su_122p",
-      "nameRu": "ussr_su_122p",
+      "nameEn": "SU-122P",
+      "nameRu": "СУ-122П",
       "zoomMin": 3.3,
       "zoomMax": 4,
       "sights": [
@@ -15482,10 +15482,10 @@
       ]
     },
     {
-      "id": "ussr_t_26_1940_1st_gvtbr",
+      "id": "ussr_t_26_1940_1st_GvTBr",
       "country": "ussr",
-      "nameEn": "ussr_t_26_1940_1st_gvtbr",
-      "nameRu": "ussr_t_26_1940_1st_gvtbr",
+      "nameEn": "T-26 (1st Gv.T.Br.)",
+      "nameRu": "Т-26 (1 Гв.Т.Бр.)",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -15506,10 +15506,10 @@
       ]
     },
     {
-      "id": "ussr_t_26e",
+      "id": "ussr_t_26E",
       "country": "ussr",
-      "nameEn": "ussr_t_26e",
-      "nameRu": "ussr_t_26e",
+      "nameEn": "T-26E",
+      "nameRu": "Т-26Э",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -15542,10 +15542,10 @@
       ]
     },
     {
-      "id": "ussr_t_28e",
+      "id": "ussr_t_28E",
       "country": "ussr",
-      "nameEn": "ussr_t_28e",
-      "nameRu": "ussr_t_28e",
+      "nameEn": "T-28E",
+      "nameRu": "Т-28Э",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -15722,10 +15722,10 @@
       ]
     },
     {
-      "id": "ussr_t_34_85e",
+      "id": "ussr_t_34_85E",
       "country": "ussr",
-      "nameEn": "ussr_t_34_85e",
-      "nameRu": "ussr_t_34_85e",
+      "nameEn": "T-34-85E",
+      "nameRu": "Т-34-85Э",
       "zoomMin": 3.8,
       "zoomMax": 4,
       "sights": [
@@ -15735,10 +15735,10 @@
       ]
     },
     {
-      "id": "ussr_t_34e",
+      "id": "ussr_t_34E",
       "country": "ussr",
-      "nameEn": "ussr_t_34e",
-      "nameRu": "ussr_t_34e",
+      "nameEn": "T-34E",
+      "nameRu": "Т-34Э",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -15748,10 +15748,10 @@
       ]
     },
     {
-      "id": "ussr_t_34e_stz",
+      "id": "ussr_t_34E_STZ",
       "country": "ussr",
-      "nameEn": "ussr_t_34e_stz",
-      "nameRu": "ussr_t_34e_stz",
+      "nameEn": "T-34E STZ",
+      "nameRu": "Т-34Э СТЗ",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
@@ -16419,10 +16419,10 @@
       ]
     },
     {
-      "id": "ussr_zis_12_94km_1945",
+      "id": "ussr_zis_12_94KM_1945",
       "country": "ussr",
-      "nameEn": "ussr_zis_12_94km_1945",
-      "nameRu": "ussr_zis_12_94km_1945",
+      "nameEn": "ZiS-12 (94-KM)",
+      "nameRu": "ЗиС-12 (94-КМ)",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [

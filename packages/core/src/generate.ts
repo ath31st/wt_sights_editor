@@ -15,9 +15,14 @@ export function generateTankSights(
   const wanted = ammoFilter ?? tank.sights;
   const files: GeneratedFile[] = [];
   for (const ammo of wanted) {
-    const model = sightFromZoom(ammo, tank.zoomMax, {
-      fontSizeMult: fontOverride,
-    });
+    const model = sightFromZoom(
+      ammo,
+      tank.zoomMax,
+      {
+        fontSizeMult: fontOverride,
+      },
+      tank.zoomMin,
+    );
     files.push({
       relativePath: `${tank.id}/${ammo}.blk`,
       contents: emitBlk(model),

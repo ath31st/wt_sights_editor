@@ -87,6 +87,8 @@ function mapBulletType(raw) {
 
 function loadNames(csvText) {
   const names = new Map();
+  /** lowercase unit id → canonical casing from units.csv (game UserSights path). */
+  const idByLower = new Map();
   for (const line of csvText.split(/\r?\n/)) {
     if (!line.startsWith('"') || !line.includes("_shop")) {
       continue;
@@ -101,8 +103,17 @@ function loadNames(csvText) {
       nameEn: fields[1] || id,
       nameRu: fields[6] || fields[1] || id,
     });
+    const lower = id.toLowerCase();
+    // Prefer first csv hit; tankmodels files are lowercased so one file → one id.
+    if (!idByLower.has(lower)) {
+      idByLower.set(lower, id);
+    }
   }
-  return names;
+  return { names, idByLower };
+}
+
+function canonicalUnitId(fileStem, idByLower) {
+  return idByLower.get(fileStem.toLowerCase()) ?? fileStem;
 }
 
 function extractGunnerZoom(text) {
@@ -164,7 +175,7 @@ function sightsFromWeaponText(text) {
   return found;
 }
 
-const names = loadNames(readFileSync(UNITS_CSV, "utf8"));
+const { names, idByLower } = loadNames(readFileSync(UNITS_CSV, "utf8"));
 const weaponCache = new Map();
 
 function weaponSights(fileName) {
@@ -183,11 +194,16 @@ function weaponSights(fileName) {
 }
 
 const tanks = [];
+let recased = 0;
 for (const file of readdirSync(TANK_DIR)) {
   if (!file.endsWith(".blkx")) {
     continue;
   }
-  const id = file.replace(/\.blkx$/i, "");
+  const fileStem = file.replace(/\.blkx$/i, "");
+  const id = canonicalUnitId(fileStem, idByLower);
+  if (id !== fileStem) {
+    recased += 1;
+  }
   const text = readFileSync(join(TANK_DIR, file), "utf8");
   const zoom = extractGunnerZoom(text);
   if (!zoom) {
@@ -226,4 +242,4 @@ writeFileSync(
   OUT,
   `${JSON.stringify({ version: 1, source: "datamine", tanks }, null, 2)}\n`,
 );
-console.log(`Wrote ${tanks.length} tanks to ${OUT}`);
+console.log(`Wrote ${tanks.length} tanks to ${OUT} (${recased} ids recased from units.csv)`);
