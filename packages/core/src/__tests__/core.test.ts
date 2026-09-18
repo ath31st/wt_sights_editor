@@ -254,6 +254,19 @@ describe("tankSightSettings", () => {
     expect(parseTankCrosshairs(next).get("ussr_t_72b_1989")).toBe("abAPDS");
   });
 
+  it("expands a bare crosshair-only tank into the Save field set", () => {
+    const next = setTankCrosshair(GLOBAL_FIXTURE, "jp_type_99", "AP");
+    expect(next).toContain(`        jp_type_99{
+          crosshair:t="AP"
+          crosshairColor:c=0, 0, 0, 255
+          crosshairLightColor:c=255, 64, 64, 255
+          shotDistScaleOffset:i=0
+
+          bulletType{`);
+    expect(next).toContain("rangefinder{\n            visible:b=yes");
+    expect(parseTankCrosshairs(next).get("jp_type_99")).toBe("AP");
+  });
+
   it("inserts crosshair:t when the tank block has none", () => {
     const next = setTankCrosshair(GLOBAL_FIXTURE, "germ_puma", "HEAT");
     expect(next).toContain(`        germ_puma{
@@ -265,9 +278,9 @@ describe("tankSightSettings", () => {
 
   it("preserves CRLF when patching", () => {
     const crlf = GLOBAL_FIXTURE.replaceAll("\n", "\r\n");
-    const next = setTankCrosshair(crlf, "jp_type_99", "AP");
+    const next = setTankCrosshair(crlf, "ussr_t_72b_1989", "APDS");
     expect(next).toContain("\r\n");
-    expect(next).not.toContain("\n\n");
-    expect(next).toContain('jp_type_99{\r\n          crosshair:t="AP"');
+    expect(next).not.toMatch(/(?<!\r)\n/);
+    expect(next).toContain('ussr_t_72b_1989{\r\n          crosshair:t="APDS"');
   });
 });
