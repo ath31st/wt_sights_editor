@@ -20,11 +20,28 @@ describe("countryFromUnitId", () => {
 });
 
 describe("density", () => {
-  it("uses a left column and 200 m steps for AP at Somua-like zoom", () => {
+  it("uses dense L/R marks every 200 m for slow AP", () => {
     const d = densityFor(6, "AP", 6);
+    expect(d.layout).toBe("alternateLR");
+    expect(d.stepM).toBe(200);
+    expect(d.numberEvery).toBe(1);
+    expect(d.fontSizeMult).toBeGreaterThan(0.8);
+    const marks = sightFromZoom("AP", 6, {}, 6).marks;
+    expect(marks[0]?.meters).toBe(200);
+    expect(marks[0]?.label).toBe(2);
+    expect(marks[1]?.meters).toBe(400);
+    expect(marks[1]?.label).toBe(4);
+    expect(marks[1]?.textPosX).toBeGreaterThan(0);
+  });
+
+  it("uses sparse left-column marks for AP_Fast", () => {
+    const d = densityFor(6, "AP_Fast", 6);
     expect(d.layout).toBe("singleLeft");
     expect(d.stepM).toBe(200);
-    expect(d.fontSizeMult).toBeGreaterThan(0.8);
+    expect(d.numberEvery).toBe(2);
+    const marks = sightFromZoom("AP_Fast", 6, {}, 6).marks;
+    expect(marks.some((m) => m.meters === 200 && m.label === 0)).toBe(true);
+    expect(marks.some((m) => m.meters === 400 && m.label === 4)).toBe(true);
   });
 
   it("uses L/R marks for APDS at Abrams zoom", () => {
@@ -98,6 +115,24 @@ describe("generate", () => {
     expect(files.map((f) => f.relativePath)).toEqual([
       "us_m1a2_abrams/APDS.blk",
       "us_m1a2_abrams/HEAT.blk",
+    ]);
+  });
+
+  it("writes both AP.blk and AP_Fast.blk when both slots are present", () => {
+    const files = generateTankSights({
+      id: "us_m24_chaffee",
+      country: "us",
+      nameEn: "M24",
+      nameRu: "M24",
+      zoomMin: 3.5,
+      zoomMax: 7,
+      sights: ["AP", "AP_Fast", "HE"],
+      ammoSpeeds: { AP: 618, AP_Fast: 868, HE: 463 },
+    });
+    expect(files.map((f) => f.relativePath)).toEqual([
+      "us_m24_chaffee/AP.blk",
+      "us_m24_chaffee/AP_Fast.blk",
+      "us_m24_chaffee/HE.blk",
     ]);
   });
 });
