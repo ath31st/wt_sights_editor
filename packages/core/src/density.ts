@@ -29,12 +29,13 @@ function fontSizeFor(ammo: AmmoClass, zoomMin: number, zoomMax: number): number 
   if (ammo === "HEAT") {
     return round1(clamp(0.38 * ratio + 0.37, 0.2, 1.1));
   }
+  // AP and AP_Fast share the AP font curve.
   return round1(clamp(0.62 * ratio + 0.3, 0.35, 1.15));
 }
 
 /**
- * Layout/ticks from community sights (Somua AP, Abrams APDS/HEAT).
- * Font from empirical fit over old UserSights vs zoom span.
+ * Layout/ticks: slow AP (≤800 m/s) → dense L/R @ 200 m;
+ * AP_Fast → sparse left column; APDS/HEAT/HE as before.
  */
 export function densityFor(
   zoomMax: number,
@@ -58,6 +59,20 @@ export function densityFor(
     };
   }
 
+  if (ammo === "AP") {
+    return {
+      layout: "alternateLR",
+      stepM: 200,
+      minM: 200,
+      maxM: zoom >= 8 ? 4000 : 3600,
+      numberEvery: 1,
+      fontSizeMult,
+      tickOuter: 2.1,
+      tickInner: 0.9,
+      circleSize: 1.8,
+    };
+  }
+
   if (ammo === "HE") {
     return {
       layout: "singleLeft",
@@ -73,6 +88,7 @@ export function densityFor(
   }
 
   const isHeat = ammo === "HEAT";
+  // HEAT and AP_Fast: sparse left column (labels every 400 m).
   return {
     layout: "singleLeft",
     stepM: 200,
