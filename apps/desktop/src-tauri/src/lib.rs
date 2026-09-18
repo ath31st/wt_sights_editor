@@ -13,6 +13,8 @@ struct CatalogTank {
     zoom_min: f64,
     zoom_max: f64,
     sights: Vec<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    ammo_speeds: Option<std::collections::HashMap<String, f64>>,
 }
 
 #[derive(Debug, Deserialize)]

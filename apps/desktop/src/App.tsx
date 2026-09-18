@@ -215,7 +215,15 @@ export default function App() {
               {selected.id} · {countryLabelRu(selected.country)} · {selected.zoomMin}x–
               {selected.zoomMax}x
             </p>
-            <p>Снаряды: {selected.sights.join(", ")}</p>
+            <p>
+              Снаряды:{" "}
+              {selected.sights
+                .map((ammo) => {
+                  const speed = selected.ammoSpeeds?.[ammo];
+                  return speed != null ? `${ammo} (${speed})` : ammo;
+                })
+                .join(", ")}
+            </p>
             <label>
               Шрифт
               <input
