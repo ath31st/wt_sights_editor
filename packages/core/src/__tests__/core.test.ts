@@ -225,10 +225,29 @@ describe("tankSightSettings", () => {
     expect(parseTankCrosshairs(next).get("ussr_t_72b_1989")).toBe("APDS");
   });
 
-  it("inserts a missing tank block before tankSightSettings closes", () => {
+  it("inserts a missing tank with the in-game Save field set", () => {
     const next = setTankCrosshair(GLOBAL_FIXTURE, "uk_fv107_scimitar", "APDS");
     expect(next).toContain(`        uk_fv107_scimitar{
           crosshair:t="APDS"
+          crosshairColor:c=0, 0, 0, 255
+          crosshairLightColor:c=255, 64, 64, 255
+          shotDistScaleOffset:i=0
+
+          bulletType{
+            visible:b=no
+            isShortName:b=no
+            textColor:c=0, 0, 0, 255
+            bgColor:c=0, 0, 0, 0
+            nightVisionTextColor:c=0, 0, 0, 255
+            nightVisionBgColor:c=0, 0, 0, 0
+            lightTextColor:c=0, 0, 0, 255
+            lightBgColor:c=0, 0, 0, 0
+            thermalTextColor:c=0, 0, 0, 255
+            thermalBgColor:c=0, 0, 0, 0
+            position:p2=700, 202
+            textSize:i=30
+            font:t=""
+          }
         }
       }`);
     expect(parseTankCrosshairs(next).get("uk_fv107_scimitar")).toBe("APDS");

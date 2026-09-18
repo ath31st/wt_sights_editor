@@ -216,6 +216,45 @@ function fieldIndentFor(text: string, tanks: NamedBlkBlock[], childIndent: strin
   return `${childIndent}  `;
 }
 
+function nestedIndentFor(fieldIndent: string): string {
+  return `${fieldIndent}  `;
+}
+
+/** Fields the game writes on first in-game Save; a lone crosshair:t= is ignored. */
+function formatTankSightBlock(
+  unitId: string,
+  sightName: string,
+  childIndent: string,
+  fieldIndent: string,
+  nl: string,
+): string {
+  const nested = nestedIndentFor(fieldIndent);
+  return [
+    `${childIndent}${unitId}{`,
+    `${fieldIndent}crosshair:t="${sightName}"`,
+    `${fieldIndent}crosshairColor:c=0, 0, 0, 255`,
+    `${fieldIndent}crosshairLightColor:c=255, 64, 64, 255`,
+    `${fieldIndent}shotDistScaleOffset:i=0`,
+    ``,
+    `${fieldIndent}bulletType{`,
+    `${nested}visible:b=no`,
+    `${nested}isShortName:b=no`,
+    `${nested}textColor:c=0, 0, 0, 255`,
+    `${nested}bgColor:c=0, 0, 0, 0`,
+    `${nested}nightVisionTextColor:c=0, 0, 0, 255`,
+    `${nested}nightVisionBgColor:c=0, 0, 0, 0`,
+    `${nested}lightTextColor:c=0, 0, 0, 255`,
+    `${nested}lightBgColor:c=0, 0, 0, 0`,
+    `${nested}thermalTextColor:c=0, 0, 0, 255`,
+    `${nested}thermalBgColor:c=0, 0, 0, 0`,
+    `${nested}position:p2=700, 202`,
+    `${nested}textSize:i=30`,
+    `${nested}font:t=""`,
+    `${fieldIndent}}`,
+    `${childIndent}}`,
+  ].join(nl);
+}
+
 function insertCrosshairLine(
   text: string,
   tank: NamedBlkBlock,
@@ -240,7 +279,7 @@ function insertTankBlock(
   fieldIndent: string,
   nl: string,
 ): string {
-  const block = `${childIndent}${unitId}{${nl}${fieldIndent}crosshair:t="${sightName}"${nl}${childIndent}}`;
+  const block = formatTankSightBlock(unitId, sightName, childIndent, fieldIndent, nl);
   let lineStart = settings.close;
   while (lineStart > 0 && text[lineStart - 1] !== "\n") {
     lineStart -= 1;
