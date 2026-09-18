@@ -25,7 +25,6 @@ export default function App() {
   const [selectedId, setSelectedId] = useState<string>("");
   const [fontOverride, setFontOverride] = useState<number | null>(null);
   const [status, setStatus] = useState("");
-  const [presetWarning, setPresetWarning] = useState("");
   const [newId, setNewId] = useState("");
   const [newZoomMin, setNewZoomMin] = useState("4");
   const [newZoomMax, setNewZoomMax] = useState("8");
@@ -88,24 +87,6 @@ export default function App() {
       .then(setUserTanks)
       .catch((err: unknown) => setStatus(String(err)));
   }, []);
-
-  useEffect(() => {
-    if (!root) {
-      setPresetWarning("");
-      return;
-    }
-    invoke<string | null>("read_preset_crosshair", { usersightsRoot: root })
-      .then((name) => {
-        if (!name) {
-          setPresetWarning("");
-          return;
-        }
-        setPresetWarning(
-          `В игре сейчас выбран прицел «${name}». После генерации выбери AP / HEAT / APDS / HE в списке прицелов.`,
-        );
-      })
-      .catch(() => setPresetWarning(""));
-  }, [root]);
 
   async function pickFolder() {
     const dir = await open({ directory: true, title: "Папка UserSights" });
@@ -263,7 +244,6 @@ export default function App() {
           <p>Нет танков в фильтре.</p>
         )}
 
-        {presetWarning ? <p className="warn">{presetWarning}</p> : null}
         {status ? <p className="status">{status}</p> : null}
 
         <h3>Добавить танк вручную</h3>

@@ -83,24 +83,6 @@ fn write_sight_files(root: String, files: Vec<GeneratedFile>) -> Result<WriteRes
     })
 }
 
-#[tauri::command]
-fn read_preset_crosshair(usersights_root: String) -> Result<Option<String>, String> {
-    let path = PathBuf::from(usersights_root).join("tank_sight_presets/main.blk");
-    if !path.exists() {
-        return Ok(None);
-    }
-    let text = fs::read_to_string(path).map_err(|err| err.to_string())?;
-    for line in text.lines() {
-        if let Some(rest) = line.trim().strip_prefix("crosshair:t=") {
-            let name = rest.trim().trim_matches('"').trim_matches('\'');
-            if !name.is_empty() {
-                return Ok(Some(name.to_string()));
-            }
-        }
-    }
-    Ok(None)
-}
-
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
@@ -108,8 +90,7 @@ pub fn run() {
         .invoke_handler(tauri::generate_handler![
             load_user_extras,
             save_user_extras,
-            write_sight_files,
-            read_preset_crosshair
+            write_sight_files
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

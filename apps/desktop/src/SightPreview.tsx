@@ -5,6 +5,11 @@ type Props = {
   model: SightModel;
 };
 
+/** Preview px so 0.2→0.7→1.2 are obviously different (no flat floor at 10px). */
+function previewFontPx(fontSizeMult: number): number {
+  return Math.round(4 + fontSizeMult * 34);
+}
+
 export function SightPreview({ model }: Props) {
   const ref = useRef<HTMLCanvasElement>(null);
 
@@ -48,7 +53,8 @@ export function SightPreview({ model }: Props) {
     ctx.arc(cx, milsToY(0), radius, 0, Math.PI * 2);
     ctx.stroke();
 
-    ctx.font = `${Math.max(10, 11 * model.fontSizeMult * 1.4)}px sans-serif`;
+    const fontPx = previewFontPx(model.fontSizeMult);
+    ctx.font = `${fontPx}px sans-serif`;
     ctx.fillStyle = "#f3f3f3";
     const spacing = (h - 80) / Math.max(marks.length, 1);
     marks.forEach((mark, index) => {
@@ -60,13 +66,30 @@ export function SightPreview({ model }: Props) {
       if (mark.label > 0) {
         const right = model.layout === "alternateLR" && mark.textPosX > 0;
         ctx.textAlign = right ? "left" : "right";
-        ctx.fillText(String(mark.label), right ? cx + 16 : cx - 16, y + 4);
+        ctx.fillText(String(mark.label), right ? cx + 16 : cx - 16, y + fontPx * 0.35);
       }
     });
 
-    ctx.fillStyle = "#888";
-    ctx.font = "11px sans-serif";
+    // Fixed-size ghost sample (1.0) + live sample — easy to compare while dragging.
+    const sampleX = 14;
+    const sampleY = 28;
+    const ghostPx = previewFontPx(1);
     ctx.textAlign = "left";
+    ctx.textBaseline = "top";
+    ctx.fillStyle = "#3a3a3a";
+    ctx.font = `${ghostPx}px sans-serif`;
+    ctx.fillText("4  8  12", sampleX, sampleY);
+    ctx.fillStyle = "#f3f3f3";
+    ctx.font = `${fontPx}px sans-serif`;
+    ctx.fillText("4  8  12", sampleX, sampleY);
+
+    ctx.fillStyle = "#9a9a9a";
+    ctx.font = "12px sans-serif";
+    ctx.fillText(`шрифт ${model.fontSizeMult.toFixed(2)}  ·  серое = 1.00`, sampleX, sampleY + ghostPx + 6);
+
+    ctx.fillStyle = "#666";
+    ctx.font = "11px sans-serif";
+    ctx.textBaseline = "alphabetic";
     ctx.fillText("Схема в тысячных. В игре метки расставит снаряд.", 12, h - 10);
   }, [marks, model]);
 
