@@ -10,7 +10,8 @@ const UNITS_CSV = join(DATAMINE, "lang.vromfs.bin_u/lang/units.csv");
 const OUT = join(ROOT, "data/catalog.json");
 
 const FOV_REF = 73.68;
-const AMMO = ["AP", "HEAT", "APDS", "HE"];
+const AP_FAST_SPEED = 800;
+const AMMO = ["AP", "AP_Fast", "HEAT", "APDS", "HE"];
 
 function parseCsvLine(line) {
   const fields = [];
@@ -50,7 +51,8 @@ function countryFromId(id) {
   return KNOWN_COUNTRIES.has(prefix) ? prefix : "other";
 }
 
-function mapBulletType(raw) {
+/** Base ammo family before AP speed split. */
+function mapBulletFamily(raw) {
   const s = raw.toLowerCase();
   if (s === "ap") {
     return null;
@@ -83,6 +85,20 @@ function mapBulletType(raw) {
     return "AP";
   }
   return null;
+}
+
+function mapBulletSlot(raw, speed) {
+  const family = mapBulletFamily(raw);
+  if (!family) {
+    return null;
+  }
+  if (family === "AP") {
+    if (Number.isFinite(speed) && speed > AP_FAST_SPEED) {
+      return "AP_Fast";
+    }
+    return "AP";
+  }
+  return family;
 }
 
 function loadNames(csvText) {
@@ -164,30 +180,66 @@ function isPrimaryWeapon(fileName) {
   return true;
 }
 
-function sightsFromWeaponText(text) {
-  const found = new Set();
-  for (const match of text.matchAll(/"bulletType"\s*:\s*"([^"]+)"/g)) {
-    const mapped = mapBulletType(match[1]);
-    if (mapped) {
-      found.add(mapped);
+/** Collect { slot, speed } from every bullet object in a weapon JSON. */
+function collectBullets(node, out) {
+  if (node == null || typeof node !== "object") {
+    return;
+  }
+  if (Array.isArray(node)) {
+    for (const item of node) {
+      collectBullets(item, out);
+    }
+    return;
+  }
+  if (typeof node.bulletType === "string") {
+    const speed = Number(node.speed);
+    const slot = mapBulletSlot(node.bulletType, speed);
+    if (slot) {
+      out.push({ slot, speed: Number.isFinite(speed) ? speed : null });
     }
   }
-  return found;
+  for (const value of Object.values(node)) {
+    collectBullets(value, out);
+  }
+}
+
+function ammoFromWeaponJson(text) {
+  const speeds = new Map();
+  try {
+    const data = JSON.parse(text);
+    const bullets = [];
+    collectBullets(data, bullets);
+    for (const { slot, speed } of bullets) {
+      if (speed == null) {
+        if (!speeds.has(slot)) {
+          speeds.set(slot, null);
+        }
+        continue;
+      }
+      const prev = speeds.get(slot);
+      if (prev == null || speed < prev) {
+        speeds.set(slot, speed);
+      }
+    }
+  } catch {
+    // fall through empty
+  }
+  return speeds;
 }
 
 const { names, idByLower } = loadNames(readFileSync(UNITS_CSV, "utf8"));
 const weaponCache = new Map();
 
-function weaponSights(fileName) {
+function weaponAmmo(fileName) {
   if (weaponCache.has(fileName)) {
     return weaponCache.get(fileName);
   }
   const path = join(WEAPON_DIR, fileName);
-  let found = new Set();
+  let found = new Map();
   try {
-    found = sightsFromWeaponText(readFileSync(path, "utf8"));
+    found = ammoFromWeaponJson(readFileSync(path, "utf8"));
   } catch {
-    found = new Set();
+    found = new Map();
   }
   weaponCache.set(fileName, found);
   return found;
@@ -211,19 +263,35 @@ for (const file of readdirSync(TANK_DIR)) {
   }
   const { zoomMin, zoomMax } = zoom;
 
-  const sights = new Set();
+  const ammoSpeeds = new Map();
   for (const match of text.matchAll(/"blk"\s*:\s*"([^"]+)"/g)) {
     const fileName = weaponFileName(match[1]);
     if (!isPrimaryWeapon(fileName)) {
       continue;
     }
-    for (const ammo of weaponSights(fileName)) {
-      sights.add(ammo);
+    for (const [slot, speed] of weaponAmmo(fileName)) {
+      const prev = ammoSpeeds.get(slot);
+      if (speed == null) {
+        if (!ammoSpeeds.has(slot)) {
+          ammoSpeeds.set(slot, null);
+        }
+        continue;
+      }
+      if (prev == null || speed < prev) {
+        ammoSpeeds.set(slot, speed);
+      }
     }
   }
 
-  const ordered = AMMO.filter((ammo) => sights.has(ammo));
+  const ordered = AMMO.filter((ammo) => ammoSpeeds.has(ammo));
   const loc = names.get(id) ?? { nameEn: id, nameRu: id };
+  const speedsObj = {};
+  for (const ammo of ordered) {
+    const speed = ammoSpeeds.get(ammo);
+    if (speed != null) {
+      speedsObj[ammo] = Math.round(speed);
+    }
+  }
 
   tanks.push({
     id,
@@ -233,6 +301,7 @@ for (const file of readdirSync(TANK_DIR)) {
     zoomMin,
     zoomMax,
     sights: ordered.length > 0 ? ordered : ["AP"],
+    ...(Object.keys(speedsObj).length > 0 ? { ammoSpeeds: speedsObj } : {}),
   });
 }
 

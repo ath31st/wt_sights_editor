@@ -1,4 +1,4 @@
-export const AMMO_CLASSES = ["AP", "HEAT", "APDS", "HE"] as const;
+export const AMMO_CLASSES = ["AP", "AP_Fast", "HEAT", "APDS", "HE"] as const;
 export type AmmoClass = (typeof AMMO_CLASSES)[number];
 
 export type DistanceLayout = "singleLeft" | "alternateLR";
@@ -11,6 +11,8 @@ export type CatalogTank = {
   zoomMin: number;
   zoomMax: number;
   sights: AmmoClass[];
+  /** Min muzzle speed (m/s) per sight slot from datamine; omitted for manual tanks. */
+  ammoSpeeds?: Partial<Record<AmmoClass, number>>;
 };
 
 export type CatalogFile = {
