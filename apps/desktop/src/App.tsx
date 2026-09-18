@@ -9,6 +9,8 @@ import {
   countryLabelRu,
   generateTankSights,
   mergeCatalogs,
+  parseTankCrosshairs,
+  setTankCrosshair,
   sightFromZoom,
   type AmmoClass,
   type CatalogTank,
@@ -17,12 +19,20 @@ import { SightPreview } from "./SightPreview";
 
 type Written = { count: number; root: string };
 
+function isAmmoClass(value: string | undefined): value is AmmoClass {
+  return AMMO_CLASSES.includes(value as AmmoClass);
+}
+
 export default function App() {
   const [userTanks, setUserTanks] = useState<CatalogTank[]>([]);
   const [root, setRoot] = useState<string>("");
+  const [globalBlkPath, setGlobalBlkPath] = useState<string | null>(null);
+  const [crosshairs, setCrosshairs] = useState<Record<string, string>>({});
   const [query, setQuery] = useState("");
   const [country, setCountry] = useState<string>("all");
   const [selectedId, setSelectedId] = useState<string>("");
+  const [previewAmmo, setPreviewAmmo] = useState<AmmoClass | null>(null);
+  const [previewTankId, setPreviewTankId] = useState<string>("");
   const [fontOverride, setFontOverride] = useState<number | null>(null);
   const [status, setStatus] = useState("");
   const [newId, setNewId] = useState("");
@@ -66,21 +76,30 @@ export default function App() {
   }, [catalog.tanks, country, query]);
 
   const selected = catalog.tanks.find((tank) => tank.id === selectedId) ?? visible[0];
+  const assigned = selected ? crosshairs[selected.id] : undefined;
+  const resolvedPreview: AmmoClass =
+    (previewTankId === selected?.id &&
+    previewAmmo &&
+    selected.sights.includes(previewAmmo)
+      ? previewAmmo
+      : undefined) ??
+    (isAmmoClass(assigned) && selected?.sights.includes(assigned) ? assigned : undefined) ??
+    selected?.sights[0] ??
+    "AP";
 
-  const previewAmmo = selected?.sights[0] ?? "AP";
   const previewModel = useMemo(() => {
     if (!selected) {
       return sightFromZoom("AP", 6, {}, 6);
     }
     return sightFromZoom(
-      previewAmmo,
+      resolvedPreview,
       selected.zoomMax,
       {
         fontSizeMult: fontOverride ?? undefined,
       },
       selected.zoomMin,
     );
-  }, [selected, previewAmmo, fontOverride]);
+  }, [selected, resolvedPreview, fontOverride]);
 
   useEffect(() => {
     invoke<CatalogTank[]>("load_user_extras")
@@ -88,11 +107,36 @@ export default function App() {
       .catch((err: unknown) => setStatus(String(err)));
   }, []);
 
+  async function loadGlobalFromUserSights(userSights: string): Promise<boolean> {
+    try {
+      const path = await invoke<string | null>("resolve_global_blk", { userSights });
+      setGlobalBlkPath(path);
+      if (!path) {
+        setCrosshairs({});
+        return false;
+      }
+      const text = await invoke<string>("read_text_file", { path });
+      setCrosshairs(Object.fromEntries(parseTankCrosshairs(text)));
+      return true;
+    } catch (err: unknown) {
+      setGlobalBlkPath(null);
+      setCrosshairs({});
+      throw err;
+    }
+  }
+
   async function pickFolder() {
     const dir = await open({ directory: true, title: "Папка UserSights" });
     if (typeof dir === "string") {
       setRoot(dir);
-      setStatus(`Папка: ${dir}`);
+      try {
+        const found = await loadGlobalFromUserSights(dir);
+        setStatus(
+          found ? `Папка: ${dir}` : `Папка: ${dir}. global.blk не найден рядом с UserSights.`,
+        );
+      } catch (err: unknown) {
+        setStatus(String(err));
+      }
     }
   }
 
@@ -114,6 +158,39 @@ export default function App() {
       files,
     });
     setStatus(`Записано файлов: ${result.count}`);
+  }
+
+  async function applyAmmo(tank: CatalogTank, ammo: AmmoClass) {
+    setSelectedId(tank.id);
+    setPreviewTankId(tank.id);
+    setPreviewAmmo(ammo);
+    if (!root) {
+      setStatus("Сначала выбери папку UserSights.");
+      return;
+    }
+    try {
+      const existing = await invoke<string[]>("list_tank_sights", {
+        root,
+        tankId: tank.id,
+      });
+      if (!existing.includes(ammo)) {
+        await invoke<Written>("write_sight_files", {
+          root,
+          files: generateTankSights(tank, [ammo], fontOverride ?? undefined),
+        });
+      }
+      if (!globalBlkPath) {
+        setStatus("global.blk не найден рядом с UserSights.");
+        return;
+      }
+      const text = await invoke<string>("read_text_file", { path: globalBlkPath });
+      const next = setTankCrosshair(text, tank.id, ammo);
+      await invoke("write_global_blk", { path: globalBlkPath, contents: next });
+      setCrosshairs(Object.fromEntries(parseTankCrosshairs(next)));
+      setStatus(`global.blk: ${tank.id} → ${ammo}`);
+    } catch (err: unknown) {
+      setStatus(String(err));
+    }
   }
 
   function addManualTank() {
@@ -215,15 +292,26 @@ export default function App() {
               {selected.id} · {countryLabelRu(selected.country)} · {selected.zoomMin}x–
               {selected.zoomMax}x
             </p>
-            <p>
-              Снаряды:{" "}
-              {selected.sights
-                .map((ammo) => {
-                  const speed = selected.ammoSpeeds?.[ammo];
-                  return speed != null ? `${ammo} (${speed})` : ammo;
-                })
-                .join(", ")}
-            </p>
+            <p className="muted">Снаряды</p>
+            <div className="ammo-pick">
+              {selected.sights.map((ammo) => {
+                const speed = selected.ammoSpeeds?.[ammo];
+                const label = speed != null ? `${ammo} (${speed})` : ammo;
+                return (
+                  <button
+                    key={ammo}
+                    type="button"
+                    className={assigned === ammo ? "active" : ""}
+                    onClick={() => void applyAmmo(selected, ammo)}
+                  >
+                    {label}
+                  </button>
+                );
+              })}
+            </div>
+            {assigned && !(isAmmoClass(assigned) && selected.sights.includes(assigned)) ? (
+              <p className="muted">сейчас в global: {assigned}</p>
+            ) : null}
             <label>
               Шрифт
               <input

@@ -77,9 +77,17 @@ input {
   margin: 8px 0;
 }
 
-.countries button {
+.countries button,
+.ammo-pick button {
   padding: 4px 8px;
   font-size: 12px;
+}
+
+.ammo-pick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0 12px;
 }
 
 .tank-list {
