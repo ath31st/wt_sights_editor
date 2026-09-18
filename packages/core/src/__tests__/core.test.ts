@@ -7,6 +7,7 @@ import { emitBlk } from "../blkEmit.ts";
 import { countryFromUnitId, mergeCatalogs } from "../catalog.ts";
 import { densityFor, sightFromZoom } from "../density.ts";
 import { generateTankSights } from "../generate.ts";
+import { parseTankCrosshairs, setTankCrosshair } from "../tankSightSettings.ts";
 
 const fixtures = join(dirname(fileURLToPath(import.meta.url)), "fixtures");
 
@@ -169,5 +170,85 @@ describe("mergeCatalogs", () => {
     );
     expect(merged.tanks[0]?.zoomMax).toBe(12);
     expect(merged.tanks[0]?.sights).toEqual(["APDS", "HEAT"]);
+  });
+});
+
+const GLOBAL_FIXTURE = `header{
+  keep:t="yes"
+}
+
+      tankSightSettings{
+        ussr_t_72b_1989{
+          crosshair:t="abAPDS"
+          crosshairColor:c=0, 0, 0, 255
+
+          rangefinder{
+            visible:b=yes
+            textColor:c=0, 0, 0, 255
+          }
+
+          bulletType{
+            visible:b=no
+          }
+        }
+
+        jp_type_99{
+          crosshair:t="abAP"
+        }
+
+        germ_puma{
+          crosshairColor:c=0, 0, 0, 255
+        }
+      }
+
+trailer{
+  after:i=1
+}
+`;
+
+describe("tankSightSettings", () => {
+  it("reads top-level crosshair names", () => {
+    const map = parseTankCrosshairs(GLOBAL_FIXTURE);
+    expect(map.get("ussr_t_72b_1989")).toBe("abAPDS");
+    expect(map.get("jp_type_99")).toBe("abAP");
+    expect(map.has("germ_puma")).toBe(false);
+  });
+
+  it("replaces only crosshair:t and leaves rangefinder / trailer intact", () => {
+    const next = setTankCrosshair(GLOBAL_FIXTURE, "ussr_t_72b_1989", "APDS");
+    expect(next).toContain('ussr_t_72b_1989{\n          crosshair:t="APDS"');
+    expect(next).toContain("rangefinder{\n            visible:b=yes");
+    expect(next).toContain("bulletType{\n            visible:b=no");
+    expect(next).toContain('jp_type_99{\n          crosshair:t="abAP"');
+    expect(next.startsWith('header{\n  keep:t="yes"')).toBe(true);
+    expect(next.endsWith("trailer{\n  after:i=1\n}\n")).toBe(true);
+    expect(parseTankCrosshairs(next).get("ussr_t_72b_1989")).toBe("APDS");
+  });
+
+  it("inserts a missing tank block before tankSightSettings closes", () => {
+    const next = setTankCrosshair(GLOBAL_FIXTURE, "uk_fv107_scimitar", "APDS");
+    expect(next).toContain(`        uk_fv107_scimitar{
+          crosshair:t="APDS"
+        }
+      }`);
+    expect(parseTankCrosshairs(next).get("uk_fv107_scimitar")).toBe("APDS");
+    expect(parseTankCrosshairs(next).get("ussr_t_72b_1989")).toBe("abAPDS");
+  });
+
+  it("inserts crosshair:t when the tank block has none", () => {
+    const next = setTankCrosshair(GLOBAL_FIXTURE, "germ_puma", "HEAT");
+    expect(next).toContain(`        germ_puma{
+          crosshair:t="HEAT"
+          crosshairColor:c=0, 0, 0, 255
+        }`);
+    expect(parseTankCrosshairs(next).get("germ_puma")).toBe("HEAT");
+  });
+
+  it("preserves CRLF when patching", () => {
+    const crlf = GLOBAL_FIXTURE.replaceAll("\n", "\r\n");
+    const next = setTankCrosshair(crlf, "jp_type_99", "AP");
+    expect(next).toContain("\r\n");
+    expect(next).not.toContain("\n\n");
+    expect(next).toContain('jp_type_99{\r\n          crosshair:t="AP"');
   });
 });
