@@ -220,6 +220,15 @@ function nestedIndentFor(fieldIndent: string): string {
   return `${fieldIndent}  `;
 }
 
+function isBareTankSight(text: string, tank: NamedBlkBlock): boolean {
+  const body = text.slice(tank.open + 1, tank.close);
+  return (
+    !/\bcrosshairColor:/.test(body) &&
+    !/\bbulletType\s*\{/.test(body) &&
+    !/\brangefinder\s*\{/.test(body)
+  );
+}
+
 /** Fields the game writes on first in-game Save; a lone crosshair:t= is ignored. */
 function formatTankSightBlock(
   unitId: string,
@@ -301,6 +310,10 @@ export function setTankCrosshair(text: string, unitId: string, sightName: string
   const fieldIndent = fieldIndentFor(text, tanks, childIndent);
   if (!existing) {
     return insertTankBlock(text, settings, unitId, sightName, childIndent, fieldIndent, nl);
+  }
+  if (isBareTankSight(text, existing)) {
+    const block = formatTankSightBlock(unitId, sightName, childIndent, fieldIndent, nl);
+    return `${text.slice(0, existing.nameStart)}${block}${text.slice(existing.close + 1)}`;
   }
   const crosshair = findTopLevelCrosshair(text, existing.open, existing.close);
   if (crosshair) {
