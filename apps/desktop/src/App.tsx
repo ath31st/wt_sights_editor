@@ -15,6 +15,7 @@ import {
   type AmmoClass,
   type CatalogTank,
 } from "@wt_sights_editor/core";
+import { Toaster, toast } from "sonner";
 import { SightPreview } from "./SightPreview";
 
 type Written = { count: number; root: string };
@@ -32,6 +33,31 @@ function isAmmoClass(value: string | undefined): value is AmmoClass {
   return AMMO_CLASSES.includes(value as AmmoClass);
 }
 
+type WriteScope = "selected" | "filter" | "all";
+
+function ruCount(n: number, one: string, few: string, many: string): string {
+  const mod10 = n % 10;
+  const mod100 = n % 100;
+  if (mod100 >= 11 && mod100 <= 14) {
+    return `${n} ${many}`;
+  }
+  if (mod10 === 1) {
+    return `${n} ${one}`;
+  }
+  if (mod10 >= 2 && mod10 <= 4) {
+    return `${n} ${few}`;
+  }
+  return `${n} ${many}`;
+}
+
+function tankLabel(tank: CatalogTank): string {
+  return tank.nameRu || tank.nameEn || tank.id;
+}
+
+function notifyError(err: unknown, title = "Ошибка") {
+  toast.error(title, { description: String(err) });
+}
+
 export default function App() {
   const [userTanks, setUserTanks] = useState<CatalogTank[]>([]);
   const [settings, setSettings] = useState<AppSettings>({ version: 1 });
@@ -44,7 +70,6 @@ export default function App() {
   const [previewAmmo, setPreviewAmmo] = useState<AmmoClass | null>(null);
   const [previewTankId, setPreviewTankId] = useState<string>("");
   const [fontOverride, setFontOverride] = useState<number | null>(null);
-  const [status, setStatus] = useState("");
   const [newId, setNewId] = useState("");
   const [newZoomMin, setNewZoomMin] = useState("4");
   const [newZoomMax, setNewZoomMax] = useState("8");
@@ -132,7 +157,7 @@ export default function App() {
   useEffect(() => {
     invoke<CatalogTank[]>("load_user_extras")
       .then(setUserTanks)
-      .catch((err: unknown) => setStatus(String(err)));
+      .catch((err: unknown) => notifyError(err, "Не удалось загрузить свою технику"));
 
     invoke<LoadedAppSettings>("load_app_settings")
       .then(async (loaded) => {
@@ -146,20 +171,22 @@ export default function App() {
           return;
         }
         if (!loaded.userSightsPathExists) {
-          setStatus("Сохранённая папка UserSights не найдена, выбери заново.");
+          toast.warning("Сохранённая папка UserSights не найдена", {
+            description: "Выбери папку заново.",
+          });
           return;
         }
         setRoot(saved);
         try {
           const found = await loadGlobalFromUserSights(saved);
-          setStatus(
-            found ? `Папка: ${saved}` : `Папка: ${saved}. global.blk не найден рядом с UserSights.`,
-          );
+          if (!found) {
+            toast.warning("global.blk не найден рядом с UserSights");
+          }
         } catch (err: unknown) {
-          setStatus(String(err));
+          notifyError(err, "Не удалось открыть UserSights");
         }
       })
-      .catch((err: unknown) => setStatus(String(err)));
+      .catch((err: unknown) => notifyError(err, "Не удалось загрузить настройки"));
   }, []);
 
   async function persistSettings(next: AppSettings) {
@@ -178,11 +205,13 @@ export default function App() {
       try {
         await persistSettings({ ...settings, userSightsPath: dir });
         const found = await loadGlobalFromUserSights(dir);
-        setStatus(
-          found ? `Папка: ${dir}` : `Папка: ${dir}. global.blk не найден рядом с UserSights.`,
-        );
+        if (found) {
+          toast.success("Папка UserSights выбрана", { description: dir });
+        } else {
+          toast.warning("Папка выбрана, но global.blk не найден", { description: dir });
+        }
       } catch (err: unknown) {
-        setStatus(String(err));
+        notifyError(err, "Не удалось открыть UserSights");
       }
     }
   }
@@ -192,19 +221,65 @@ export default function App() {
     await invoke("save_user_extras", { tanks: next });
   }
 
-  async function writeFiles(tanks: CatalogTank[]) {
+  async function writeFiles(tanks: CatalogTank[], scope: WriteScope) {
     if (!root) {
-      setStatus("Сначала выбери папку UserSights.");
+      toast.warning("Сначала выбери папку UserSights");
+      return;
+    }
+    if (tanks.length === 0) {
+      toast.warning("Нет техники для генерации");
       return;
     }
     const files = tanks.flatMap((tank) =>
       generateTankSights(tank, tank.sights, fontOverride ?? undefined),
     );
-    const result = await invoke<Written>("write_sight_files", {
-      root,
-      files,
-    });
-    setStatus(`Записано файлов: ${result.count}`);
+    const loading =
+      scope === "selected"
+        ? `Записываю прицелы для ${tankLabel(tanks[0])}…`
+        : scope === "filter"
+          ? "Записываю прицелы по фильтру…"
+          : "Записываю прицелы для всей техники…";
+    const toastId = toast.loading(loading);
+    try {
+      const result = await invoke<Written>("write_sight_files", {
+        root,
+        files,
+      });
+      const fileCount = ruCount(result.count, "файл", "файла", "файлов");
+      const vehicleCount = ruCount(tanks.length, "машина", "машины", "машин");
+      if (scope === "selected") {
+        toast.success("Прицелы записаны", {
+          id: toastId,
+          description: `${tankLabel(tanks[0])} · ${fileCount}`,
+        });
+        return;
+      }
+      if (scope === "filter") {
+        const parts: string[] = [];
+        if (country !== "all") {
+          parts.push(countryLabelRu(country));
+        }
+        const q = query.trim();
+        if (q) {
+          parts.push(`«${q}»`);
+        }
+        parts.push(vehicleCount, fileCount);
+        toast.success("Прицелы по фильтру записаны", {
+          id: toastId,
+          description: parts.join(" · "),
+        });
+        return;
+      }
+      toast.success("Прицелы для всей техники записаны", {
+        id: toastId,
+        description: `${vehicleCount} · ${fileCount}`,
+      });
+    } catch (err: unknown) {
+      toast.error("Не удалось записать прицелы", {
+        id: toastId,
+        description: String(err),
+      });
+    }
   }
 
   async function applyAmmo(tank: CatalogTank, ammo: AmmoClass) {
@@ -212,7 +287,7 @@ export default function App() {
     setPreviewTankId(tank.id);
     setPreviewAmmo(ammo);
     if (!root) {
-      setStatus("Сначала выбери папку UserSights.");
+      toast.warning("Сначала выбери папку UserSights");
       return;
     }
     try {
@@ -220,35 +295,46 @@ export default function App() {
         root,
         tankId: tank.id,
       });
+      let created = false;
       if (!existing.includes(ammo)) {
         await invoke<Written>("write_sight_files", {
           root,
           files: generateTankSights(tank, [ammo], fontOverride ?? undefined),
         });
+        created = true;
       }
       if (!globalBlkPath) {
-        setStatus("global.blk не найден рядом с UserSights.");
+        toast.warning("global.blk не найден рядом с UserSights", {
+          description: created
+            ? `${tankLabel(tank)}: ${ammo}.blk записан, но назначить прицел нельзя.`
+            : "Назначить прицел нельзя.",
+        });
         return;
       }
       const text = await invoke<string>("read_text_file", { path: globalBlkPath });
       const next = setTankCrosshair(text, tank.id, ammo);
       await invoke("write_global_blk", { path: globalBlkPath, contents: next });
       setCrosshairs(Object.fromEntries(parseTankCrosshairs(next)));
+      toast.success(created ? "Прицел записан и назначен" : "Прицел назначен", {
+        description: `${tankLabel(tank)} → ${ammo}`,
+      });
     } catch (err: unknown) {
-      setStatus(String(err));
+      notifyError(err, "Не удалось назначить прицел");
     }
   }
 
   function addManualTank() {
     const id = newId.trim().toLowerCase().replace(/\s+/g, "_");
     if (!/^[a-z0-9_]+$/.test(id)) {
-      setStatus("Id: только латиница, цифры и _.");
+      toast.warning("Некорректный id", {
+        description: "Только латиница, цифры и _.",
+      });
       return;
     }
     const zoomMin = Number(newZoomMin);
     const zoomMax = Number(newZoomMax);
     if (!Number.isFinite(zoomMin) || !Number.isFinite(zoomMax)) {
-      setStatus("Кратность должна быть числом.");
+      toast.warning("Кратность должна быть числом");
       return;
     }
     const tank: CatalogTank = {
@@ -261,9 +347,14 @@ export default function App() {
       sights: newSights.length > 0 ? newSights : ["AP"],
     };
     const next = userTanks.filter((item) => item.id !== id).concat(tank);
-    void persistExtras(next);
-    setSelectedId(id);
-    setStatus(`Добавлен ${id}. Останется после обновления программы.`);
+    void persistExtras(next)
+      .then(() => {
+        setSelectedId(id);
+        toast.success("Техника добавлена", {
+          description: `${tankLabel(tank)} (${id}) останется после обновления программы.`,
+        });
+      })
+      .catch((err: unknown) => notifyError(err, "Не удалось сохранить технику"));
   }
 
   function toggleNewSight(ammo: AmmoClass) {
@@ -273,7 +364,9 @@ export default function App() {
   }
 
   return (
-    <div className="app">
+    <>
+      <Toaster theme="dark" position="top-center" richColors closeButton />
+      <div className="app">
       <aside className="sidebar">
         <header className="brand">
           <strong>WT Sights Editor</strong>
@@ -316,7 +409,6 @@ export default function App() {
                 onClick={() => {
                   setSelectedId(tank.id);
                   setFontOverride(null);
-                  setStatus("");
                 }}
               >
                 <span>{tank.nameRu || tank.nameEn}</span>
@@ -377,13 +469,13 @@ export default function App() {
             </label>
             <h3>Сгенерировать прицелы</h3>
             <div className="actions">
-              <button type="button" onClick={() => void writeFiles([selected])}>
+              <button type="button" onClick={() => void writeFiles([selected], "selected")}>
                 Для этой техники
               </button>
-              <button type="button" onClick={() => void writeFiles(visible)}>
+              <button type="button" onClick={() => void writeFiles(visible, "filter")}>
                 По фильтру ({visible.length})
               </button>
-              <button type="button" onClick={() => void writeFiles(catalog.tanks)}>
+              <button type="button" onClick={() => void writeFiles(catalog.tanks, "all")}>
                 Для всей техники
               </button>
             </div>
@@ -391,8 +483,6 @@ export default function App() {
         ) : (
           <p>Нет техники в фильтре.</p>
         )}
-
-        {status ? <p className="status">{status}</p> : null}
 
         <h3>Добавить технику вручную</h3>
         <label>
@@ -429,6 +519,7 @@ export default function App() {
           Сохранить у себя
         </button>
       </section>
-    </div>
+      </div>
+    </>
   );
 }

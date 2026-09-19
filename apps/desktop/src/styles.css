@@ -58,8 +58,7 @@ input {
 }
 
 .path,
-.muted,
-.status {
+.muted {
   color: #aaa;
   font-size: 12px;
   word-break: break-all;
