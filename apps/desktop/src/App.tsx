@@ -365,7 +365,7 @@ export default function App() {
 
   return (
     <>
-      <Toaster theme="dark" position="top-center" richColors closeButton />
+      <Toaster theme="dark" position="bottom-center" richColors closeButton />
       <div className="app">
       <aside className="sidebar">
         <header className="brand">
@@ -516,7 +516,7 @@ export default function App() {
           ))}
         </div>
         <button type="button" onClick={addManualTank}>
-          Сохранить у себя
+          Сохранить
         </button>
       </section>
       </div>
