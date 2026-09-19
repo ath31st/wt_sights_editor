@@ -279,6 +279,14 @@ function insertCrosshairLine(
   return `${text.slice(0, tank.open + 1)}${line}${text.slice(tank.open + 1)}`;
 }
 
+function endsWithNewline(text: string): boolean {
+  return text.endsWith("\r\n") || text.endsWith("\n");
+}
+
+function endsWithBlankLine(text: string, nl: string): boolean {
+  return text.endsWith(nl + nl) || text.endsWith("\n\n");
+}
+
 function insertTankBlock(
   text: string,
   settings: NamedBlkBlock,
@@ -287,15 +295,21 @@ function insertTankBlock(
   childIndent: string,
   fieldIndent: string,
   nl: string,
+  separateFromPrevious: boolean,
 ): string {
   const block = formatTankSightBlock(unitId, sightName, childIndent, fieldIndent, nl);
   let lineStart = settings.close;
   while (lineStart > 0 && text[lineStart - 1] !== "\n") {
     lineStart -= 1;
   }
-  const prefix = text.slice(0, lineStart);
-  const gap = prefix.endsWith(nl) || prefix.endsWith("\n") ? "" : nl;
-  return `${prefix}${gap}${block}${nl}${text.slice(lineStart)}`;
+  let prefix = text.slice(0, lineStart);
+  if (!endsWithNewline(prefix)) {
+    prefix += nl;
+  }
+  if (separateFromPrevious && !endsWithBlankLine(prefix, nl)) {
+    prefix += nl;
+  }
+  return `${prefix}${block}${nl}${text.slice(lineStart)}`;
 }
 
 export function setTankCrosshair(text: string, unitId: string, sightName: string): string {
@@ -309,7 +323,16 @@ export function setTankCrosshair(text: string, unitId: string, sightName: string
   const childIndent = childIndentFor(text, settings, tanks);
   const fieldIndent = fieldIndentFor(text, tanks, childIndent);
   if (!existing) {
-    return insertTankBlock(text, settings, unitId, sightName, childIndent, fieldIndent, nl);
+    return insertTankBlock(
+      text,
+      settings,
+      unitId,
+      sightName,
+      childIndent,
+      fieldIndent,
+      nl,
+      tanks.length > 0,
+    );
   }
   if (isBareTankSight(text, existing)) {
     const block = formatTankSightBlock(unitId, sightName, childIndent, fieldIndent, nl);

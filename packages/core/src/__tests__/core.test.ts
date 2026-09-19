@@ -227,6 +227,11 @@ describe("tankSightSettings", () => {
 
   it("inserts a missing tank with the in-game Save field set", () => {
     const next = setTankCrosshair(GLOBAL_FIXTURE, "uk_fv107_scimitar", "APDS");
+    expect(next).toContain(`        germ_puma{
+          crosshairColor:c=0, 0, 0, 255
+        }
+
+        uk_fv107_scimitar{`);
     expect(next).toContain(`        uk_fv107_scimitar{
           crosshair:t="APDS"
           crosshairColor:c=0, 0, 0, 255
@@ -252,6 +257,15 @@ describe("tankSightSettings", () => {
       }`);
     expect(parseTankCrosshairs(next).get("uk_fv107_scimitar")).toBe("APDS");
     expect(parseTankCrosshairs(next).get("ussr_t_72b_1989")).toBe("abAPDS");
+  });
+
+  it("does not add a leading blank line when tankSightSettings is empty", () => {
+    const empty = `      tankSightSettings{
+      }
+`;
+    const next = setTankCrosshair(empty, "uk_fv107_scimitar", "APDS");
+    expect(next.startsWith(`      tankSightSettings{
+        uk_fv107_scimitar{`)).toBe(true);
   });
 
   it("expands a bare crosshair-only tank into the Save field set", () => {
