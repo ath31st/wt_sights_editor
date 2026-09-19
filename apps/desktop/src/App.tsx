@@ -7,6 +7,7 @@ import {
   COUNTRY_ORDER,
   countryFromUnitId,
   countryLabelRu,
+  countryFlag,
   generateTankSights,
   mergeCatalogs,
   parseTankCrosshairs,
@@ -387,7 +388,7 @@ export default function App() {
             className={country === "all" ? "active" : ""}
             onClick={() => setCountry("all")}
           >
-            Все
+            <span className="flag">🌍</span> Все
           </button>
           {countries.map((code) => (
             <button
@@ -396,7 +397,7 @@ export default function App() {
               className={country === code ? "active" : ""}
               onClick={() => setCountry(code)}
             >
-              {countryLabelRu(code)}
+              <span className="flag">{countryFlag(code)}</span> {countryLabelRu(code)}
             </button>
           ))}
         </div>

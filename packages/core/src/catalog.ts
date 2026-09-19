@@ -81,6 +81,20 @@ export const COUNTRY_LABELS_RU: Record<string, string> = {
   other: "Прочее",
 };
 
+export const COUNTRY_FLAGS: Record<string, string> = {
+  us: "🇺🇸",
+  germ: "🇩🇪",
+  ussr: "🇷🇺",
+  uk: "🇬🇧",
+  jp: "🇯🇵",
+  it: "🇮🇹",
+  fr: "🇫🇷",
+  cn: "🇨🇳",
+  sw: "🇸🇪",
+  il: "🇮🇱",
+  other: "🏳️",
+};
+
 export function countryFromUnitId(id: string): string {
   const prefix = id.split("_")[0] ?? "";
   if ((COUNTRY_ORDER as readonly string[]).includes(prefix)) {
@@ -91,6 +105,10 @@ export function countryFromUnitId(id: string): string {
 
 export function countryLabelRu(code: string): string {
   return COUNTRY_LABELS_RU[code] ?? code;
+}
+
+export function countryFlag(code: string): string {
+  return COUNTRY_FLAGS[code] ?? "🏳️";
 }
 
 export function isAmmoClass(value: string): value is AmmoClass {
