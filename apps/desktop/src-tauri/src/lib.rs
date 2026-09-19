@@ -30,6 +30,39 @@ struct WriteResult {
     root: String,
 }
 
+const SETTINGS_VERSION: u32 = 1;
+const SETTINGS_DIR_NAME: &str = "wt-sights-editor";
+
+fn default_settings_version() -> u32 {
+    SETTINGS_VERSION
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+#[serde(rename_all = "camelCase")]
+struct AppSettings {
+    #[serde(default = "default_settings_version")]
+    version: u32,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    user_sights_path: Option<String>,
+}
+
+impl Default for AppSettings {
+    fn default() -> Self {
+        Self {
+            version: SETTINGS_VERSION,
+            user_sights_path: None,
+        }
+    }
+}
+
+#[derive(Debug, Serialize, Clone)]
+#[serde(rename_all = "camelCase")]
+struct LoadedAppSettings {
+    version: u32,
+    user_sights_path: Option<String>,
+    user_sights_path_exists: bool,
+}
+
 fn extras_path(app: &AppHandle) -> Result<PathBuf, String> {
     let dir = app.path().app_data_dir().map_err(|err| err.to_string())?;
     fs::create_dir_all(&dir).map_err(|err| err.to_string())?;
@@ -63,6 +96,44 @@ fn load_user_extras(app: AppHandle) -> Result<Vec<CatalogTank>, String> {
 fn save_user_extras(app: AppHandle, tanks: Vec<CatalogTank>) -> Result<(), String> {
     let path = extras_path(&app)?;
     let text = serde_json::to_string_pretty(&tanks).map_err(|err| err.to_string())?;
+    fs::write(path, text).map_err(|err| err.to_string())
+}
+
+fn settings_path(app: &AppHandle) -> Result<PathBuf, String> {
+    let dir = app.path().config_dir().map_err(|err| err.to_string())?;
+    Ok(dir.join(SETTINGS_DIR_NAME).join("settings.json"))
+}
+
+fn user_sights_dir_exists(path: Option<&str>) -> bool {
+    path.is_some_and(|value| Path::new(value).is_dir())
+}
+
+#[tauri::command]
+fn load_app_settings(app: AppHandle) -> Result<LoadedAppSettings, String> {
+    let path = settings_path(&app)?;
+    let settings = if path.is_file() {
+        let text = fs::read_to_string(path).map_err(|err| err.to_string())?;
+        serde_json::from_str(&text).map_err(|err| err.to_string())?
+    } else {
+        AppSettings::default()
+    };
+    Ok(LoadedAppSettings {
+        user_sights_path_exists: user_sights_dir_exists(settings.user_sights_path.as_deref()),
+        version: settings.version,
+        user_sights_path: settings.user_sights_path,
+    })
+}
+
+#[tauri::command]
+fn save_app_settings(app: AppHandle, mut settings: AppSettings) -> Result<(), String> {
+    let path = settings_path(&app)?;
+    if let Some(parent) = path.parent() {
+        fs::create_dir_all(parent).map_err(|err| err.to_string())?;
+    }
+    if settings.version == 0 {
+        settings.version = SETTINGS_VERSION;
+    }
+    let text = serde_json::to_string_pretty(&settings).map_err(|err| err.to_string())?;
     fs::write(path, text).map_err(|err| err.to_string())
 }
 
@@ -169,6 +240,8 @@ pub fn run() {
         .invoke_handler(tauri::generate_handler![
             load_user_extras,
             save_user_extras,
+            load_app_settings,
+            save_app_settings,
             write_sight_files,
             resolve_global_blk,
             read_text_file,
