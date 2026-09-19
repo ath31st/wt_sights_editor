@@ -375,25 +375,26 @@ export default function App() {
               />
               <span>{(fontOverride ?? previewModel.fontSizeMult).toFixed(2)}</span>
             </label>
+            <h3>Сгенерировать прицелы</h3>
             <div className="actions">
               <button type="button" onClick={() => void writeFiles([selected])}>
-                Создать этот танк
+                Для этой техники
               </button>
               <button type="button" onClick={() => void writeFiles(visible)}>
-                Создать видимые ({visible.length})
+                По фильтру ({visible.length})
               </button>
               <button type="button" onClick={() => void writeFiles(catalog.tanks)}>
-                Создать все
+                Для всей техники
               </button>
             </div>
           </>
         ) : (
-          <p>Нет танков в фильтре.</p>
+          <p>Нет техники в фильтре.</p>
         )}
 
         {status ? <p className="status">{status}</p> : null}
 
-        <h3>Добавить танк вручную</h3>
+        <h3>Добавить технику вручную</h3>
         <label>
           unit id
           <input value={newId} onChange={(event) => setNewId(event.target.value)} placeholder="ussr_t_72b3_arena" />
