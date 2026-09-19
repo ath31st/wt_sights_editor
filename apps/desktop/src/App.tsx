@@ -187,7 +187,6 @@ export default function App() {
       const next = setTankCrosshair(text, tank.id, ammo);
       await invoke("write_global_blk", { path: globalBlkPath, contents: next });
       setCrosshairs(Object.fromEntries(parseTankCrosshairs(next)));
-      setStatus(`global.blk: ${tank.id} → ${ammo}`);
     } catch (err: unknown) {
       setStatus(String(err));
     }
@@ -270,6 +269,7 @@ export default function App() {
                 onClick={() => {
                   setSelectedId(tank.id);
                   setFontOverride(null);
+                  setStatus("");
                 }}
               >
                 <span>{tank.nameRu || tank.nameEn}</span>
@@ -309,8 +309,12 @@ export default function App() {
                 );
               })}
             </div>
-            {assigned && !(isAmmoClass(assigned) && selected.sights.includes(assigned)) ? (
-              <p className="muted">сейчас в global: {assigned}</p>
+            {globalBlkPath ? (
+              <p className="muted">
+                {assigned
+                  ? `global.blk: ${selected.id} → ${assigned}`
+                  : `global.blk: ${selected.id} — нет записи`}
+              </p>
             ) : null}
             <label>
               Шрифт
