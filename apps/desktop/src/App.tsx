@@ -19,12 +19,22 @@ import { SightPreview } from "./SightPreview";
 
 type Written = { count: number; root: string };
 
+type AppSettings = {
+  version: number;
+  userSightsPath?: string | null;
+};
+
+type LoadedAppSettings = AppSettings & {
+  userSightsPathExists: boolean;
+};
+
 function isAmmoClass(value: string | undefined): value is AmmoClass {
   return AMMO_CLASSES.includes(value as AmmoClass);
 }
 
 export default function App() {
   const [userTanks, setUserTanks] = useState<CatalogTank[]>([]);
+  const [settings, setSettings] = useState<AppSettings>({ version: 1 });
   const [root, setRoot] = useState<string>("");
   const [globalBlkPath, setGlobalBlkPath] = useState<string | null>(null);
   const [crosshairs, setCrosshairs] = useState<Record<string, string>>({});
@@ -101,12 +111,6 @@ export default function App() {
     );
   }, [selected, resolvedPreview, fontOverride]);
 
-  useEffect(() => {
-    invoke<CatalogTank[]>("load_user_extras")
-      .then(setUserTanks)
-      .catch((err: unknown) => setStatus(String(err)));
-  }, []);
-
   async function loadGlobalFromUserSights(userSights: string): Promise<boolean> {
     try {
       const path = await invoke<string | null>("resolve_global_blk", { userSights });
@@ -125,11 +129,54 @@ export default function App() {
     }
   }
 
+  useEffect(() => {
+    invoke<CatalogTank[]>("load_user_extras")
+      .then(setUserTanks)
+      .catch((err: unknown) => setStatus(String(err)));
+
+    invoke<LoadedAppSettings>("load_app_settings")
+      .then(async (loaded) => {
+        const next: AppSettings = {
+          version: loaded.version || 1,
+          userSightsPath: loaded.userSightsPath,
+        };
+        setSettings(next);
+        const saved = loaded.userSightsPath;
+        if (!saved) {
+          return;
+        }
+        if (!loaded.userSightsPathExists) {
+          setStatus("Сохранённая папка UserSights не найдена, выбери заново.");
+          return;
+        }
+        setRoot(saved);
+        try {
+          const found = await loadGlobalFromUserSights(saved);
+          setStatus(
+            found ? `Папка: ${saved}` : `Папка: ${saved}. global.blk не найден рядом с UserSights.`,
+          );
+        } catch (err: unknown) {
+          setStatus(String(err));
+        }
+      })
+      .catch((err: unknown) => setStatus(String(err)));
+  }, []);
+
+  async function persistSettings(next: AppSettings) {
+    setSettings(next);
+    await invoke("save_app_settings", { settings: next });
+  }
+
   async function pickFolder() {
-    const dir = await open({ directory: true, title: "Папка UserSights" });
+    const dir = await open({
+      directory: true,
+      defaultPath: root || undefined,
+      title: "Папка UserSights",
+    });
     if (typeof dir === "string") {
       setRoot(dir);
       try {
+        await persistSettings({ ...settings, userSightsPath: dir });
         const found = await loadGlobalFromUserSights(dir);
         setStatus(
           found ? `Папка: ${dir}` : `Папка: ${dir}. global.blk не найден рядом с UserSights.`,

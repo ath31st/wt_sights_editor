@@ -23,3 +23,5 @@ npm run catalog:build
 ```
 
 Пользовательские танки хранятся в data-каталоге приложения (`user-catalog.json`) и не затираются обновлением.
+
+Выбранная папка `UserSights` запоминается в `settings.json` в config-каталоге (`~/.config/wt-sights-editor` на Linux).
