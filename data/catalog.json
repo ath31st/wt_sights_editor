@@ -1,6 +1,8 @@
 {
   "version": 1,
   "source": "datamine",
+  "patchName": "Небесная одиссея",
+  "catalogDate": "2026-09-16",
   "tanks": [
     {
       "id": "aaa_dummy",

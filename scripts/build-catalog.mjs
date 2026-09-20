@@ -8,10 +8,21 @@ const TANK_DIR = join(DATAMINE, "aces.vromfs.bin_u/gamedata/units/tankmodels");
 const WEAPON_DIR = join(DATAMINE, "aces.vromfs.bin_u/gamedata/weapons/groundmodels_weapons");
 const UNITS_CSV = join(DATAMINE, "lang.vromfs.bin_u/lang/units.csv");
 const OUT = join(ROOT, "data/catalog.json");
+const PATCH_FILE = join(ROOT, "data/patch.json");
 
 const FOV_REF = 73.68;
 const AP_FAST_SPEED = 800;
 const AMMO = ["AP", "AP_Fast", "HEAT", "APDS", "HE"];
+
+function loadPatchMeta() {
+  const raw = JSON.parse(readFileSync(PATCH_FILE, "utf8"));
+  const name = typeof raw.name === "string" ? raw.name.trim() : "";
+  const date = typeof raw.date === "string" ? raw.date.trim() : "";
+  return {
+    ...(name ? { patchName: name } : {}),
+    ...(date ? { catalogDate: date } : {}),
+  };
+}
 
 function parseCsvLine(line) {
   const fields = [];
@@ -423,9 +434,14 @@ for (const file of readdirSync(TANK_DIR)) {
 }
 
 tanks.sort((a, b) => a.id.localeCompare(b.id));
+const patch = loadPatchMeta();
 mkdirSync(dirname(OUT), { recursive: true });
 writeFileSync(
   OUT,
-  `${JSON.stringify({ version: 1, source: "datamine", tanks }, null, 2)}\n`,
+  `${JSON.stringify({ version: 1, source: "datamine", ...patch, tanks }, null, 2)}\n`,
 );
-console.log(`Wrote ${tanks.length} tanks to ${OUT} (${recased} ids recased from units.csv)`);
+const stamp = [patch.patchName, patch.catalogDate].filter(Boolean).join(" · ");
+console.log(
+  `Wrote ${tanks.length} tanks to ${OUT} (${recased} ids recased from units.csv)` +
+    (stamp ? `; ${stamp}` : ""),
+);
