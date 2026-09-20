@@ -76,6 +76,26 @@ describe("density", () => {
     expect(apds.tickOuter).toBe(fast.tickOuter);
     expect(apds.tickInner).toBe(fast.tickInner);
   });
+
+  it("uses the AP_Fast ladder for AA", () => {
+    const aa = densityFor(6, "AA", 6);
+    const fast = densityFor(6, "AP_Fast", 6);
+    expect(aa.layout).toBe(fast.layout);
+    expect(aa.stepM).toBe(fast.stepM);
+    expect(aa.numberEvery).toBe(fast.numberEvery);
+    expect(aa.maxM).toBe(fast.maxM);
+    expect(sightFromZoom("AA", 6, {}, 6).marks).toEqual(sightFromZoom("AP_Fast", 6, {}, 6).marks);
+  });
+
+  it("uses a markless filled circle for SAM", () => {
+    const d = densityFor(8, "SAM", 8);
+    expect(d.layout).toBe("none");
+    const model = sightFromZoom("SAM", 8, {}, 8);
+    expect(model.layout).toBe("none");
+    expect(model.marks).toEqual([]);
+    expect(model.circleDiameter).toBe(8.2);
+    expect(model.circleSize).toBe(4.1);
+  });
 });
 
 describe("blk parse/emit", () => {
@@ -109,6 +129,14 @@ describe("blk parse/emit", () => {
     const last = [...text.matchAll(/crosshairDistHorSizeAdditional:p2=([0-9.]+),([0-9.]+)/g)].at(-1);
     expect(last?.[1]).toBe("0.0");
     expect(last?.[2]).toBe("0.0");
+  });
+
+  it("emits SAM as a circle without distance marks or bars", () => {
+    const text = emitBlk(sightFromZoom("SAM", 8, {}, 8));
+    expect(text).not.toMatch(/distance\{|distance:p3=/);
+    expect(text).not.toMatch(/drawLines\{/);
+    expect(text).toMatch(/diameter:r=8\.2/);
+    expect(text).toMatch(/size:r=4\.1/);
   });
 });
 
@@ -145,6 +173,43 @@ describe("generate", () => {
       "us_m24_chaffee/AP_Fast.blk",
       "us_m24_chaffee/HE.blk",
     ]);
+  });
+
+  it("writes AA.blk for gun SPAA and SAM.blk for missile SPAA", () => {
+    const aa = generateTankSights({
+      id: "ussr_zsu_23_4",
+      country: "ussr",
+      nameEn: "ZSU-23-4",
+      nameRu: "ЗСУ-23-4",
+      zoomMin: 4.9,
+      zoomMax: 5,
+      sights: ["AA"],
+    });
+    expect(aa.map((f) => f.relativePath)).toEqual(["ussr_zsu_23_4/AA.blk"]);
+    const sam = generateTankSights({
+      id: "jp_type_93",
+      country: "jp",
+      nameEn: "Type 93",
+      nameRu: "Type 93",
+      zoomMin: 6,
+      zoomMax: 12,
+      sights: ["SAM"],
+    });
+    expect(sam.map((f) => f.relativePath)).toEqual(["jp_type_93/SAM.blk"]);
+    expect(sam[0]?.contents).toMatch(/diameter:r=8\.2/);
+  });
+
+  it("writes nothing when a split SAM has no sights", () => {
+    const files = generateTankSights({
+      id: "ussr_buk_m3_fcs",
+      country: "ussr",
+      nameEn: "Buk-M3",
+      nameRu: "Бук-М3",
+      zoomMin: 8,
+      zoomMax: 12,
+      sights: [],
+    });
+    expect(files).toEqual([]);
   });
 });
 
