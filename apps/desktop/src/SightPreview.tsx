@@ -31,6 +31,29 @@ export function SightPreview({ model }: Props) {
 
     const cx = w / 2;
     const top = 24;
+
+    if (model.layout === "none") {
+      if (model.circleDiameter > 0) {
+        const radius = model.circleDiameter * 14;
+        ctx.beginPath();
+        ctx.arc(cx, h / 2, radius, 0, Math.PI * 2);
+        ctx.fillStyle = "#000000";
+        ctx.fill();
+        ctx.strokeStyle = "#888888";
+        ctx.lineWidth = 1.2;
+        ctx.stroke();
+      }
+      ctx.fillStyle = "#666";
+      ctx.font = "11px sans-serif";
+      ctx.textAlign = "left";
+      ctx.fillText(
+        model.circleDiameter > 0 ? "SAM · круг без рисок" : "Прицелов нет",
+        12,
+        h - 10,
+      );
+      return;
+    }
+
     const milsToY = (mils: number) => top + (mils / model.verticalLength) * (h - 48);
     const milsToX = (mils: number) => cx + mils * 14;
 

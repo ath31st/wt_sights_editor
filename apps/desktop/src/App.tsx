@@ -8,6 +8,7 @@ import {
   countryFromUnitId,
   countryLabelRu,
   countryFlag,
+  emptySightModel,
   generateTankSights,
   mergeCatalogs,
   parseTankCrosshairs,
@@ -113,19 +114,21 @@ export default function App() {
 
   const selected = catalog.tanks.find((tank) => tank.id === selectedId) ?? visible[0];
   const assigned = selected ? crosshairs[selected.id] : undefined;
-  const resolvedPreview: AmmoClass =
-    (previewTankId === selected?.id &&
-    previewAmmo &&
-    selected.sights.includes(previewAmmo)
-      ? previewAmmo
-      : undefined) ??
-    (isAmmoClass(assigned) && selected?.sights.includes(assigned) ? assigned : undefined) ??
-    selected?.sights[0] ??
-    "AP";
+  const hasSights = Boolean(selected && selected.sights.length > 0);
+  const resolvedPreview: AmmoClass | null = !selected || !hasSights
+    ? null
+    : (previewTankId === selected.id &&
+      previewAmmo &&
+      selected.sights.includes(previewAmmo)
+        ? previewAmmo
+        : undefined) ??
+      (isAmmoClass(assigned) && selected.sights.includes(assigned) ? assigned : undefined) ??
+      selected.sights[0] ??
+      null;
 
   const previewModel = useMemo(() => {
-    if (!selected) {
-      return sightFromZoom("AP", 6, {}, 6);
+    if (!selected || !resolvedPreview) {
+      return emptySightModel();
     }
     return sightFromZoom(
       resolvedPreview,
@@ -231,7 +234,12 @@ export default function App() {
       toast.warning("Нет техники для генерации");
       return;
     }
-    const files = tanks.flatMap((tank) =>
+    const generatable = tanks.filter((tank) => tank.sights.length > 0);
+    if (generatable.length === 0) {
+      toast.warning(scope === "selected" ? "Прицелов нет" : "Нет техники с прицелами");
+      return;
+    }
+    const files = generatable.flatMap((tank) =>
       generateTankSights(tank, tank.sights, fontOverride ?? undefined),
     );
     const loading =
@@ -247,7 +255,7 @@ export default function App() {
         files,
       });
       const fileCount = ruCount(result.count, "файл", "файла", "файлов");
-      const vehicleCount = ruCount(tanks.length, "машина", "машины", "машин");
+      const vehicleCount = ruCount(generatable.length, "машина", "машины", "машин");
       if (scope === "selected") {
         toast.success("Прицелы записаны", {
           id: toastId,
@@ -433,6 +441,9 @@ export default function App() {
               {selected.zoomMax}x
             </p>
             <p className="muted">Снаряды</p>
+            {selected.sights.length === 0 ? (
+              <p className="muted">Прицелов нет</p>
+            ) : (
             <div className="ammo-pick">
               {selected.sights.map((ammo) => {
                 const speed = selected.ammoSpeeds?.[ammo];
@@ -449,6 +460,7 @@ export default function App() {
                 );
               })}
             </div>
+            )}
             {globalBlkPath ? (
               <p className="muted">
                 {assigned
@@ -456,6 +468,7 @@ export default function App() {
                   : `global.blk: ${selected.id} — нет записи`}
               </p>
             ) : null}
+            {previewModel.layout !== "none" ? (
             <label>
               Шрифт
               <input
@@ -468,9 +481,14 @@ export default function App() {
               />
               <span>{(fontOverride ?? previewModel.fontSizeMult).toFixed(2)}</span>
             </label>
+            ) : null}
             <h3>Сгенерировать прицелы</h3>
             <div className="actions">
-              <button type="button" onClick={() => void writeFiles([selected], "selected")}>
+              <button
+                type="button"
+                disabled={selected.sights.length === 0}
+                onClick={() => void writeFiles([selected], "selected")}
+              >
                 Для этой техники
               </button>
               <button type="button" onClick={() => void writeFiles(visible, "filter")}>
