@@ -34,9 +34,13 @@ function fontSizeFor(ammo: AmmoClass, zoomMin: number, zoomMax: number): number 
 }
 
 /**
- * Layout/ticks: slow AP (≤800 m/s) → dense L/R @ 200 m;
+ * Layout: slow AP (≤800 m/s) → dense L/R @ 200 m;
  * AP_Fast → sparse left column; APDS/HEAT/HE as before.
+ * Center ticks stay the same width for every ammo.
  */
+const CENTER_TICK_OUTER = 4.1;
+const CENTER_TICK_INNER = 1.3;
+
 export function densityFor(
   zoomMax: number,
   ammo: AmmoClass,
@@ -53,8 +57,8 @@ export function densityFor(
       maxM: 4000,
       numberEvery: 1,
       fontSizeMult,
-      tickOuter: 2.1,
-      tickInner: 0.9,
+      tickOuter: CENTER_TICK_OUTER,
+      tickInner: CENTER_TICK_INNER,
       circleSize: 1.8,
     };
   }
@@ -67,8 +71,8 @@ export function densityFor(
       maxM: zoom >= 8 ? 4000 : 3600,
       numberEvery: 1,
       fontSizeMult,
-      tickOuter: 2.1,
-      tickInner: 0.9,
+      tickOuter: CENTER_TICK_OUTER,
+      tickInner: CENTER_TICK_INNER,
       circleSize: 1.8,
     };
   }
@@ -81,8 +85,8 @@ export function densityFor(
       maxM: zoom >= 8 ? 2000 : 1600,
       numberEvery: 2,
       fontSizeMult,
-      tickOuter: 4.8,
-      tickInner: 1.5,
+      tickOuter: CENTER_TICK_OUTER,
+      tickInner: CENTER_TICK_INNER,
       circleSize: 2.5,
     };
   }
@@ -96,8 +100,8 @@ export function densityFor(
     maxM: zoom >= 8 ? 4000 : 3600,
     numberEvery: 2,
     fontSizeMult,
-    tickOuter: isHeat ? 3.4 : 4.1,
-    tickInner: isHeat ? 1.1 : 1.3,
+    tickOuter: CENTER_TICK_OUTER,
+    tickInner: CENTER_TICK_INNER,
     circleSize: isHeat ? 1.8 : 2.5,
   };
 }

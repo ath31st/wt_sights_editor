@@ -66,6 +66,16 @@ describe("density", () => {
   it("targets ~0.7 APDS for Badger-like 2–8× zoom", () => {
     expect(densityFor(8, "APDS", 2).fontSizeMult).toBeCloseTo(0.7);
   });
+
+  it("keeps the same center tick width for AP, APDS, and AP_Fast", () => {
+    const ap = densityFor(6, "AP", 6);
+    const apds = densityFor(10, "APDS", 3);
+    const fast = densityFor(6, "AP_Fast", 6);
+    expect(ap.tickOuter).toBe(fast.tickOuter);
+    expect(ap.tickInner).toBe(fast.tickInner);
+    expect(apds.tickOuter).toBe(fast.tickOuter);
+    expect(apds.tickInner).toBe(fast.tickInner);
+  });
 });
 
 describe("blk parse/emit", () => {
