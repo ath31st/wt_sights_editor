@@ -30,8 +30,27 @@ html,
 
 .brand {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 2px;
   margin-bottom: 12px;
+}
+
+.brand-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.brand-version,
+.brand-patch,
+.brand-count {
+  color: #aaa;
+  font-size: 12px;
+}
+
+.brand-patch {
+  margin: 0;
 }
 
 button {

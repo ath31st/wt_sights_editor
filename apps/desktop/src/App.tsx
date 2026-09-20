@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { getVersion } from "@tauri-apps/api/app";
 import { invoke } from "@tauri-apps/api/core";
 import { open } from "@tauri-apps/plugin-dialog";
 import bundledCatalog from "@catalog";
@@ -60,6 +61,21 @@ function notifyError(err: unknown, title = "Ошибка") {
   toast.error(title, { description: String(err) });
 }
 
+function formatCatalogDate(iso: string | undefined): string | undefined {
+  if (!iso) {
+    return undefined;
+  }
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso);
+  if (!match) {
+    return iso;
+  }
+  return `${match[3]}.${match[2]}.${match[1]}`;
+}
+
+function catalogStamp(patchName?: string, catalogDate?: string): string {
+  return [patchName, formatCatalogDate(catalogDate)].filter(Boolean).join(" · ");
+}
+
 const HINT_VISIBLE_MS = 8000;
 const HINT_EXIT_MS = 300;
 
@@ -106,6 +122,7 @@ export default function App() {
   const [newName, setNewName] = useState("");
   const applyHint = useTimedHint();
   const generateHint = useTimedHint();
+  const [appVersion, setAppVersion] = useState("");
 
   const catalog = useMemo(
     () => mergeCatalogs(bundledCatalog, userTanks),
@@ -186,6 +203,14 @@ export default function App() {
       throw err;
     }
   }
+
+  useEffect(() => {
+    void getVersion()
+      .then(setAppVersion)
+      .catch(() => {
+        setAppVersion("");
+      });
+  }, []);
 
   useEffect(() => {
     invoke<CatalogTank[]>("load_user_extras")
@@ -409,8 +434,16 @@ export default function App() {
       <div className="app">
       <aside className="sidebar">
         <header className="brand">
-          <strong>WT Sights Editor</strong>
-          <span>{catalog.tanks.length} машин</span>
+          <div className="brand-row">
+            <strong>WT Sights Editor</strong>
+            {appVersion ? <span className="brand-version">{appVersion}</span> : null}
+          </div>
+          <div className="brand-row">
+            <p className="brand-patch">
+              {catalogStamp(catalog.patchName, catalog.catalogDate)}
+            </p>
+            <span className="brand-count">{catalog.tanks.length} ед. техники</span>
+          </div>
         </header>
         <button type="button" onClick={() => void pickFolder()}>
           Выбрать UserSights
