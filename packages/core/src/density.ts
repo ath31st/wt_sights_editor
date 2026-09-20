@@ -29,17 +29,19 @@ function fontSizeFor(ammo: AmmoClass, zoomMin: number, zoomMax: number): number 
   if (ammo === "HEAT") {
     return round1(clamp(0.38 * ratio + 0.37, 0.2, 1.1));
   }
-  // AP and AP_Fast share the AP font curve.
+  // AP, AP_Fast, and AA share the AP font curve.
   return round1(clamp(0.62 * ratio + 0.3, 0.35, 1.15));
 }
 
 /**
  * Layout: slow AP (≤800 m/s) → dense L/R @ 200 m;
- * AP_Fast → sparse left column; APDS/HEAT/HE as before.
+ * AP_Fast / AA → sparse left column; APDS/HEAT/HE as before.
+ * SAM: no distance marks, filled center circle as wide as the horizontal bar.
  * Center ticks stay the same width for every ammo.
  */
 const CENTER_TICK_OUTER = 4.1;
 const CENTER_TICK_INNER = 1.3;
+const SAM_CIRCLE_DIAMETER = CENTER_TICK_OUTER * 2;
 
 export function densityFor(
   zoomMax: number,
@@ -48,6 +50,20 @@ export function densityFor(
 ): DensityParams {
   const zoom = zoomMax > 0 ? zoomMax : 4;
   const fontSizeMult = fontSizeFor(ammo, zoomMin, zoom);
+
+  if (ammo === "SAM") {
+    return {
+      layout: "none",
+      stepM: 0,
+      minM: 0,
+      maxM: 0,
+      numberEvery: 1,
+      fontSizeMult: 1,
+      tickOuter: CENTER_TICK_OUTER,
+      tickInner: CENTER_TICK_INNER,
+      circleSize: CENTER_TICK_OUTER,
+    };
+  }
 
   if (ammo === "APDS") {
     return {
@@ -91,8 +107,21 @@ export function densityFor(
     };
   }
 
-  const isHeat = ammo === "HEAT";
-  // HEAT and AP_Fast: sparse left column (labels every 400 m).
+  if (ammo === "HEAT") {
+    return {
+      layout: "singleLeft",
+      stepM: 200,
+      minM: 200,
+      maxM: zoom >= 8 ? 4000 : 3600,
+      numberEvery: 2,
+      fontSizeMult,
+      tickOuter: CENTER_TICK_OUTER,
+      tickInner: CENTER_TICK_INNER,
+      circleSize: 1.8,
+    };
+  }
+
+  // AP_Fast and AA: sparse left column (labels every 400 m).
   return {
     layout: "singleLeft",
     stepM: 200,
@@ -102,11 +131,14 @@ export function densityFor(
     fontSizeMult,
     tickOuter: CENTER_TICK_OUTER,
     tickInner: CENTER_TICK_INNER,
-    circleSize: isHeat ? 1.8 : 2.5,
+    circleSize: 2.5,
   };
 }
 
 export function marksFromDensity(params: DensityParams): DistanceMark[] {
+  if (params.layout === "none" || params.stepM <= 0) {
+    return [];
+  }
   const marks: DistanceMark[] = [];
   let index = 0;
   for (let meters = params.minM; meters <= params.maxM + 0.1; meters += params.stepM) {
@@ -146,6 +178,21 @@ export function sightFromZoom(
   zoomMin: number = zoomMax,
 ): SightModel {
   const density = densityFor(zoomMax, ammo, zoomMin);
+  if (ammo === "SAM" || density.layout === "none") {
+    return {
+      ammo,
+      fontSizeMult: overrides.fontSizeMult ?? density.fontSizeMult,
+      lineSizeMult: 1,
+      circleDiameter: SAM_CIRCLE_DIAMETER,
+      circleSize: density.circleSize,
+      verticalLength: 0,
+      tickOuter: 0,
+      tickInner: 0,
+      layout: "none",
+      distancePosX: 0.005,
+      marks: [],
+    };
+  }
   return {
     ammo,
     fontSizeMult: overrides.fontSizeMult ?? density.fontSizeMult,
@@ -158,6 +205,22 @@ export function sightFromZoom(
     layout: density.layout,
     distancePosX: 0.005,
     marks: marksFromDensity(density),
+  };
+}
+
+export function emptySightModel(): SightModel {
+  return {
+    ammo: "SAM",
+    fontSizeMult: 1,
+    lineSizeMult: 1,
+    circleDiameter: 0,
+    circleSize: 0,
+    verticalLength: 0,
+    tickOuter: 0,
+    tickInner: 0,
+    layout: "none",
+    distancePosX: 0,
+    marks: [],
   };
 }
 

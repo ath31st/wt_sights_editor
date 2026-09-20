@@ -1,7 +1,7 @@
-export const AMMO_CLASSES = ["AP", "AP_Fast", "HEAT", "APDS", "HE"] as const;
+export const AMMO_CLASSES = ["AP", "AP_Fast", "HEAT", "APDS", "HE", "AA", "SAM"] as const;
 export type AmmoClass = (typeof AMMO_CLASSES)[number];
 
-export type DistanceLayout = "singleLeft" | "alternateLR";
+export type DistanceLayout = "singleLeft" | "alternateLR" | "none";
 
 export type CatalogTank = {
   id: string;

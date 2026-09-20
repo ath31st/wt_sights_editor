@@ -54,6 +54,25 @@ drawDistanceCorrection:b=no
   }
   distances += "}\n";
 
+  if (model.layout === "none") {
+    return `${header}
+${distances}
+drawCircles{
+circle{
+segment:p2=0,360;
+pos:p2=0,0;
+diameter:r=${formatNum(model.circleDiameter)};
+size:r=${formatNum(model.circleSize)};
+move:b=no;
+thousandth:b=yes;
+}
+}
+
+drawTexts{
+}
+`;
+  }
+
   const lines = `drawLines{
 line{
 line:p4=0.0,0.5,0.0,${formatNum(model.verticalLength)}
