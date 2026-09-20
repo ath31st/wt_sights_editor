@@ -219,6 +219,8 @@ describe("mergeCatalogs", () => {
       {
         version: 1,
         source: "datamine",
+        patchName: "Небесная одиссея",
+        catalogDate: "2026-09-16",
         tanks: [
           {
             id: "us_m1a2_abrams",
@@ -245,6 +247,8 @@ describe("mergeCatalogs", () => {
     );
     expect(merged.tanks[0]?.zoomMax).toBe(12);
     expect(merged.tanks[0]?.sights).toEqual(["APDS", "HEAT"]);
+    expect(merged.patchName).toBe("Небесная одиссея");
+    expect(merged.catalogDate).toBe("2026-09-16");
   });
 });
 
