@@ -22,6 +22,8 @@ npm run tauri:dev
 npm run catalog:build
 ```
 
+Имя текущего патча и дату каталога править в `data/patch.json`. Скрипт копирует их в `data/catalog.json` (файл `patch.json` не затирает). Дату менять только когда в каталоге появилась новая техника, потом `catalog:build` и релиз. Версию программы (`apps/desktop/src-tauri/tauri.conf.json` и `package.json`) поднимать при правках самого редактора; дату каталога при этом не трогать.
+
 Пользовательские танки хранятся в data-каталоге приложения (`user-catalog.json`) и не затираются обновлением.
 
 Выбранная папка `UserSights` запоминается в `settings.json` в config-каталоге (`~/.config/wt-sights-editor` на Linux).
