@@ -10,13 +10,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 1050,
-        "HE": 900
-      }
+        "AA"
+      ]
     },
     {
       "id": "cn_al_khalid_1",
@@ -44,7 +39,7 @@
       "zoomMin": 8,
       "zoomMax": 12,
       "sights": [
-        "AP"
+        "SAM"
       ]
     },
     {
@@ -118,17 +113,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP",
-        "HEAT",
-        "APDS",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP": 795,
-        "HEAT": 820,
-        "APDS": 1400,
-        "HE": 795
-      }
+        "AA"
+      ]
     },
     {
       "id": "cn_fk_2000",
@@ -138,13 +124,8 @@
       "zoomMin": 5.8,
       "zoomMax": 28,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 970,
-        "HE": 960
-      }
+        "AA"
+      ]
     },
     {
       "id": "cn_gmc_cckw_353_m45_quad",
@@ -154,7 +135,7 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP"
+        "AA"
       ]
     },
     {
@@ -176,7 +157,7 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP"
+        "SAM"
       ]
     },
     {
@@ -187,7 +168,7 @@
       "zoomMin": 8,
       "zoomMax": 18,
       "sights": [
-        "AP"
+        "SAM"
       ]
     },
     {
@@ -471,11 +452,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 875
-      }
+        "AA"
+      ]
     },
     {
       "id": "cn_m48a1_patton_III",
@@ -727,11 +705,8 @@
       "zoomMin": 2,
       "zoomMax": 6,
       "sights": [
-        "AP_Fast"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 1050
-      }
+        "AA"
+      ]
     },
     {
       "id": "cn_pgz_09",
@@ -741,13 +716,8 @@
       "zoomMin": 1.5,
       "zoomMax": 6,
       "sights": [
-        "APDS",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "APDS": 1400,
-        "HE": 1175
-      }
+        "AA"
+      ]
     },
     {
       "id": "cn_pgz_625_fb10",
@@ -757,13 +727,8 @@
       "zoomMin": 4,
       "zoomMax": 12,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 970,
-        "HE": 960
-      }
+        "AA"
+      ]
     },
     {
       "id": "cn_pgz_88",
@@ -773,13 +738,8 @@
       "zoomMin": 1.5,
       "zoomMax": 6,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 1000,
-        "HE": 1000
-      }
+        "AA"
+      ]
     },
     {
       "id": "cn_plz_05",
@@ -925,13 +885,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 1050,
-        "HE": 900
-      }
+        "AA"
+      ]
     },
     {
       "id": "cn_su_100_1945",
@@ -1115,7 +1070,7 @@
       "zoomMin": 8,
       "zoomMax": 18,
       "sights": [
-        "AP"
+        "SAM"
       ]
     },
     {
@@ -1244,13 +1199,8 @@
       "zoomMin": 3.8,
       "zoomMax": 4,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 868,
-        "HE": 866
-      }
+        "AA"
+      ]
     },
     {
       "id": "cn_type_69",
@@ -1492,13 +1442,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 1000,
-        "HE": 1000
-      }
+        "AA"
+      ]
     },
     {
       "id": "cn_zbd_04a",
@@ -1526,11 +1471,8 @@
       "zoomMin": 1.5,
       "zoomMax": 6,
       "sights": [
-        "AP_Fast"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 1050
-      }
+        "AA"
+      ]
     },
     {
       "id": "cn_zsl_92",
@@ -1540,11 +1482,8 @@
       "zoomMin": 1.6,
       "zoomMax": 7,
       "sights": [
-        "AP_Fast"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 1050
-      }
+        "AA"
+      ]
     },
     {
       "id": "cn_ztl_11",
@@ -1918,15 +1857,8 @@
       "zoomMin": 6,
       "zoomMax": 6,
       "sights": [
-        "AP_Fast",
-        "APDS",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 1100,
-        "APDS": 1150,
-        "HE": 1100
-      }
+        "AA"
+      ]
     },
     {
       "id": "fr_amx_10rc",
@@ -2020,13 +1952,8 @@
       "zoomMin": 6.8,
       "zoomMax": 7.5,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 1025,
-        "HE": 1005
-      }
+        "AA"
+      ]
     },
     {
       "id": "fr_amx_13_fl_11",
@@ -2171,13 +2098,8 @@
       "zoomMin": 2,
       "zoomMax": 8,
       "sights": [
-        "APDS",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "APDS": 1175,
-        "HE": 1080
-      }
+        "AA"
+      ]
     },
     {
       "id": "fr_amx_30_roland",
@@ -2187,7 +2109,7 @@
       "zoomMin": 8,
       "zoomMax": 12,
       "sights": [
-        "AP"
+        "SAM"
       ]
     },
     {
@@ -2404,7 +2326,7 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP"
+        "AA"
       ]
     },
     {
@@ -2511,11 +2433,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 875
-      }
+        "AA"
+      ]
     },
     {
       "id": "fr_char_2c",
@@ -2555,7 +2474,7 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP"
+        "AA"
       ]
     },
     {
@@ -2566,7 +2485,7 @@
       "zoomMin": 6,
       "zoomMax": 12,
       "sights": [
-        "AP"
+        "SAM"
       ]
     },
     {
@@ -3326,9 +3245,7 @@
       "nameRu": "FSAF SAMP/T (Mamba) (СОЦ)",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
-      "sights": [
-        "AP"
-      ]
+      "sights": []
     },
     {
       "id": "fr_samp_t_launcher",
@@ -3337,9 +3254,7 @@
       "nameRu": "FSAF SAMP/T (Mamba) (СОУ)",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
-      "sights": [
-        "AP"
-      ]
+      "sights": []
     },
     {
       "id": "fr_sk105_a2",
@@ -3415,13 +3330,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 1100,
-        "HE": 1054
-      }
+        "AA"
+      ]
     },
     {
       "id": "fr_vab_santal",
@@ -3431,7 +3341,7 @@
       "zoomMin": 6,
       "zoomMax": 6,
       "sights": [
-        "AP"
+        "SAM"
       ]
     },
     {
@@ -3503,7 +3413,7 @@
       "zoomMin": 9.8,
       "zoomMax": 32.7,
       "sights": [
-        "AP"
+        "SAM"
       ]
     },
     {
@@ -3514,7 +3424,7 @@
       "zoomMin": 7.2,
       "zoomMax": 8,
       "sights": [
-        "AP"
+        "AA"
       ]
     },
     {
@@ -3806,13 +3716,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 1050,
-        "HE": 900
-      }
+        "AA"
+      ]
     },
     {
       "id": "germ_flakpanzer_I_ausf_A",
@@ -3822,13 +3727,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 1050,
-        "HE": 900
-      }
+        "AA"
+      ]
     },
     {
       "id": "germ_flakpanzer_IV_Kugelblitz",
@@ -3838,13 +3738,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 960,
-        "HE": 920
-      }
+        "AA"
+      ]
     },
     {
       "id": "germ_flakpanzer_IV_Ostwind",
@@ -3854,13 +3749,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP": 790,
-        "HE": 900
-      }
+        "AA"
+      ]
     },
     {
       "id": "germ_flakpanzer_IV_Ostwind_2",
@@ -3870,13 +3760,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP": 790,
-        "HE": 900
-      }
+        "AA"
+      ]
     },
     {
       "id": "germ_flakpanzer_IV_Ostwind_2_net",
@@ -3886,13 +3771,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP": 790,
-        "HE": 900
-      }
+        "AA"
+      ]
     },
     {
       "id": "germ_flakpanzer_IV_Wirbelwind",
@@ -3902,13 +3782,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 1050,
-        "HE": 900
-      }
+        "AA"
+      ]
     },
     {
       "id": "germ_flakpanzer_V_Coelian",
@@ -3918,11 +3793,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 1000
-      }
+        "AA"
+      ]
     },
     {
       "id": "germ_flakpanzer_zerstorer_45",
@@ -3932,13 +3804,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 960,
-        "HE": 920
-      }
+        "AA"
+      ]
     },
     {
       "id": "germ_flakpz_1a2_Gepard",
@@ -3948,13 +3815,8 @@
       "zoomMin": 1.5,
       "zoomMax": 6,
       "sights": [
-        "APDS",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "APDS": 1400,
-        "HE": 1175
-      }
+        "AA"
+      ]
     },
     {
       "id": "germ_flakpz_I_Gepard",
@@ -3964,13 +3826,8 @@
       "zoomMin": 1.5,
       "zoomMax": 6,
       "sights": [
-        "APDS",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "APDS": 1400,
-        "HE": 1175
-      }
+        "AA"
+      ]
     },
     {
       "id": "germ_flarakpz_1",
@@ -3980,7 +3837,7 @@
       "zoomMin": 8,
       "zoomMax": 12,
       "sights": [
-        "AP"
+        "SAM"
       ]
     },
     {
@@ -3991,7 +3848,7 @@
       "zoomMin": 8,
       "zoomMax": 12,
       "sights": [
-        "AP"
+        "SAM"
       ]
     },
     {
@@ -4067,9 +3924,7 @@
       "nameRu": "IRIS-T SLM (СОЦ)",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
-      "sights": [
-        "AP"
-      ]
+      "sights": []
     },
     {
       "id": "germ_iris_slm_launcher",
@@ -4078,9 +3933,7 @@
       "nameRu": "IRIS-T SLM (СОУ)",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
-      "sights": [
-        "AP"
-      ]
+      "sights": []
     },
     {
       "id": "germ_jaguar_2",
@@ -4255,7 +4108,7 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP"
+        "AA"
       ]
     },
     {
@@ -6184,13 +6037,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 1050,
-        "HE": 900
-      }
+        "AA"
+      ]
     },
     {
       "id": "germ_sdkfz_234_1",
@@ -6320,13 +6168,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 850,
-        "HE": 960
-      }
+        "AA"
+      ]
     },
     {
       "id": "germ_sdkfz_251_22",
@@ -6374,13 +6217,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP": 790,
-        "HE": 900
-      }
+        "AA"
+      ]
     },
     {
       "id": "germ_sdkfz_9_flak37",
@@ -6805,15 +6643,8 @@
       "zoomMin": 2,
       "zoomMax": 6,
       "sights": [
-        "AP_Fast",
-        "APDS",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 1100,
-        "APDS": 1150,
-        "HE": 1100
-      }
+        "AA"
+      ]
     },
     {
       "id": "germ_wiesel_1_tow",
@@ -6834,7 +6665,7 @@
       "zoomMin": 4,
       "zoomMax": 12,
       "sights": [
-        "AP"
+        "SAM"
       ]
     },
     {
@@ -6845,7 +6676,7 @@
       "zoomMin": 9.8,
       "zoomMax": 32.7,
       "sights": [
-        "AP"
+        "SAM"
       ]
     },
     {
@@ -7097,11 +6928,8 @@
       "zoomMin": 6,
       "zoomMax": 6,
       "sights": [
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "HE": 1030
-      }
+        "AA"
+      ]
     },
     {
       "id": "il_m48a1_patton_III",
@@ -7129,11 +6957,8 @@
       "zoomMin": 6,
       "zoomMax": 6,
       "sights": [
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "HE": 1030
-      }
+        "AA"
+      ]
     },
     {
       "id": "il_magach_2",
@@ -7575,7 +7400,7 @@
       "zoomMin": 6,
       "zoomMax": 6,
       "sights": [
-        "AP"
+        "SAM"
       ]
     },
     {
@@ -7650,7 +7475,7 @@
       "zoomMin": 2,
       "zoomMax": 27,
       "sights": [
-        "AP"
+        "SAM"
       ]
     },
     {
@@ -7672,13 +7497,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 830,
-        "HE": 838
-      }
+        "AA"
+      ]
     },
     {
       "id": "il_tiran_4",
@@ -7744,7 +7564,7 @@
       "zoomMin": 8,
       "zoomMax": 18,
       "sights": [
-        "AP"
+        "SAM"
       ]
     },
     {
@@ -7755,11 +7575,8 @@
       "zoomMin": 4.9,
       "zoomMax": 5,
       "sights": [
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "HE": 970
-      }
+        "AA"
+      ]
     },
     {
       "id": "il_zsu_57_2",
@@ -7769,13 +7586,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 1000,
-        "HE": 1000
-      }
+        "AA"
+      ]
     },
     {
       "id": "it_2s1",
@@ -7901,7 +7713,7 @@
       "zoomMin": 9.8,
       "zoomMax": 32.7,
       "sights": [
-        "AP"
+        "SAM"
       ]
     },
     {
@@ -7912,7 +7724,7 @@
       "zoomMin": 7.2,
       "zoomMax": 8,
       "sights": [
-        "AP"
+        "AA"
       ]
     },
     {
@@ -7989,13 +7801,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 1050,
-        "HE": 830
-      }
+        "AA"
+      ]
     },
     {
       "id": "it_aubl_74_60_70m",
@@ -8326,7 +8133,7 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP"
+        "AA"
       ]
     },
     {
@@ -8517,13 +8324,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 1005,
-        "HE": 1005
-      }
+        "AA"
+      ]
     },
     {
       "id": "it_m109g",
@@ -8668,13 +8470,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 1050,
-        "HE": 830
-      }
+        "AA"
+      ]
     },
     {
       "id": "it_m18_hellcat",
@@ -8938,13 +8735,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 1100,
-        "HE": 1054
-      }
+        "AA"
+      ]
     },
     {
       "id": "it_otobreda_sidam_25",
@@ -8954,13 +8746,8 @@
       "zoomMin": 4.7,
       "zoomMax": 5,
       "sights": [
-        "APDS",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "APDS": 1330,
-        "HE": 1100
-      }
+        "AA"
+      ]
     },
     {
       "id": "it_otobreda_sidam_25_mistral",
@@ -8970,13 +8757,8 @@
       "zoomMin": 4.7,
       "zoomMax": 5,
       "sights": [
-        "APDS",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "APDS": 1330,
-        "HE": 1100
-      }
+        "AA"
+      ]
     },
     {
       "id": "it_otomatic",
@@ -8986,13 +8768,8 @@
       "zoomMin": 2.5,
       "zoomMax": 10,
       "sights": [
-        "APDS",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "APDS": 1580,
-        "HE": 910
-      }
+        "AA"
+      ]
     },
     {
       "id": "it_p_26_40",
@@ -9153,9 +8930,7 @@
       "nameRu": "FSAF SAMP/T (СОЦ)",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
-      "sights": [
-        "AP"
-      ]
+      "sights": []
     },
     {
       "id": "it_samp_t_launcher",
@@ -9164,9 +8939,7 @@
       "nameRu": "FSAF SAMP/T (СОУ)",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
-      "sights": [
-        "AP"
-      ]
+      "sights": []
     },
     {
       "id": "it_semovente_breda_501",
@@ -9520,11 +9293,8 @@
       "zoomMin": 4.9,
       "zoomMax": 5,
       "sights": [
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "HE": 970
-      }
+        "AA"
+      ]
     },
     {
       "id": "it_zsu_57_2",
@@ -9534,13 +9304,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 1000,
-        "HE": 1000
-      }
+        "AA"
+      ]
     },
     {
       "id": "jp_at_37mm_type_1",
@@ -9602,7 +9367,7 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP"
+        "AA"
       ]
     },
     {
@@ -9697,11 +9462,8 @@
       "zoomMin": 6,
       "zoomMax": 6,
       "sights": [
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "HE": 1030
-      }
+        "AA"
+      ]
     },
     {
       "id": "jp_m19",
@@ -9711,11 +9473,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 875
-      }
+        "AA"
+      ]
     },
     {
       "id": "jp_m24_chaffee",
@@ -9781,11 +9540,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 875
-      }
+        "AA"
+      ]
     },
     {
       "id": "jp_m44",
@@ -10009,15 +9765,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast",
-        "APDS",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 1100,
-        "APDS": 1150,
-        "HE": 1100
-      }
+        "AA"
+      ]
     },
     {
       "id": "jp_tkx_prot",
@@ -10053,9 +9802,7 @@
       "nameRu": "Type 03 (СОЦ)",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
-      "sights": [
-        "AP"
-      ]
+      "sights": []
     },
     {
       "id": "jp_type_03_chusam_launcher",
@@ -10064,9 +9811,7 @@
       "nameRu": "Type 03 (СОУ)",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
-      "sights": [
-        "AP"
-      ]
+      "sights": []
     },
     {
       "id": "jp_type_1_chi_he",
@@ -10614,7 +10359,7 @@
       "zoomMin": 6,
       "zoomMax": 12,
       "sights": [
-        "AP"
+        "SAM"
       ]
     },
     {
@@ -10624,9 +10369,7 @@
       "nameRu": "Tan-SAM Kai (СОЦ)",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
-      "sights": [
-        "AP"
-      ]
+      "sights": []
     },
     {
       "id": "jp_type_81_tansam_launcher",
@@ -10635,9 +10378,7 @@
       "nameRu": "Tan-SAM Kai (СОУ)",
       "zoomMin": 6,
       "zoomMax": 12,
-      "sights": [
-        "AP"
-      ]
+      "sights": []
     },
     {
       "id": "jp_type_87",
@@ -10647,13 +10388,8 @@
       "zoomMin": 1.5,
       "zoomMax": 6,
       "sights": [
-        "APDS",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "APDS": 1400,
-        "HE": 1175
-      }
+        "AA"
+      ]
     },
     {
       "id": "jp_type_87_rcv",
@@ -10795,7 +10531,7 @@
       "zoomMin": 6,
       "zoomMax": 12,
       "sights": [
-        "AP"
+        "SAM"
       ]
     },
     {
@@ -10806,11 +10542,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "HE": 950
-      }
+        "AA"
+      ]
     },
     {
       "id": "jp_type_95_ha_go",
@@ -10866,11 +10599,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "HE": 950
-      }
+        "AA"
+      ]
     },
     {
       "id": "jp_type_97_chi_ha",
@@ -10958,11 +10688,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "HE": 950
-      }
+        "AA"
+      ]
     },
     {
       "id": "jp_type_99",
@@ -11059,7 +10786,7 @@
       "zoomMin": 4,
       "zoomMax": 12,
       "sights": [
-        "AP"
+        "SAM"
       ]
     },
     {
@@ -11136,7 +10863,7 @@
       "zoomMin": 6,
       "zoomMax": 12,
       "sights": [
-        "AP"
+        "SAM"
       ]
     },
     {
@@ -11249,7 +10976,7 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP"
+        "SAM"
       ]
     },
     {
@@ -11340,13 +11067,8 @@
       "zoomMin": 3,
       "zoomMax": 10,
       "sights": [
-        "APDS",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "APDS": 1400,
-        "HE": 1175
-      }
+        "AA"
+      ]
     },
     {
       "id": "sw_k9_vidar",
@@ -11408,13 +11130,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP": 800,
-        "HE": 850
-      }
+        "AA"
+      ]
     },
     {
       "id": "sw_lago_1",
@@ -11440,13 +11157,8 @@
       "zoomMin": 6.4,
       "zoomMax": 7,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 1100,
-        "HE": 1054
-      }
+        "AA"
+      ]
     },
     {
       "id": "sw_landsverk_ush_405",
@@ -11520,13 +11232,8 @@
       "zoomMin": 4.7,
       "zoomMax": 5,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 910,
-        "HE": 850
-      }
+        "AA"
+      ]
     },
     {
       "id": "sw_lvkv_90c",
@@ -11536,13 +11243,8 @@
       "zoomMin": 7.2,
       "zoomMax": 8,
       "sights": [
-        "APDS",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "APDS": 1465,
-        "HE": 988
-      }
+        "AA"
+      ]
     },
     {
       "id": "sw_lvrbv_701",
@@ -11552,7 +11254,7 @@
       "zoomMin": 6.4,
       "zoomMax": 7,
       "sights": [
-        "AP"
+        "SAM"
       ]
     },
     {
@@ -11580,9 +11282,7 @@
       "nameRu": "NASAMS 3 (СОЦ)",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
-      "sights": [
-        "AP"
-      ]
+      "sights": []
     },
     {
       "id": "sw_nasams_launcher",
@@ -11591,9 +11291,7 @@
       "nameRu": "NASAMS 3 (СОУ)",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
-      "sights": [
-        "AP"
-      ]
+      "sights": []
     },
     {
       "id": "sw_nomads",
@@ -11603,7 +11301,7 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP"
+        "AA"
       ]
     },
     {
@@ -11648,13 +11346,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 815,
-        "HE": 850
-      }
+        "AA"
+      ]
     },
     {
       "id": "sw_pbv_302_bill",
@@ -11802,13 +11495,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 815,
-        "HE": 845
-      }
+        "AA"
+      ]
     },
     {
       "id": "sw_pvrbv_551",
@@ -12513,13 +12201,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP": 800,
-        "HE": 850
-      }
+        "AA"
+      ]
     },
     {
       "id": "sw_udes_33",
@@ -12540,13 +12223,8 @@
       "zoomMin": 1.5,
       "zoomMax": 6,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 910,
-        "HE": 850
-      }
+        "AA"
+      ]
     },
     {
       "id": "sw_vickers_mk_e_37",
@@ -12590,13 +12268,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 1000,
-        "HE": 1000
-      }
+        "AA"
+      ]
     },
     {
       "id": "uk_17_pdr_m10_achilles",
@@ -12658,7 +12331,7 @@
       "zoomMin": 9.8,
       "zoomMax": 32.7,
       "sights": [
-        "AP"
+        "SAM"
       ]
     },
     {
@@ -12669,7 +12342,7 @@
       "zoomMin": 7.2,
       "zoomMax": 8,
       "sights": [
-        "AP"
+        "AA"
       ]
     },
     {
@@ -13123,7 +12796,7 @@
       "zoomMin": 3,
       "zoomMax": 18,
       "sights": [
-        "AP"
+        "SAM"
       ]
     },
     {
@@ -13213,13 +12886,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 830,
-        "HE": 838
-      }
+        "AA"
+      ]
     },
     {
       "id": "uk_at_gun_qf17pounder",
@@ -13279,11 +12947,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "HE": 970
-      }
+        "AA"
+      ]
     },
     {
       "id": "uk_boxer_crv_block2",
@@ -13693,13 +13358,8 @@
       "zoomMin": 3,
       "zoomMax": 10,
       "sights": [
-        "APDS",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "APDS": 1400,
-        "HE": 1175
-      }
+        "AA"
+      ]
     },
     {
       "id": "uk_chieftain_mk_10",
@@ -13836,11 +13496,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 875
-      }
+        "AA"
+      ]
     },
     {
       "id": "uk_crusader_aa_mk_2",
@@ -13850,13 +13507,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 830,
-        "HE": 838
-      }
+        "AA"
+      ]
     },
     {
       "id": "uk_crusader_aa_mk_2_kit_3rank",
@@ -13866,13 +13518,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 830,
-        "HE": 838
-      }
+        "AA"
+      ]
     },
     {
       "id": "uk_crusader_aa_mk_2_tutorial",
@@ -13882,13 +13529,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 830,
-        "HE": 838
-      }
+        "AA"
+      ]
     },
     {
       "id": "uk_crusader_mk_2",
@@ -14000,13 +13642,8 @@
       "zoomMin": 6,
       "zoomMax": 6,
       "sights": [
-        "APDS",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "APDS": 1175,
-        "HE": 1080
-      }
+        "AA"
+      ]
     },
     {
       "id": "uk_fv102_striker",
@@ -14576,11 +14213,8 @@
       "zoomMin": 3,
       "zoomMax": 10,
       "sights": [
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "HE": 1175
-      }
+        "AA"
+      ]
     },
     {
       "id": "uk_saint_chamond_event",
@@ -14712,13 +14346,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 830,
-        "HE": 838
-      }
+        "AA"
+      ]
     },
     {
       "id": "uk_sky_sabre_fcs",
@@ -14727,9 +14356,7 @@
       "nameRu": "Sky Sabre (СОЦ)",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
-      "sights": [
-        "AP"
-      ]
+      "sights": []
     },
     {
       "id": "uk_sky_sabre_launcher",
@@ -14738,9 +14365,7 @@
       "nameRu": "Sky Sabre (СОУ)",
       "zoomMin": 5.8,
       "zoomMax": 28,
-      "sights": [
-        "AP"
-      ]
+      "sights": []
     },
     {
       "id": "uk_sp_17_pdr_valentine",
@@ -14768,13 +14393,8 @@
       "zoomMin": 2.6,
       "zoomMax": 8,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 1036,
-        "HE": 1085
-      }
+        "AA"
+      ]
     },
     {
       "id": "uk_stormer_hvm",
@@ -14784,7 +14404,7 @@
       "zoomMin": 10,
       "zoomMax": 39.2,
       "sights": [
-        "AP"
+        "SAM"
       ]
     },
     {
@@ -14813,7 +14433,7 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP"
+        "AA"
       ]
     },
     {
@@ -14840,7 +14460,7 @@
       "zoomMin": 2.4,
       "zoomMax": 10,
       "sights": [
-        "AP"
+        "SAM"
       ]
     },
     {
@@ -15025,7 +14645,7 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP"
+        "AA"
       ]
     },
     {
@@ -15070,13 +14690,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 1100,
-        "HE": 1054
-      }
+        "AA"
+      ]
     },
     {
       "id": "us_adats_bradley",
@@ -15086,13 +14701,8 @@
       "zoomMin": 3,
       "zoomMax": 18,
       "sights": [
-        "APDS",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "APDS": 1345,
-        "HE": 1100
-      }
+        "AA"
+      ]
     },
     {
       "id": "us_ags_teledyne",
@@ -15120,7 +14730,7 @@
       "zoomMin": 7.2,
       "zoomMax": 8,
       "sights": [
-        "AP"
+        "AA"
       ]
     },
     {
@@ -15186,7 +14796,7 @@
       "zoomMin": 7.2,
       "zoomMax": 8,
       "sights": [
-        "AP"
+        "AA"
       ]
     },
     {
@@ -15219,7 +14829,7 @@
       "zoomMin": 7.2,
       "zoomMax": 8,
       "sights": [
-        "AP"
+        "AA"
       ]
     },
     {
@@ -15394,7 +15004,7 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP"
+        "AA"
       ]
     },
     {
@@ -15405,13 +15015,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP": 625,
-        "HE": 792
-      }
+        "AA"
+      ]
     },
     {
       "id": "us_halftrack_m16",
@@ -15421,7 +15026,7 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP"
+        "AA"
       ]
     },
     {
@@ -15497,14 +15102,8 @@
       "zoomMin": 4,
       "zoomMax": 12,
       "sights": [
-        "AP_Fast",
-        "HEAT",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 1036,
-        "HE": 1085
-      }
+        "AA"
+      ]
     },
     {
       "id": "us_losat_ccv",
@@ -15773,11 +15372,8 @@
       "zoomMin": 6,
       "zoomMax": 6,
       "sights": [
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "HE": 1030
-      }
+        "AA"
+      ]
     },
     {
       "id": "us_m18_hellcat",
@@ -15868,11 +15464,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 875
-      }
+        "AA"
+      ]
     },
     {
       "id": "us_m1a1_abrams",
@@ -16153,11 +15746,8 @@
       "zoomMin": 3,
       "zoomMax": 3,
       "sights": [
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "HE": 1100
-      }
+        "AA"
+      ]
     },
     {
       "id": "us_m26_pershing",
@@ -16497,11 +16087,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 875
-      }
+        "AA"
+      ]
     },
     {
       "id": "us_m44",
@@ -17355,7 +16942,7 @@
       "zoomMin": 6,
       "zoomMax": 6,
       "sights": [
-        "AP"
+        "SAM"
       ]
     },
     {
@@ -17383,9 +16970,7 @@
       "nameRu": "NASAMS 3 (СОЦ)",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
-      "sights": [
-        "AP"
-      ]
+      "sights": []
     },
     {
       "id": "us_nasams_launcher",
@@ -17394,9 +16979,7 @@
       "nameRu": "NASAMS 3 (СОУ)",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
-      "sights": [
-        "AP"
-      ]
+      "sights": []
     },
     {
       "id": "us_railway_boxcar_wagon",
@@ -17477,13 +17060,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 830,
-        "HE": 838
-      }
+        "AA"
+      ]
     },
     {
       "id": "us_skink_aa_kit_3rank",
@@ -17493,13 +17071,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 830,
-        "HE": 838
-      }
+        "AA"
+      ]
     },
     {
       "id": "us_sl_amraam_fcs",
@@ -17508,9 +17081,7 @@
       "nameRu": "CLAWS (СОЦ)",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
-      "sights": [
-        "AP"
-      ]
+      "sights": []
     },
     {
       "id": "us_sl_amraam_launcher",
@@ -17519,9 +17090,7 @@
       "nameRu": "CLAWS (СОУ)",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
-      "sights": [
-        "AP"
-      ]
+      "sights": []
     },
     {
       "id": "us_stingray",
@@ -17881,7 +17450,7 @@
       "zoomMin": 4.3,
       "zoomMax": 5,
       "sights": [
-        "AP"
+        "AA"
       ]
     },
     {
@@ -18036,7 +17605,7 @@
       "zoomMin": 8,
       "zoomMax": 12,
       "sights": [
-        "AP"
+        "SAM"
       ]
     },
     {
@@ -18083,11 +17652,8 @@
       "zoomMin": 3,
       "zoomMax": 8,
       "sights": [
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "HE": 1175
-      }
+        "AA"
+      ]
     },
     {
       "id": "ussr_2s1",
@@ -18223,7 +17789,7 @@
       "zoomMin": 9.8,
       "zoomMax": 32.7,
       "sights": [
-        "AP"
+        "SAM"
       ]
     },
     {
@@ -18234,7 +17800,7 @@
       "zoomMin": 7.2,
       "zoomMax": 8,
       "sights": [
-        "AP"
+        "AA"
       ]
     },
     {
@@ -18287,7 +17853,7 @@
       "zoomMin": 7.2,
       "zoomMax": 8,
       "sights": [
-        "AP"
+        "AA"
       ]
     },
     {
@@ -18320,7 +17886,7 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP"
+        "SAM"
       ]
     },
     {
@@ -18331,7 +17897,7 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP"
+        "SAM"
       ]
     },
     {
@@ -18364,7 +17930,7 @@
       "zoomMin": 7.2,
       "zoomMax": 8,
       "sights": [
-        "AP"
+        "AA"
       ]
     },
     {
@@ -18375,7 +17941,7 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP"
+        "AA"
       ]
     },
     {
@@ -18386,7 +17952,7 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP"
+        "AA"
       ]
     },
     {
@@ -18397,7 +17963,7 @@
       "zoomMin": 7.2,
       "zoomMax": 8,
       "sights": [
-        "AP"
+        "AA"
       ]
     },
     {
@@ -18821,7 +18387,7 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP"
+        "AA"
       ]
     },
     {
@@ -18832,7 +18398,7 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP"
+        "AA"
       ]
     },
     {
@@ -18879,11 +18445,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "HE": 970
-      }
+        "AA"
+      ]
     },
     {
       "id": "ussr_buk_m3_fcs",
@@ -18892,9 +18455,7 @@
       "nameRu": "9К317М \"БУК-М3\" (СОЦ)",
       "zoomMin": 1.8,
       "zoomMax": 3.5,
-      "sights": [
-        "AP"
-      ]
+      "sights": []
     },
     {
       "id": "ussr_buk_m3_launcher",
@@ -18903,9 +18464,7 @@
       "nameRu": "9К317М \"БУК-М3\" (СОУ)",
       "zoomMin": 5.8,
       "zoomMax": 28,
-      "sights": [
-        "AP"
-      ]
+      "sights": []
     },
     {
       "id": "ussr_freight_car_1926_a",
@@ -18973,7 +18532,7 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP"
+        "AA"
       ]
     },
     {
@@ -18984,7 +18543,7 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP"
+        "AA"
       ]
     },
     {
@@ -18995,11 +18554,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 900
-      }
+        "AA"
+      ]
     },
     {
       "id": "ussr_gaz_mm_72k_without_crew",
@@ -19009,11 +18565,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 900
-      }
+        "AA"
+      ]
     },
     {
       "id": "ussr_is_1",
@@ -19582,11 +19135,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 1000
-      }
+        "AA"
+      ]
     },
     {
       "id": "ussr_m53_59_kit_4rank",
@@ -19596,11 +19146,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 1000
-      }
+        "AA"
+      ]
     },
     {
       "id": "ussr_m551_football",
@@ -19812,13 +19359,8 @@
       "zoomMin": 5.8,
       "zoomMax": 28,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 970,
-        "HE": 960
-      }
+        "AA"
+      ]
     },
     {
       "id": "ussr_pantsyr_sm_sv",
@@ -19828,13 +19370,8 @@
       "zoomMin": 6,
       "zoomMax": 35,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 970,
-        "HE": 960
-      }
+        "AA"
+      ]
     },
     {
       "id": "ussr_pt_76_57",
@@ -20130,11 +19667,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "HE": 785
-      }
+        "AA"
+      ]
     },
     {
       "id": "ussr_sht_1_2",
@@ -21808,7 +21342,7 @@
       "zoomMin": 8,
       "zoomMax": 18,
       "sights": [
-        "AP"
+        "SAM"
       ]
     },
     {
@@ -21850,13 +21384,8 @@
       "zoomMin": 3.8,
       "zoomMax": 4,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 868,
-        "HE": 866
-      }
+        "AA"
+      ]
     },
     {
       "id": "ussr_valentine_mk_9",
@@ -21882,11 +21411,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 900
-      }
+        "AA"
+      ]
     },
     {
       "id": "ussr_zis_30",
@@ -21912,13 +21438,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 868,
-        "HE": 866
-      }
+        "AA"
+      ]
     },
     {
       "id": "ussr_zprk_2s6",
@@ -21928,13 +21449,8 @@
       "zoomMin": 4.9,
       "zoomMax": 5,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 970,
-        "HE": 960
-      }
+        "AA"
+      ]
     },
     {
       "id": "ussr_zsu_23_4",
@@ -21944,11 +21460,8 @@
       "zoomMin": 4.9,
       "zoomMax": 5,
       "sights": [
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "HE": 970
-      }
+        "AA"
+      ]
     },
     {
       "id": "ussr_zsu_23_4m2",
@@ -21958,11 +21471,8 @@
       "zoomMin": 4.9,
       "zoomMax": 5,
       "sights": [
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "HE": 970
-      }
+        "AA"
+      ]
     },
     {
       "id": "ussr_zsu_23_4m4",
@@ -21972,11 +21482,8 @@
       "zoomMin": 4.9,
       "zoomMax": 5,
       "sights": [
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "HE": 970
-      }
+        "AA"
+      ]
     },
     {
       "id": "ussr_zsu_29k",
@@ -22002,13 +21509,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 868,
-        "HE": 866
-      }
+        "AA"
+      ]
     },
     {
       "id": "ussr_zsu_37_2",
@@ -22018,13 +21520,8 @@
       "zoomMin": 4.9,
       "zoomMax": 5,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 1000,
-        "HE": 1000
-      }
+        "AA"
+      ]
     },
     {
       "id": "ussr_zsu_57_2",
@@ -22034,13 +21531,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 1000,
-        "HE": 1000
-      }
+        "AA"
+      ]
     },
     {
       "id": "ussr_zut_37",
@@ -22050,13 +21542,8 @@
       "zoomMin": 1.8,
       "zoomMax": 3.5,
       "sights": [
-        "AP_Fast",
-        "HE"
-      ],
-      "ammoSpeeds": {
-        "AP_Fast": 880,
-        "HE": 900
-      }
+        "AA"
+      ]
     }
   ]
 }

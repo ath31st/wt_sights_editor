@@ -180,6 +180,69 @@ function isPrimaryWeapon(fileName) {
   return true;
 }
 
+function isClassWeapon(fileName) {
+  if (
+    fileName.includes("dummy") ||
+    fileName.includes("smoke") ||
+    fileName.includes("sensor") ||
+    fileName.includes("_search") ||
+    fileName.includes("_track") ||
+    fileName.endsWith("_default.blkx") ||
+    fileName.endsWith("_default.blk")
+  ) {
+    return false;
+  }
+  return true;
+}
+
+function isSpaaUnit(type, expClass) {
+  return type === "typeSPAA" || expClass === "exp_SPAA";
+}
+
+function isSplitSam(id) {
+  return /(_fcs|_launcher)$/i.test(id);
+}
+
+function extractUnitClass(text) {
+  const type = text.match(/"type"\s*:\s*"([^"]+)"/)?.[1] ?? null;
+  const expClass = text.match(/"expClass"\s*:\s*"([^"]+)"/)?.[1] ?? null;
+  return { type, expClass };
+}
+
+function isSamBullet(raw) {
+  const s = raw.toLowerCase();
+  return s === "aam" || s === "sam_tank" || s.startsWith("sam_");
+}
+
+function isGunBullet(raw) {
+  if (isSamBullet(raw)) {
+    return false;
+  }
+  if (mapBulletFamily(raw)) {
+    return true;
+  }
+  const s = raw.toLowerCase();
+  return s.startsWith("ap") || s.startsWith("he") || s === "ahead" || s.includes("frag");
+}
+
+function collectBulletTypes(node, out) {
+  if (node == null || typeof node !== "object") {
+    return;
+  }
+  if (Array.isArray(node)) {
+    for (const item of node) {
+      collectBulletTypes(item, out);
+    }
+    return;
+  }
+  if (typeof node.bulletType === "string") {
+    out.push(node.bulletType);
+  }
+  for (const value of Object.values(node)) {
+    collectBulletTypes(value, out);
+  }
+}
+
 /** Collect { slot, speed } from every bullet object in a weapon JSON. */
 function collectBullets(node, out) {
   if (node == null || typeof node !== "object") {
@@ -227,22 +290,50 @@ function ammoFromWeaponJson(text) {
   return speeds;
 }
 
+function bulletTypesFromWeaponJson(text) {
+  const types = [];
+  try {
+    collectBulletTypes(JSON.parse(text), types);
+  } catch {
+    // fall through empty
+  }
+  return types;
+}
+
 const { names, idByLower } = loadNames(readFileSync(UNITS_CSV, "utf8"));
 const weaponCache = new Map();
+const weaponTypeCache = new Map();
+
+function readWeaponText(fileName) {
+  return readFileSync(join(WEAPON_DIR, fileName), "utf8");
+}
 
 function weaponAmmo(fileName) {
   if (weaponCache.has(fileName)) {
     return weaponCache.get(fileName);
   }
-  const path = join(WEAPON_DIR, fileName);
   let found = new Map();
   try {
-    found = ammoFromWeaponJson(readFileSync(path, "utf8"));
+    found = ammoFromWeaponJson(readWeaponText(fileName));
   } catch {
     found = new Map();
   }
   weaponCache.set(fileName, found);
   return found;
+}
+
+function weaponBulletTypes(fileName) {
+  if (weaponTypeCache.has(fileName)) {
+    return weaponTypeCache.get(fileName);
+  }
+  let types = [];
+  try {
+    types = bulletTypesFromWeaponJson(readWeaponText(fileName));
+  } catch {
+    types = [];
+  }
+  weaponTypeCache.set(fileName, types);
+  return types;
 }
 
 const tanks = [];
@@ -262,11 +353,17 @@ for (const file of readdirSync(TANK_DIR)) {
     continue;
   }
   const { zoomMin, zoomMax } = zoom;
+  const { type, expClass } = extractUnitClass(text);
+  const spaa = isSpaaUnit(type, expClass);
 
   const ammoSpeeds = new Map();
+  const bulletTypes = [];
   for (const match of text.matchAll(/"blk"\s*:\s*"([^"]+)"/g)) {
     const fileName = weaponFileName(match[1]);
-    if (!isPrimaryWeapon(fileName)) {
+    if (isClassWeapon(fileName)) {
+      bulletTypes.push(...weaponBulletTypes(fileName));
+    }
+    if (spaa || !isPrimaryWeapon(fileName)) {
       continue;
     }
     for (const [slot, speed] of weaponAmmo(fileName)) {
@@ -283,13 +380,33 @@ for (const file of readdirSync(TANK_DIR)) {
     }
   }
 
-  const ordered = AMMO.filter((ammo) => ammoSpeeds.has(ammo));
+  let ordered;
+  if (spaa) {
+    if (isSplitSam(id)) {
+      ordered = [];
+    } else if (bulletTypes.some(isGunBullet)) {
+      ordered = ["AA"];
+    } else if (bulletTypes.some(isSamBullet)) {
+      ordered = ["SAM"];
+    } else {
+      // MG-only SPAA (M45 Quad, etc.) still get the gun sight, not SAM.
+      ordered = ["AA"];
+    }
+  } else {
+    ordered = AMMO.filter((ammo) => ammoSpeeds.has(ammo));
+    if (ordered.length === 0) {
+      ordered = ["AP"];
+    }
+  }
+
   const loc = names.get(id) ?? { nameEn: id, nameRu: id };
   const speedsObj = {};
-  for (const ammo of ordered) {
-    const speed = ammoSpeeds.get(ammo);
-    if (speed != null) {
-      speedsObj[ammo] = Math.round(speed);
+  if (!spaa) {
+    for (const ammo of ordered) {
+      const speed = ammoSpeeds.get(ammo);
+      if (speed != null) {
+        speedsObj[ammo] = Math.round(speed);
+      }
     }
   }
 
@@ -300,7 +417,7 @@ for (const file of readdirSync(TANK_DIR)) {
     nameRu: loc.nameRu,
     zoomMin,
     zoomMax,
-    sights: ordered.length > 0 ? ordered : ["AP"],
+    sights: ordered,
     ...(Object.keys(speedsObj).length > 0 ? { ammoSpeeds: speedsObj } : {}),
   });
 }
