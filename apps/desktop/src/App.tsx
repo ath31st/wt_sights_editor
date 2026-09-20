@@ -60,6 +60,33 @@ function notifyError(err: unknown, title = "Ошибка") {
   toast.error(title, { description: String(err) });
 }
 
+const HINT_VISIBLE_MS = 8000;
+const HINT_EXIT_MS = 300;
+
+function useTimedHint() {
+  const [token, setToken] = useState(0);
+  const [phase, setPhase] = useState<"off" | "in" | "out">("off");
+
+  function show() {
+    setToken((n) => n + 1);
+    setPhase("in");
+  }
+
+  useEffect(() => {
+    if (token === 0) {
+      return;
+    }
+    const hideTimer = window.setTimeout(() => setPhase("out"), HINT_VISIBLE_MS);
+    const offTimer = window.setTimeout(() => setPhase("off"), HINT_VISIBLE_MS + HINT_EXIT_MS);
+    return () => {
+      window.clearTimeout(hideTimer);
+      window.clearTimeout(offTimer);
+    };
+  }, [token]);
+
+  return { show, token, open: phase !== "off", leaving: phase === "out" };
+}
+
 export default function App() {
   const [userTanks, setUserTanks] = useState<CatalogTank[]>([]);
   const [settings, setSettings] = useState<AppSettings>({ version: 1 });
@@ -77,6 +104,8 @@ export default function App() {
   const [newZoomMax, setNewZoomMax] = useState("8");
   const [newSights, setNewSights] = useState<AmmoClass[]>(["AP"]);
   const [newName, setNewName] = useState("");
+  const applyHint = useTimedHint();
+  const generateHint = useTimedHint();
 
   const catalog = useMemo(
     () => mergeCatalogs(bundledCatalog, userTanks),
@@ -254,6 +283,7 @@ export default function App() {
         root,
         files,
       });
+      generateHint.show();
       const fileCount = ruCount(result.count, "файл", "файла", "файлов");
       const vehicleCount = ruCount(generatable.length, "машина", "машины", "машин");
       if (scope === "selected") {
@@ -324,6 +354,7 @@ export default function App() {
       const next = setTankCrosshair(text, tank.id, ammo);
       await invoke("write_global_blk", { path: globalBlkPath, contents: next });
       setCrosshairs(Object.fromEntries(parseTankCrosshairs(next)));
+      applyHint.show();
       toast.success(created ? "Прицел записан и назначен" : "Прицел назначен", {
         description: `${tankLabel(tank)} → ${ammo}`,
       });
@@ -374,7 +405,7 @@ export default function App() {
 
   return (
     <>
-      <Toaster theme="dark" position="bottom-center" richColors closeButton />
+      <Toaster theme="dark" position="bottom-right" richColors closeButton />
       <div className="app">
       <aside className="sidebar">
         <header className="brand">
@@ -430,6 +461,27 @@ export default function App() {
 
       <main className="preview-pane">
         <SightPreview model={previewModel} />
+        {generateHint.open || applyHint.open ? (
+          <div className="preview-hints">
+            {generateHint.open ? (
+              <p
+                key={generateHint.token}
+                className={`preview-hint warn${generateHint.leaving ? " leaving" : ""}`}
+              >
+                Внимание: сгенерированные прицелы появятся в игре после «Перезагрузить
+                пользовательский прицел» в настройках.
+              </p>
+            ) : null}
+            {applyHint.open ? (
+              <p
+                key={applyHint.token}
+                className={`preview-hint warn${applyHint.leaving ? " leaving" : ""}`}
+              >
+                Внимание: выбранный прицел применится только после перезахода в игру.
+              </p>
+            ) : null}
+          </div>
+        ) : null}
       </main>
 
       <section className="inspector">
