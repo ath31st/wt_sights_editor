@@ -17,15 +17,24 @@ html,
 
 .app {
   display: grid;
-  grid-template-columns: 310px 1fr 350px;
+  grid-template-columns: 350px 1fr 350px;
   height: 100%;
+  background-color: #111;
+  background-image:
+    radial-gradient(ellipse at center, rgba(8, 8, 10, 0.28) 0%, rgba(8, 8, 10, 0.58) 75%),
+    url("/bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .sidebar,
 .inspector {
   padding: 12px;
   overflow: auto;
-  background: #1a1a1a;
+  background: rgba(18, 18, 18, 0.50);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
 }
 
 .brand {
@@ -143,7 +152,7 @@ input {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #0b0b0b;
+  background: transparent;
 }
 
 .preview-canvas {
