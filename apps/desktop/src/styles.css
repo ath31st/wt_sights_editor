@@ -39,7 +39,7 @@ html,
     radial-gradient(ellipse at center, rgba(8, 8, 10, 0.28) 0%, rgba(8, 8, 10, 0.58) 75%),
     url("/bg.jpg");
   background-size: cover;
-  background-position: center;
+  background-position: center top;
   background-repeat: no-repeat;
 }
 
