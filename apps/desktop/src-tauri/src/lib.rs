@@ -37,6 +37,19 @@ fn default_settings_version() -> u32 {
     SETTINGS_VERSION
 }
 
+fn deserialize_locale<'de, D>(deserializer: D) -> Result<Option<String>, D::Error>
+where
+    D: serde::Deserializer<'de>,
+{
+    let value = Option::<serde_json::Value>::deserialize(deserializer)?;
+    Ok(match value {
+        Some(serde_json::Value::String(s)) if matches!(s.as_str(), "ru" | "en" | "de" | "zh") => {
+            Some(s)
+        }
+        _ => None,
+    })
+}
+
 #[derive(Debug, Serialize, Deserialize, Clone)]
 #[serde(rename_all = "camelCase")]
 struct AppSettings {
@@ -44,6 +57,12 @@ struct AppSettings {
     version: u32,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     user_sights_path: Option<String>,
+    #[serde(
+        default,
+        skip_serializing_if = "Option::is_none",
+        deserialize_with = "deserialize_locale"
+    )]
+    locale: Option<String>,
 }
 
 impl Default for AppSettings {
@@ -51,6 +70,7 @@ impl Default for AppSettings {
         Self {
             version: SETTINGS_VERSION,
             user_sights_path: None,
+            locale: None,
         }
     }
 }
@@ -61,6 +81,7 @@ struct LoadedAppSettings {
     version: u32,
     user_sights_path: Option<String>,
     user_sights_path_exists: bool,
+    locale: Option<String>,
 }
 
 fn extras_path(app: &AppHandle) -> Result<PathBuf, String> {
@@ -121,6 +142,7 @@ fn load_app_settings(app: AppHandle) -> Result<LoadedAppSettings, String> {
         user_sights_path_exists: user_sights_dir_exists(settings.user_sights_path.as_deref()),
         version: settings.version,
         user_sights_path: settings.user_sights_path,
+        locale: settings.locale,
     })
 }
 
