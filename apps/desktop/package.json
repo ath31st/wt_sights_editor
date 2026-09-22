@@ -12,6 +12,7 @@
   "dependencies": {
     "@tauri-apps/api": "^2.8.0",
     "@tauri-apps/plugin-dialog": "^2.4.0",
+    "@tauri-apps/plugin-opener": "^2.5.5",
     "@wt_sights_editor/core": "*",
     "sonner": "^2.0.8"
   },
