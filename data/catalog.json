@@ -1,7 +1,8 @@
 {
   "version": 1,
   "source": "datamine",
-  "patchName": "Небесная одиссея",
+  "patchNameRu": "Небесная одиссея",
+  "patchNameEn": "Celestial Odyssey",
   "catalogDate": "2026-09-16",
   "tanks": [
     {

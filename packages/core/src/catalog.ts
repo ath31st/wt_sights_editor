@@ -18,8 +18,10 @@ export type CatalogTank = {
 export type CatalogFile = {
   version: number;
   source: string;
-  /** Major WT update title, copied from data/patch.json. */
-  patchName?: string;
+  /** Major WT update title (RU), copied from data/patch.json. */
+  patchNameRu?: string;
+  /** Major WT update title (EN), copied from data/patch.json. Used for en/de/zh. */
+  patchNameEn?: string;
   /** YYYY-MM-DD: catalog vehicles as of this day, copied from data/patch.json. */
   catalogDate?: string;
   tanks: CatalogTank[];
@@ -112,7 +114,8 @@ export function mergeCatalogs(bundled: CatalogFile, extra: CatalogTank[]): Catal
   return {
     version: bundled.version,
     source: bundled.source,
-    patchName: bundled.patchName,
+    patchNameRu: bundled.patchNameRu,
+    patchNameEn: bundled.patchNameEn,
     catalogDate: bundled.catalogDate,
     tanks: [...byId.values()].sort((a, b) => a.id.localeCompare(b.id)),
   };

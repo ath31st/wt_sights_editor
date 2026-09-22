@@ -16,10 +16,14 @@ const AMMO = ["AP", "AP_Fast", "HEAT", "APDS", "HE"];
 
 function loadPatchMeta() {
   const raw = JSON.parse(readFileSync(PATCH_FILE, "utf8"));
-  const name = typeof raw.name === "string" ? raw.name.trim() : "";
+  const nameRu = (
+    typeof raw.nameRu === "string" ? raw.nameRu : typeof raw.name === "string" ? raw.name : ""
+  ).trim();
+  const nameEn = typeof raw.nameEn === "string" ? raw.nameEn.trim() : "";
   const date = typeof raw.date === "string" ? raw.date.trim() : "";
   return {
-    ...(name ? { patchName: name } : {}),
+    ...(nameRu ? { patchNameRu: nameRu } : {}),
+    ...(nameEn ? { patchNameEn: nameEn } : {}),
     ...(date ? { catalogDate: date } : {}),
   };
 }
@@ -440,7 +444,9 @@ writeFileSync(
   OUT,
   `${JSON.stringify({ version: 1, source: "datamine", ...patch, tanks }, null, 2)}\n`,
 );
-const stamp = [patch.patchName, patch.catalogDate].filter(Boolean).join(" · ");
+const stamp = [patch.patchNameRu, patch.patchNameEn, patch.catalogDate]
+  .filter(Boolean)
+  .join(" · ");
 console.log(
   `Wrote ${tanks.length} tanks to ${OUT} (${recased} ids recased from units.csv)` +
     (stamp ? `; ${stamp}` : ""),
