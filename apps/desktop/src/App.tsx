@@ -185,7 +185,7 @@ export default function App() {
 
   useEffect(() => {
     void getVersion()
-      .then(setAppVersion)
+      .then((version) => setAppVersion(version ? `v${version}` : ""))
       .catch(() => {
         setAppVersion("");
       });

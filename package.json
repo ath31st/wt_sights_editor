@@ -12,6 +12,7 @@
     "build": "npm run build -w apps/desktop",
     "test": "npm run test -w @wt_sights_editor/core",
     "catalog:build": "node scripts/build-catalog.mjs",
+    "version:set": "node scripts/set-version.mjs",
     "tauri:dev": "npm run tauri -w apps/desktop -- dev"
   }
 }

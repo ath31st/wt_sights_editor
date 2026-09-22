@@ -22,8 +22,30 @@ npm run tauri:dev
 npm run catalog:build
 ```
 
-Русское и английское имя текущего патча и дату каталога править в `data/patch.json`. Скрипт копирует их в `data/catalog.json` (файл `patch.json` не затирает). В редакторе русская локаль берёт `nameRu`, остальные — `nameEn`. Обои патча — `data/bg.jpg`, редактор ставит их фоном окна. Дату менять только когда в каталоге появилась новая техника, потом `catalog:build` и релиз. Версию программы (`apps/desktop/src-tauri/tauri.conf.json` и `package.json`) поднимать при правках самого редактора; дату каталога при этом не трогать.
+Русское и английское имя текущего патча и дату каталога править в `data/patch.json`. Скрипт копирует их в `data/catalog.json` (файл `patch.json` не затирает). В редакторе русская локаль берёт `nameRu`, остальные — `nameEn`. Обои патча — `data/bg.jpg`, редактор ставит их фоном окна. Дату менять только когда в каталоге появилась новая техника, потом `catalog:build` и релиз. Версию программы поднимать при правках самого редактора (`npm run version:set -- 0.1.1`); дату каталога при этом не трогать.
 
 Пользовательские танки хранятся в data-каталоге приложения (`user-catalog.json`) и не затираются обновлением.
 
 Выбранная папка `UserSights` запоминается в `settings.json` в config-каталоге (`~/.config/wt-sights-editor` на Linux).
+
+## Релиз
+
+Тесты (`npm test`) гоняются GitHub Actions на каждый пуш и PR в `master`. Портабельные бинарники собираются только по git-тегу `v*` и появляются на [Releases](https://github.com/ath31st/wt_sights_editor/releases):
+
+- Linux: `wt-sights-editor-<version>-linux-x86_64.AppImage`
+- Windows: `wt-sights-editor-<version>-windows-x86_64.exe` (нужен WebView2, на Win10/11 обычно уже есть)
+
+Версию в файлах поднимает одна команда (число без `v`, или с `v` — скрипт сам снимет букву):
+
+```bash
+npm run version:set -- 0.1.1
+```
+
+Она пишет `0.1.1` в `tauri.conf.json` (это видит UI после сборки), `Cargo.toml` и `package.json`. Игроку npm не нужен. Не путать с `npm version` — тот трогает git сам по себе.
+
+Тег и подпись в сайдбаре — с `v`: `v0.1.1`. Когда коммит уже в `master`:
+
+```bash
+git tag v0.1.1
+git push origin v0.1.1
+```
