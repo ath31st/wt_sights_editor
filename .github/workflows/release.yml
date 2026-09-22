@@ -1,0 +1,88 @@
+name: release
+
+on:
+  push:
+    tags: ["v*"]
+
+jobs:
+  check-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
+      - name: Check tag matches tauri version
+        run: |
+          node -e '
+          const { readFileSync } = require("node:fs");
+          const conf = JSON.parse(
+            readFileSync("apps/desktop/src-tauri/tauri.conf.json", "utf8"),
+          );
+          const tag = process.env.GITHUB_REF_NAME;
+          const expected = tag.startsWith("v") ? tag.slice(1) : tag;
+          if (conf.version !== expected) {
+            console.error(
+              `tag ${tag} does not match tauri.conf.json version ${conf.version}`,
+            );
+            process.exit(1);
+          }
+          console.log(`tag ${tag} matches version ${conf.version}`);
+          '
+
+  publish:
+    needs: check-version
+    permissions:
+      contents: write
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: ubuntu-22.04
+            args: --bundles appimage
+            uploadPlainBinary: false
+          - platform: windows-latest
+            args: --no-bundle
+            uploadPlainBinary: true
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - name: Install Rust stable
+        uses: dtolnay/rust-toolchain@stable
+
+      - uses: swatinem/rust-cache@v2
+        with:
+          workspaces: apps/desktop/src-tauri
+
+      - name: Install Linux dependencies
+        if: matrix.platform == 'ubuntu-22.04'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf xdg-utils
+
+      - name: Install frontend dependencies
+        run: npm ci
+
+      - uses: tauri-apps/tauri-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          projectPath: apps/desktop
+          tagName: ${{ github.ref_name }}
+          releaseName: "WT Sights Editor ${{ github.ref_name }}"
+          generateReleaseNotes: true
+          releaseDraft: false
+          prerelease: false
+          args: ${{ matrix.args }}
+          uploadUpdaterJson: false
+          uploadPlainBinary: ${{ matrix.uploadPlainBinary }}
+          releaseAssetNamePattern: "wt-sights-editor-[version]-[platform]-[arch][ext]"
