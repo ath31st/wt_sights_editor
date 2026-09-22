@@ -71,20 +71,6 @@ export const COUNTRY_ORDER = [
   "il",
 ] as const;
 
-export const COUNTRY_LABELS_RU: Record<string, string> = {
-  us: "США",
-  germ: "Германия",
-  ussr: "СССР",
-  uk: "Великобритания",
-  jp: "Япония",
-  it: "Италия",
-  fr: "Франция",
-  cn: "Китай",
-  sw: "Швеция",
-  il: "Израиль",
-  other: "Прочее",
-};
-
 export const COUNTRY_FLAGS: Record<string, string> = {
   us: "🇺🇸",
   germ: "🇩🇪",
@@ -105,10 +91,6 @@ export function countryFromUnitId(id: string): string {
     return prefix;
   }
   return "other";
-}
-
-export function countryLabelRu(code: string): string {
-  return COUNTRY_LABELS_RU[code] ?? code;
 }
 
 export function countryFlag(code: string): string {
