@@ -43,9 +43,11 @@ jobs:
           - platform: ubuntu-22.04
             args: --bundles appimage
             uploadPlainBinary: false
+            assetPattern: "wt-sights-editor-[version]-linux-x86_64[ext]"
           - platform: windows-latest
             args: --no-bundle
             uploadPlainBinary: true
+            assetPattern: "wt-sights-editor-[version]-windows-x86_64[ext]"
     runs-on: ${{ matrix.platform }}
     steps:
       - uses: actions/checkout@v4
@@ -85,7 +87,7 @@ jobs:
           args: ${{ matrix.args }}
           uploadUpdaterJson: false
           uploadPlainBinary: ${{ matrix.uploadPlainBinary }}
-          releaseAssetNamePattern: "wt-sights-editor-[version]-[platform]-[arch][ext]"
+          releaseAssetNamePattern: ${{ matrix.assetPattern }}
 
       - name: Unbundle libwayland and upload Linux ELF
         if: matrix.platform == 'ubuntu-22.04'

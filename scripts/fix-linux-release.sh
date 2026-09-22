@@ -48,15 +48,14 @@ curl -fsSL -o "$WORKDIR/appimagetool" \
   https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-x86_64.AppImage
 chmod +x "$WORKDIR/appimagetool"
 
-FIXED="$WORKDIR/wt-sights-editor-${VERSION}-linux-amd64.AppImage"
+FIXED="$WORKDIR/wt-sights-editor-${VERSION}-linux-x86_64.AppImage"
 ARCH=x86_64 APPIMAGE_EXTRACT_AND_RUN=1 \
   "$WORKDIR/appimagetool" -n "$WORKDIR/squashfs-root" "$FIXED"
 
-ASSET_APPIMAGE="wt-sights-editor-${VERSION}-linux-amd64.AppImage"
 ASSET_BIN="wt-sights-editor-${VERSION}-linux-x86_64"
 cp "$BIN" "$WORKDIR/$ASSET_BIN"
 chmod +x "$WORKDIR/$ASSET_BIN"
 
 gh release upload "$TAG" "$FIXED" --clobber
 gh release upload "$TAG" "$WORKDIR/$ASSET_BIN" --clobber
-echo "Uploaded $ASSET_APPIMAGE and $ASSET_BIN"
+echo "Uploaded $(basename "$FIXED") and $ASSET_BIN"

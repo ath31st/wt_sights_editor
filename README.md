@@ -32,9 +32,9 @@ npm run catalog:build
 
 Тесты (`npm test`) гоняются GitHub Actions на каждый пуш и PR в `master`. Сборки только по git-тегу `v*` появляются на [Releases](https://github.com/ath31st/wt_sights_editor/releases):
 
-- Linux AppImage (~80 MB, портабл): `wt-sights-editor-<version>-linux-amd64.AppImage`
+- Linux AppImage (~80 MB, портабл): `wt-sights-editor-<version>-linux-x86_64.AppImage`
 - Linux ELF (маленький, как Windows exe): `wt-sights-editor-<version>-linux-x86_64` — нужен системный WebKitGTK (`webkit2gtk-4.1` в Arch/CachyOS, `libwebkit2gtk-4.1-0` в Debian/Ubuntu)
-- Windows: `wt-sights-editor-<version>-windows-x64.exe` (нужен WebView2, на Win10/11 обычно уже есть)
+- Windows: `wt-sights-editor-<version>-windows-x86_64.exe` (нужен WebView2, на Win10/11 обычно уже есть)
 
 AppImage не тащит `libwayland` из Ubuntu-раннера: берётся системный, чтобы окно открывалось и на Wayland (CachyOS/Arch), и на X11. ELF линкуется к WebKit на машине — поэтому он лёгкий, но без пакета `webkit2gtk` не стартует.
 
