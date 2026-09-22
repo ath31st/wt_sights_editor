@@ -86,3 +86,9 @@ jobs:
           uploadUpdaterJson: false
           uploadPlainBinary: ${{ matrix.uploadPlainBinary }}
           releaseAssetNamePattern: "wt-sights-editor-[version]-[platform]-[arch][ext]"
+
+      - name: Unbundle libwayland and upload Linux ELF
+        if: matrix.platform == 'ubuntu-22.04'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: bash scripts/fix-linux-release.sh
