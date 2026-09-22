@@ -62,8 +62,30 @@ html,
 .brand-row {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   gap: 8px;
+}
+
+.lang-switch {
+  display: inline-flex;
+  flex-shrink: 0;
+  border: 1px solid rgba(210, 218, 226, 0.24);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.lang-switch button {
+  padding: 2px 8px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.lang-switch button + button {
+  border-left: 1px solid rgba(210, 218, 226, 0.18);
 }
 
 .brand-version,
