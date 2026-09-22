@@ -17,6 +17,7 @@ import {
   type AmmoClass,
   type CatalogTank,
 } from "@wt_sights_editor/core";
+import { openUrl } from "@tauri-apps/plugin-opener";
 import { Toaster, toast } from "sonner";
 import { SightPreview } from "./SightPreview";
 import {
@@ -46,6 +47,8 @@ function isAmmoClass(value: string | undefined): value is AmmoClass {
 }
 
 type WriteScope = "selected" | "filter" | "all";
+
+const RELEASES_URL = "https://github.com/ath31st/wt_sights_editor/releases";
 
 const HINT_VISIBLE_MS = 8000;
 const HINT_EXIT_MS = 300;
@@ -447,9 +450,7 @@ export default function App() {
     );
   }
 
-  const patchLine = [appVersion, catalogStamp(catalog.patchName, catalog.catalogDate, locale)]
-    .filter(Boolean)
-    .join(" · ");
+  const catalogLine = catalogStamp(catalog.patchName, catalog.catalogDate, locale);
 
   return (
     <>
@@ -474,7 +475,24 @@ export default function App() {
             </div>
           </div>
           <div className="brand-row">
-            <p className="brand-patch">{patchLine}</p>
+            <p className="brand-patch">
+              {appVersion ? (
+                <a
+                  className="brand-version"
+                  href={RELEASES_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={(event) => {
+                    event.preventDefault();
+                    void openUrl(RELEASES_URL);
+                  }}
+                >
+                  {appVersion}
+                </a>
+              ) : null}
+              {appVersion && catalogLine ? " · " : null}
+              {catalogLine}
+            </p>
             <span className="brand-count">{tp("catalogTankCount", catalog.tanks.length)}</span>
           </div>
         </header>
