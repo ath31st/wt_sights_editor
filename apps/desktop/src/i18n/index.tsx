@@ -99,11 +99,14 @@ export function formatCatalogDate(iso: string | undefined, locale: LocaleId): st
 }
 
 export function catalogStamp(
-  patchName: string | undefined,
-  catalogDate: string | undefined,
+  catalog: { patchNameRu?: string; patchNameEn?: string; catalogDate?: string },
   locale: LocaleId,
 ): string {
-  return [patchName, formatCatalogDate(catalogDate, locale)].filter(Boolean).join(" · ");
+  const patchName =
+    locale === "ru"
+      ? catalog.patchNameRu || catalog.patchNameEn
+      : catalog.patchNameEn || catalog.patchNameRu;
+  return [patchName, formatCatalogDate(catalog.catalogDate, locale)].filter(Boolean).join(" · ");
 }
 
 type I18nContextValue = {

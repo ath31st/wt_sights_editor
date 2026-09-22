@@ -450,7 +450,7 @@ export default function App() {
     );
   }
 
-  const catalogLine = catalogStamp(catalog.patchName, catalog.catalogDate, locale);
+  const catalogLine = catalogStamp(catalog, locale);
 
   return (
     <>
