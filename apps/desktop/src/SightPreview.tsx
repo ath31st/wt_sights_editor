@@ -1,8 +1,10 @@
 import { useEffect, useMemo, useRef } from "react";
 import type { SightModel } from "@wt_sights_editor/core";
+import type { Translate } from "./i18n";
 
 type Props = {
   model: SightModel;
+  t: Translate;
 };
 
 /** Preview px so 0.2→0.7→1.2 are obviously different (no flat floor at 10px). */
@@ -10,7 +12,7 @@ function previewFontPx(fontSizeMult: number): number {
   return Math.round(4 + fontSizeMult * 34);
 }
 
-export function SightPreview({ model }: Props) {
+export function SightPreview({ model, t }: Props) {
   const ref = useRef<HTMLCanvasElement>(null);
 
   const marks = model.marks;
@@ -47,7 +49,7 @@ export function SightPreview({ model }: Props) {
       ctx.font = "11px sans-serif";
       ctx.textAlign = "left";
       ctx.fillText(
-        model.circleDiameter > 0 ? "SAM · круг без рисок" : "Прицелов нет",
+        model.circleDiameter > 0 ? t("samCircleNoTicks") : t("noSights"),
         12,
         h - 10,
       );
@@ -108,13 +110,17 @@ export function SightPreview({ model }: Props) {
 
     ctx.fillStyle = "#9a9a9a";
     ctx.font = "12px sans-serif";
-    ctx.fillText(`шрифт ${model.fontSizeMult.toFixed(2)}  ·  серое = 1.00`, sampleX, sampleY + ghostPx + 6);
+    ctx.fillText(
+      t("fontSample", { n: model.fontSizeMult.toFixed(2) }),
+      sampleX,
+      sampleY + ghostPx + 6,
+    );
 
     ctx.fillStyle = "#666";
     ctx.font = "11px sans-serif";
     ctx.textBaseline = "alphabetic";
-    ctx.fillText("Схема в тысячных. В игре метки расставит снаряд.", 12, h - 10);
-  }, [marks, model]);
+    ctx.fillText(t("previewFooter"), 12, h - 10);
+  }, [marks, model, t]);
 
   const key = useMemo(() => JSON.stringify(model), [model]);
   return <canvas key={key} ref={ref} width={420} height={560} className="preview-canvas" />;

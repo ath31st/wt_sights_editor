@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { getVersion } from "@tauri-apps/api/app";
 import { invoke } from "@tauri-apps/api/core";
 import { open } from "@tauri-apps/plugin-dialog";
@@ -7,7 +7,6 @@ import {
   AMMO_CLASSES,
   COUNTRY_ORDER,
   countryFromUnitId,
-  countryLabelRu,
   countryFlag,
   emptySightModel,
   generateTankSights,
@@ -20,12 +19,22 @@ import {
 } from "@wt_sights_editor/core";
 import { Toaster, toast } from "sonner";
 import { SightPreview } from "./SightPreview";
+import {
+  catalogStamp,
+  ENABLED_LOCALES,
+  parseLocale,
+  tankDisplayName,
+  translate,
+  type LocaleId,
+  useT,
+} from "./i18n";
 
 type Written = { count: number; root: string };
 
 type AppSettings = {
   version: number;
   userSightsPath?: string | null;
+  locale?: LocaleId | null;
 };
 
 type LoadedAppSettings = AppSettings & {
@@ -37,44 +46,6 @@ function isAmmoClass(value: string | undefined): value is AmmoClass {
 }
 
 type WriteScope = "selected" | "filter" | "all";
-
-function ruCount(n: number, one: string, few: string, many: string): string {
-  const mod10 = n % 10;
-  const mod100 = n % 100;
-  if (mod100 >= 11 && mod100 <= 14) {
-    return `${n} ${many}`;
-  }
-  if (mod10 === 1) {
-    return `${n} ${one}`;
-  }
-  if (mod10 >= 2 && mod10 <= 4) {
-    return `${n} ${few}`;
-  }
-  return `${n} ${many}`;
-}
-
-function tankLabel(tank: CatalogTank): string {
-  return tank.nameRu || tank.nameEn || tank.id;
-}
-
-function notifyError(err: unknown, title = "Ошибка") {
-  toast.error(title, { description: String(err) });
-}
-
-function formatCatalogDate(iso: string | undefined): string | undefined {
-  if (!iso) {
-    return undefined;
-  }
-  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso);
-  if (!match) {
-    return iso;
-  }
-  return `${match[3]}.${match[2]}.${match[1]}`;
-}
-
-function catalogStamp(patchName?: string, catalogDate?: string): string {
-  return [patchName, formatCatalogDate(catalogDate)].filter(Boolean).join(" · ");
-}
 
 const HINT_VISIBLE_MS = 8000;
 const HINT_EXIT_MS = 300;
@@ -104,8 +75,13 @@ function useTimedHint() {
 }
 
 export default function App() {
+  const { locale, setLocale, t, tp, countryLabel } = useT();
   const [userTanks, setUserTanks] = useState<CatalogTank[]>([]);
-  const [settings, setSettings] = useState<AppSettings>({ version: 1 });
+  const [settings, setSettings] = useState<AppSettings>({ version: 1, locale });
+  const settingsRef = useRef(settings);
+  settingsRef.current = settings;
+  const settingsLoadedRef = useRef(false);
+  const pendingPatchRef = useRef<Partial<AppSettings>>({});
   const [root, setRoot] = useState<string>("");
   const [globalBlkPath, setGlobalBlkPath] = useState<string | null>(null);
   const [crosshairs, setCrosshairs] = useState<Record<string, string>>({});
@@ -213,63 +189,101 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    invoke<CatalogTank[]>("load_user_extras")
-      .then(setUserTanks)
-      .catch((err: unknown) => notifyError(err, "Не удалось загрузить свою технику"));
-
-    invoke<LoadedAppSettings>("load_app_settings")
-      .then(async (loaded) => {
+    void (async () => {
+      let currentLocale = locale;
+      try {
+        const loaded = await invoke<LoadedAppSettings>("load_app_settings");
+        const pending = pendingPatchRef.current;
+        currentLocale = parseLocale(pending.locale) ?? parseLocale(loaded.locale) ?? currentLocale;
+        if (currentLocale !== locale) {
+          setLocale(currentLocale);
+        }
         const next: AppSettings = {
           version: loaded.version || 1,
-          userSightsPath: loaded.userSightsPath,
+          userSightsPath: pending.userSightsPath ?? loaded.userSightsPath,
+          locale: currentLocale,
         };
+        settingsRef.current = next;
         setSettings(next);
-        const saved = loaded.userSightsPath;
-        if (!saved) {
-          return;
+        settingsLoadedRef.current = true;
+        pendingPatchRef.current = {};
+        if (pending.locale || pending.userSightsPath || !parseLocale(loaded.locale)) {
+          await invoke("save_app_settings", { settings: next });
         }
-        if (!loaded.userSightsPathExists) {
-          toast.warning("Сохранённая папка UserSights не найдена", {
-            description: "Выбери папку заново.",
-          });
-          return;
-        }
-        setRoot(saved);
-        try {
-          const found = await loadGlobalFromUserSights(saved);
-          if (!found) {
-            toast.warning("global.blk не найден рядом с UserSights");
+        const saved = next.userSightsPath;
+        if (saved && !pending.userSightsPath) {
+          if (!loaded.userSightsPathExists) {
+            toast.warning(translate(currentLocale, "savedUserSightsMissing"), {
+              description: translate(currentLocale, "pickFolderAgain"),
+            });
+          } else {
+            setRoot(saved);
+            try {
+              const found = await loadGlobalFromUserSights(saved);
+              if (!found) {
+                toast.warning(translate(currentLocale, "globalBlkNotFound"));
+              }
+            } catch (err: unknown) {
+              toast.error(translate(currentLocale, "openUserSightsFailed"), {
+                description: String(err),
+              });
+            }
           }
-        } catch (err: unknown) {
-          notifyError(err, "Не удалось открыть UserSights");
         }
-      })
-      .catch((err: unknown) => notifyError(err, "Не удалось загрузить настройки"));
+      } catch (err: unknown) {
+        settingsLoadedRef.current = true;
+        toast.error(translate(currentLocale, "loadSettingsFailed"), {
+          description: String(err),
+        });
+      }
+
+      try {
+        setUserTanks(await invoke<CatalogTank[]>("load_user_extras"));
+      } catch (err: unknown) {
+        toast.error(translate(currentLocale, "loadUserTanksFailed"), {
+          description: String(err),
+        });
+      }
+    })();
+    // Detected locale and setLocale are stable for the first paint; settings own the rest.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  async function persistSettings(next: AppSettings) {
+  async function persistSettings(patch: Partial<AppSettings>) {
+    pendingPatchRef.current = { ...pendingPatchRef.current, ...patch };
+    const next = { ...settingsRef.current, ...patch };
+    settingsRef.current = next;
     setSettings(next);
+    if (!settingsLoadedRef.current) {
+      return;
+    }
+    pendingPatchRef.current = {};
     await invoke("save_app_settings", { settings: next });
+  }
+
+  function changeLocale(next: LocaleId) {
+    setLocale(next);
+    void persistSettings({ locale: next });
   }
 
   async function pickFolder() {
     const dir = await open({
       directory: true,
       defaultPath: root || undefined,
-      title: "Папка UserSights",
+      title: t("pickUserSightsTitle"),
     });
     if (typeof dir === "string") {
       setRoot(dir);
       try {
-        await persistSettings({ ...settings, userSightsPath: dir });
+        await persistSettings({ userSightsPath: dir });
         const found = await loadGlobalFromUserSights(dir);
         if (found) {
-          toast.success("Папка UserSights выбрана", { description: dir });
+          toast.success(t("userSightsPicked"), { description: dir });
         } else {
-          toast.warning("Папка выбрана, но global.blk не найден", { description: dir });
+          toast.warning(t("folderPickedNoGlobal"), { description: dir });
         }
       } catch (err: unknown) {
-        notifyError(err, "Не удалось открыть UserSights");
+        toast.error(t("openUserSightsFailed"), { description: String(err) });
       }
     }
   }
@@ -281,16 +295,16 @@ export default function App() {
 
   async function writeFiles(tanks: CatalogTank[], scope: WriteScope) {
     if (!root) {
-      toast.warning("Сначала выбери папку UserSights");
+      toast.warning(t("pickUserSightsFirst"));
       return;
     }
     if (tanks.length === 0) {
-      toast.warning("Нет техники для генерации");
+      toast.warning(t("noTanksToGenerate"));
       return;
     }
     const generatable = tanks.filter((tank) => tank.sights.length > 0);
     if (generatable.length === 0) {
-      toast.warning(scope === "selected" ? "Прицелов нет" : "Нет техники с прицелами");
+      toast.warning(scope === "selected" ? t("noSights") : t("noTanksWithSights"));
       return;
     }
     const files = generatable.flatMap((tank) =>
@@ -298,10 +312,10 @@ export default function App() {
     );
     const loading =
       scope === "selected"
-        ? `Записываю прицелы для ${tankLabel(tanks[0])}…`
+        ? t("writingSightsForTank", { name: tankDisplayName(tanks[0], locale) })
         : scope === "filter"
-          ? "Записываю прицелы по фильтру…"
-          : "Записываю прицелы для всей техники…";
+          ? t("writingSightsForFilter")
+          : t("writingSightsForAll");
     const toastId = toast.loading(loading);
     try {
       const result = await invoke<Written>("write_sight_files", {
@@ -309,37 +323,37 @@ export default function App() {
         files,
       });
       generateHint.show();
-      const fileCount = ruCount(result.count, "файл", "файла", "файлов");
-      const vehicleCount = ruCount(generatable.length, "машина", "машины", "машин");
+      const fileCount = tp("filesCount", result.count);
+      const vehicleCount = tp("vehiclesCount", generatable.length);
       if (scope === "selected") {
-        toast.success("Прицелы записаны", {
+        toast.success(t("sightsWritten"), {
           id: toastId,
-          description: `${tankLabel(tanks[0])} · ${fileCount}`,
+          description: `${tankDisplayName(tanks[0], locale)} · ${fileCount}`,
         });
         return;
       }
       if (scope === "filter") {
         const parts: string[] = [];
         if (country !== "all") {
-          parts.push(countryLabelRu(country));
+          parts.push(countryLabel(country));
         }
         const q = query.trim();
         if (q) {
-          parts.push(`«${q}»`);
+          parts.push(t("quotedQuery", { query: q }));
         }
         parts.push(vehicleCount, fileCount);
-        toast.success("Прицелы по фильтру записаны", {
+        toast.success(t("sightsWrittenFilter"), {
           id: toastId,
           description: parts.join(" · "),
         });
         return;
       }
-      toast.success("Прицелы для всей техники записаны", {
+      toast.success(t("sightsWrittenAll"), {
         id: toastId,
         description: `${vehicleCount} · ${fileCount}`,
       });
     } catch (err: unknown) {
-      toast.error("Не удалось записать прицелы", {
+      toast.error(t("writeSightsFailed"), {
         id: toastId,
         description: String(err),
       });
@@ -351,7 +365,7 @@ export default function App() {
     setPreviewTankId(tank.id);
     setPreviewAmmo(ammo);
     if (!root) {
-      toast.warning("Сначала выбери папку UserSights");
+      toast.warning(t("pickUserSightsFirst"));
       return;
     }
     try {
@@ -368,10 +382,13 @@ export default function App() {
         created = true;
       }
       if (!globalBlkPath) {
-        toast.warning("global.blk не найден рядом с UserSights", {
+        toast.warning(t("globalBlkNotFound"), {
           description: created
-            ? `${tankLabel(tank)}: ${ammo}.blk записан, но назначить прицел нельзя.`
-            : "Назначить прицел нельзя.",
+            ? t("globalBlkWrittenCannotAssign", {
+                name: tankDisplayName(tank, locale),
+                ammo,
+              })
+            : t("cannotAssignSight"),
         });
         return;
       }
@@ -380,26 +397,26 @@ export default function App() {
       await invoke("write_global_blk", { path: globalBlkPath, contents: next });
       setCrosshairs(Object.fromEntries(parseTankCrosshairs(next)));
       applyHint.show();
-      toast.success(created ? "Прицел записан и назначен" : "Прицел назначен", {
-        description: `${tankLabel(tank)} → ${ammo}`,
+      toast.success(created ? t("sightWrittenAndAssigned") : t("sightAssigned"), {
+        description: t("sightAssignedTo", { name: tankDisplayName(tank, locale), ammo }),
       });
     } catch (err: unknown) {
-      notifyError(err, "Не удалось назначить прицел");
+      toast.error(t("assignSightFailed"), { description: String(err) });
     }
   }
 
   function addManualTank() {
     const id = newId.trim().toLowerCase().replace(/\s+/g, "_");
     if (!/^[a-z0-9_]+$/.test(id)) {
-      toast.warning("Некорректный id", {
-        description: "Только латиница, цифры и _.",
+      toast.warning(t("invalidId"), {
+        description: t("invalidIdHint"),
       });
       return;
     }
     const zoomMin = Number(newZoomMin);
     const zoomMax = Number(newZoomMax);
     if (!Number.isFinite(zoomMin) || !Number.isFinite(zoomMax)) {
-      toast.warning("Кратность должна быть числом");
+      toast.warning(t("zoomMustBeNumber"));
       return;
     }
     const tank: CatalogTank = {
@@ -415,11 +432,13 @@ export default function App() {
     void persistExtras(next)
       .then(() => {
         setSelectedId(id);
-        toast.success("Техника добавлена", {
-          description: `${tankLabel(tank)} (${id}) останется после обновления программы.`,
+        toast.success(t("tankAdded"), {
+          description: t("tankAddedHint", { name: tankDisplayName(tank, locale), id }),
         });
       })
-      .catch((err: unknown) => notifyError(err, "Не удалось сохранить технику"));
+      .catch((err: unknown) =>
+        toast.error(t("saveTankFailed"), { description: String(err) }),
+      );
   }
 
   function toggleNewSight(ammo: AmmoClass) {
@@ -427,6 +446,10 @@ export default function App() {
       current.includes(ammo) ? current.filter((item) => item !== ammo) : [...current, ammo],
     );
   }
+
+  const patchLine = [appVersion, catalogStamp(catalog.patchName, catalog.catalogDate, locale)]
+    .filter(Boolean)
+    .join(" · ");
 
   return (
     <>
@@ -436,23 +459,33 @@ export default function App() {
         <header className="brand">
           <div className="brand-row">
             <strong>WT Sights Editor</strong>
-            {appVersion ? <span className="brand-version">{appVersion}</span> : null}
+            <div className="lang-switch" role="group" aria-label={t("language")}>
+              {ENABLED_LOCALES.map((item) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  className={locale === item.id ? "active" : ""}
+                  aria-pressed={locale === item.id}
+                  onClick={() => changeLocale(item.id)}
+                >
+                  {item.nativeLabel}
+                </button>
+              ))}
+            </div>
           </div>
           <div className="brand-row">
-            <p className="brand-patch">
-              {catalogStamp(catalog.patchName, catalog.catalogDate)}
-            </p>
-            <span className="brand-count">{catalog.tanks.length} ед. техники</span>
+            <p className="brand-patch">{patchLine}</p>
+            <span className="brand-count">{tp("catalogTankCount", catalog.tanks.length)}</span>
           </div>
         </header>
         <button type="button" onClick={() => void pickFolder()}>
-          Выбрать UserSights
+          {t("pickUserSights")}
         </button>
-        <p className="path">{root || "папка не выбрана"}</p>
+        <p className="path">{root || t("folderNotPicked")}</p>
         <input
           value={query}
           onChange={(event) => setQuery(event.target.value)}
-          placeholder="Поиск: Abrams, t72, ussr_"
+          placeholder={t("searchPlaceholder")}
         />
         <div className="countries">
           <button
@@ -460,7 +493,7 @@ export default function App() {
             className={country === "all" ? "active" : ""}
             onClick={() => setCountry("all")}
           >
-            <span className="flag">🌍</span> Все
+            <span className="flag">🌍</span> {t("countryAll")}
           </button>
           {countries.map((code) => (
             <button
@@ -469,7 +502,7 @@ export default function App() {
               className={country === code ? "active" : ""}
               onClick={() => setCountry(code)}
             >
-              <span className="flag">{countryFlag(code)}</span> {countryLabelRu(code)}
+              <span className="flag">{countryFlag(code)}</span> {countryLabel(code)}
             </button>
           ))}
         </div>
@@ -484,7 +517,7 @@ export default function App() {
                   setFontOverride(null);
                 }}
               >
-                <span>{tank.nameRu || tank.nameEn}</span>
+                <span>{tankDisplayName(tank, locale)}</span>
                 <small>{tank.id}</small>
               </button>
             </li>
@@ -493,7 +526,7 @@ export default function App() {
       </aside>
 
       <main className="preview-pane">
-        <SightPreview model={previewModel} />
+        <SightPreview model={previewModel} t={t} />
         {generateHint.open || applyHint.open ? (
           <div className="preview-hints">
             {generateHint.open ? (
@@ -501,8 +534,7 @@ export default function App() {
                 key={generateHint.token}
                 className={`preview-hint warn${generateHint.leaving ? " leaving" : ""}`}
               >
-                Внимание: сгенерированные прицелы появятся в игре после «Перезагрузить
-                пользовательский прицел» в настройках.
+                {t("generateHint")}
               </p>
             ) : null}
             {applyHint.open ? (
@@ -510,7 +542,7 @@ export default function App() {
                 key={applyHint.token}
                 className={`preview-hint warn${applyHint.leaving ? " leaving" : ""}`}
               >
-                Внимание: выбранный прицел применится только после перезахода в игру.
+                {t("applyHint")}
               </p>
             ) : null}
           </div>
@@ -520,14 +552,14 @@ export default function App() {
       <section className="inspector">
         {selected ? (
           <>
-            <h2>{selected.nameRu}</h2>
+            <h2>{tankDisplayName(selected, locale)}</h2>
             <p className="muted">
-              {selected.id} · {countryLabelRu(selected.country)} · {selected.zoomMin}x–
+              {selected.id} · {countryLabel(selected.country)} · {selected.zoomMin}x–
               {selected.zoomMax}x
             </p>
-            <p className="muted">Снаряды</p>
+            <p className="muted">{t("ammo")}</p>
             {selected.sights.length === 0 ? (
-              <p className="muted">Прицелов нет</p>
+              <p className="muted">{t("noSights")}</p>
             ) : (
             <div className="ammo-pick">
               {selected.sights.map((ammo) => {
@@ -549,13 +581,13 @@ export default function App() {
             {globalBlkPath ? (
               <p className="muted">
                 {assigned
-                  ? `global.blk: ${selected.id} → ${assigned}`
-                  : `global.blk: ${selected.id} — нет записи`}
+                  ? t("globalBlkAssigned", { id: selected.id, ammo: assigned })
+                  : t("globalBlkNoEntry", { id: selected.id })}
               </p>
             ) : null}
             {previewModel.layout !== "none" ? (
             <label>
-              Шрифт
+              {t("font")}
               <input
                 type="range"
                 min={0.2}
@@ -567,43 +599,43 @@ export default function App() {
               <span>{(fontOverride ?? previewModel.fontSizeMult).toFixed(2)}</span>
             </label>
             ) : null}
-            <h3>Сгенерировать прицелы</h3>
+            <h3>{t("generateSights")}</h3>
             <div className="actions">
               <button
                 type="button"
                 disabled={selected.sights.length === 0}
                 onClick={() => void writeFiles([selected], "selected")}
               >
-                Для этой техники
+                {t("generateForThisTank")}
               </button>
               <button type="button" onClick={() => void writeFiles(visible, "filter")}>
-                По фильтру ({visible.length})
+                {t("generateForFilter", { n: visible.length })}
               </button>
               <button type="button" onClick={() => void writeFiles(catalog.tanks, "all")}>
-                Для всей техники
+                {t("generateForAll")}
               </button>
             </div>
           </>
         ) : (
-          <p>Нет техники в фильтре.</p>
+          <p>{t("noTanksInFilter")}</p>
         )}
 
-        <h3>Добавить технику вручную</h3>
+        <h3>{t("addTankManually")}</h3>
         <label>
-          unit id
+          {t("unitId")}
           <input value={newId} onChange={(event) => setNewId(event.target.value)} placeholder="ussr_t_72b3_arena" />
         </label>
         <label>
-          Название
+          {t("name")}
           <input value={newName} onChange={(event) => setNewName(event.target.value)} />
         </label>
         <div className="row">
           <label>
-            zoom min
+            {t("zoomMin")}
             <input value={newZoomMin} onChange={(event) => setNewZoomMin(event.target.value)} />
           </label>
           <label>
-            zoom max
+            {t("zoomMax")}
             <input value={newZoomMax} onChange={(event) => setNewZoomMax(event.target.value)} />
           </label>
         </div>
@@ -620,7 +652,7 @@ export default function App() {
           ))}
         </div>
         <button type="button" onClick={addManualTank}>
-          Сохранить
+          {t("save")}
         </button>
       </section>
       </div>
