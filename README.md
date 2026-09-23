@@ -1,3 +1,5 @@
+[English](README.en.md) · Русский
+
 # WT Sights Editor
 
 ![Логотип](images/logo.jpeg)
