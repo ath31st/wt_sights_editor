@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
-import type { CatalogTank } from "@wt_sights_editor/core";
+import { vehicleTitle, type CatalogTank } from "@wt_sights_editor/core";
 import { de } from "./de";
 import { en } from "./en";
 import { formatPlural } from "./plural";
@@ -77,11 +77,15 @@ export function countryLabel(locale: LocaleId, code: string): string {
   return code;
 }
 
-export function tankDisplayName(tank: CatalogTank, locale: LocaleId): string {
+export function tankRawName(tank: CatalogTank, locale: LocaleId): string {
   if (locale === "ru") {
     return tank.nameRu || tank.nameEn || tank.id;
   }
   return tank.nameEn || tank.nameRu || tank.id;
+}
+
+export function tankDisplayName(tank: CatalogTank, locale: LocaleId): string {
+  return vehicleTitle(tankRawName(tank, locale)).text || tank.id;
 }
 
 export function formatCatalogDate(iso: string | undefined, locale: LocaleId): string | undefined {
