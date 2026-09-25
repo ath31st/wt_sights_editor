@@ -576,8 +576,10 @@ export default function App() {
               <VehicleName name={tankRawName(selected, locale)} countryLabel={countryLabel} />
             </h2>
             <p className="muted">
-              {selected.id} · {countryLabel(selected.country)} · {selected.zoomMin}x–
-              {selected.zoomMax}x
+              {selected.id} · {countryLabel(selected.country)} ·{" "}
+              <span className="nowrap">
+                {selected.zoomMin}x–{selected.zoomMax}x
+              </span>
             </p>
             <p className="muted">{t("ammo")}</p>
             {selected.sights.length === 0 ? (

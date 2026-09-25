@@ -211,7 +211,18 @@ input[type="range"]::-webkit-slider-thumb {
 .muted {
   color: #aaa;
   font-size: 12px;
+}
+
+.path {
   word-break: break-all;
+}
+
+.muted {
+  overflow-wrap: break-word;
+}
+
+.nowrap {
+  white-space: nowrap;
 }
 
 .warn {
