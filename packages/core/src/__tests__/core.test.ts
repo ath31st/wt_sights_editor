@@ -5,6 +5,7 @@ import { describe, expect, it } from "vitest";
 import { parseBlk } from "../blkParse.ts";
 import { emitBlk } from "../blkEmit.ts";
 import { countryFromUnitId, mergeCatalogs } from "../catalog.ts";
+import { vehicleTitle } from "../vehicleTitle.ts";
 import { densityFor, sightFromZoom } from "../density.ts";
 import { generateTankSights } from "../generate.ts";
 import { parseTankCrosshairs, setTankCrosshair } from "../tankSightSettings.ts";
@@ -17,6 +18,15 @@ describe("countryFromUnitId", () => {
     expect(countryFromUnitId("ussr_t_80u")).toBe("ussr");
     expect(countryFromUnitId("germ_pzkpfw_VI_ausf_e_tiger")).toBe("germ");
     expect(countryFromUnitId("space_shuttle")).toBe("other");
+  });
+});
+
+describe("vehicleTitle", () => {
+  it("turns War Thunder nation prefixes into badges", () => {
+    expect(vehicleTitle("\uF059AML-90")).toEqual({ badge: "il", text: "AML-90" });
+    expect(vehicleTitle("\u2417IS-2 (1944)")).toEqual({ badge: "cn", text: "IS-2 (1944)" });
+    expect(vehicleTitle("\u2582T-III")).toEqual({ badge: "ussr", text: "T-III" });
+    expect(vehicleTitle("Merkava Mk.1")).toEqual({ badge: null, text: "Merkava Mk.1" });
   });
 });
 
