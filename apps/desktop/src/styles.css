@@ -240,6 +240,26 @@ input[type="range"]::-webkit-slider-thumb {
   font-family: "Noto Color Emoji", "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
 }
 
+.vehicle-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.nation-mark {
+  display: inline-flex;
+  width: 14px;
+  height: 14px;
+  flex: none;
+}
+
+.nation-mark svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
 .ammo-pick {
   display: flex;
   flex-wrap: wrap;

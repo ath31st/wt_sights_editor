@@ -20,11 +20,13 @@ import {
 import { openUrl } from "@tauri-apps/plugin-opener";
 import { Toaster, toast } from "sonner";
 import { SightPreview } from "./SightPreview";
+import { VehicleName } from "./VehicleName";
 import {
   catalogStamp,
   ENABLED_LOCALES,
   parseLocale,
   tankDisplayName,
+  tankRawName,
   translate,
   type LocaleId,
   useT,
@@ -535,7 +537,7 @@ export default function App() {
                   setFontOverride(null);
                 }}
               >
-                <span>{tankDisplayName(tank, locale)}</span>
+                <VehicleName name={tankRawName(tank, locale)} countryLabel={countryLabel} />
                 <small>{tank.id}</small>
               </button>
             </li>
@@ -570,7 +572,9 @@ export default function App() {
       <section className="inspector">
         {selected ? (
           <>
-            <h2>{tankDisplayName(selected, locale)}</h2>
+            <h2>
+              <VehicleName name={tankRawName(selected, locale)} countryLabel={countryLabel} />
+            </h2>
             <p className="muted">
               {selected.id} · {countryLabel(selected.country)} · {selected.zoomMin}x–
               {selected.zoomMax}x
