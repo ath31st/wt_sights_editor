@@ -119,14 +119,10 @@ npm run tauri:dev
 Обновление каталога техники из datamine:
 
 ```bash
-# git clone --filter=blob:none --sparse --depth 1 \
-#   https://github.com/gszabi99/War-Thunder-Datamine.git .cache/datamine
-# cd .cache/datamine && git sparse-checkout set \
-#   aces.vromfs.bin_u/gamedata/units/tankmodels \
-#   lang.vromfs.bin_u/lang \
-#   aces.vromfs.bin_u/gamedata/weapons/groundmodels_weapons
 npm run catalog:build
 ```
+
+Команда сама обновляет `.cache/datamine` (редкий clone [War Thunder Datamine](https://github.com/gszabi99/War-Thunder-Datamine)) и заново пишет `data/catalog.json`. Если кэша ещё нет, клонирует его. Свой каталог можно подставить через `WT_DATAMINE` — тогда скрипт его не трогает и только собирает список.
 
 Русское и английское имя текущего патча и дату каталога указано в `data/patch.json` (`nameRu`, `nameEn`, `date`). Скрипт копирует их в `data/catalog.json` и сам `patch.json` не затирает. В редакторе русская локаль берёт `nameRu`, остальные — `nameEn`. Обои патча — `data/bg.jpg`, редактор ставит их фоном окна. Дату менять, когда в каталоге появилась новая техника, затем `catalog:build` и релиз. Версию программы поднимать при правках самого редактора; дату каталога при этом не трогать.
 

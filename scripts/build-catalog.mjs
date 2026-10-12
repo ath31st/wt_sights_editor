@@ -1,9 +1,17 @@
-import { mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { spawnSync } from "node:child_process";
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
-const DATAMINE = process.env.WT_DATAMINE ?? join(ROOT, ".cache", "datamine");
+const DEFAULT_DATAMINE = join(ROOT, ".cache", "datamine");
+const DATAMINE = process.env.WT_DATAMINE ?? DEFAULT_DATAMINE;
+const DATAMINE_REMOTE = "https://github.com/gszabi99/War-Thunder-Datamine.git";
+const DATAMINE_SPARSE = [
+  "aces.vromfs.bin_u/gamedata/units/tankmodels",
+  "lang.vromfs.bin_u/lang",
+  "aces.vromfs.bin_u/gamedata/weapons/groundmodels_weapons",
+];
 const TANK_DIR = join(DATAMINE, "aces.vromfs.bin_u/gamedata/units/tankmodels");
 const WEAPON_DIR = join(DATAMINE, "aces.vromfs.bin_u/gamedata/weapons/groundmodels_weapons");
 const UNITS_CSV = join(DATAMINE, "lang.vromfs.bin_u/lang/units.csv");
@@ -13,6 +21,42 @@ const PATCH_FILE = join(ROOT, "data/patch.json");
 const FOV_REF = 73.68;
 const AP_FAST_SPEED = 800;
 const AMMO = ["AP", "AP_Fast", "HEAT", "APDS", "HE"];
+
+function runGit(args, cwd) {
+  const result = spawnSync("git", args, { cwd, stdio: "inherit" });
+  if (result.error) {
+    console.error(result.error.message);
+    process.exit(1);
+  }
+  if (result.status !== 0) {
+    process.exit(result.status ?? 1);
+  }
+}
+
+/** Clone or fast-update the sparse datamine cache before reading it. */
+function syncDatamine() {
+  if (process.env.WT_DATAMINE) {
+    console.log(`Using WT_DATAMINE=${DATAMINE} without updating it`);
+    return;
+  }
+  if (!existsSync(DATAMINE)) {
+    console.log(`Cloning datamine into ${DATAMINE}`);
+    mkdirSync(dirname(DATAMINE), { recursive: true });
+    runGit(
+      ["clone", "--filter=blob:none", "--sparse", "--depth", "1", DATAMINE_REMOTE, DATAMINE],
+      ROOT,
+    );
+  } else if (!existsSync(join(DATAMINE, ".git"))) {
+    console.error(`${DATAMINE} exists but is not a git checkout. Remove it and run again.`);
+    process.exit(1);
+  } else {
+    console.log(`Updating datamine in ${DATAMINE}`);
+    runGit(["fetch", "--filter=blob:none", "--depth", "1", "origin", "master"], DATAMINE);
+    runGit(["reset", "--hard", "origin/master"], DATAMINE);
+  }
+  runGit(["sparse-checkout", "set", ...DATAMINE_SPARSE], DATAMINE);
+  runGit(["log", "-1", "--format=Datamine %h %s"], DATAMINE);
+}
 
 function loadPatchMeta() {
   const raw = JSON.parse(readFileSync(PATCH_FILE, "utf8"));
@@ -314,6 +358,8 @@ function bulletTypesFromWeaponJson(text) {
   }
   return types;
 }
+
+syncDatamine();
 
 const { names, idByLower } = loadNames(readFileSync(UNITS_CSV, "utf8"));
 const weaponCache = new Map();

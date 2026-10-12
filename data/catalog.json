@@ -2528,8 +2528,8 @@
     {
       "id": "fr_embt",
       "country": "fr",
-      "nameEn": "EMBT",
-      "nameRu": "EMBT",
+      "nameEn": "▄EMBT",
+      "nameRu": "▄EMBT",
       "zoomMin": 2.5,
       "zoomMax": 10,
       "sights": [
@@ -3678,8 +3678,8 @@
     {
       "id": "germ_embt",
       "country": "germ",
-      "nameEn": "EMBT",
-      "nameRu": "EMBT",
+      "nameEn": "◄EMBT",
+      "nameRu": "◄EMBT",
       "zoomMin": 2.5,
       "zoomMax": 10,
       "sights": [
@@ -11323,6 +11323,24 @@
         "HEAT": 1174,
         "APDS": 1455,
         "HE": 732
+      }
+    },
+    {
+      "id": "sw_patria_bmp_3",
+      "country": "sw",
+      "nameEn": "AMV (BMP-3)",
+      "nameRu": "AMV (BMP-3)",
+      "zoomMin": 4.9,
+      "zoomMax": 5,
+      "sights": [
+        "AP_Fast",
+        "APDS",
+        "HE"
+      ],
+      "ammoSpeeds": {
+        "AP_Fast": 970,
+        "APDS": 1120,
+        "HE": 250
       }
     },
     {

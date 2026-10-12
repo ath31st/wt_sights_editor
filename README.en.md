@@ -119,14 +119,10 @@ The vehicle catalog lives in `data/catalog.json` and is shipped in the release t
 Update the vehicle catalog from the datamine:
 
 ```bash
-# git clone --filter=blob:none --sparse --depth 1 \
-#   https://github.com/gszabi99/War-Thunder-Datamine.git .cache/datamine
-# cd .cache/datamine && git sparse-checkout set \
-#   aces.vromfs.bin_u/gamedata/units/tankmodels \
-#   lang.vromfs.bin_u/lang \
-#   aces.vromfs.bin_u/gamedata/weapons/groundmodels_weapons
 npm run catalog:build
 ```
+
+The command updates `.cache/datamine` itself (a sparse clone of the [War Thunder Datamine](https://github.com/gszabi99/War-Thunder-Datamine)) and rewrites `data/catalog.json`. If the cache is missing, it clones it. Set `WT_DATAMINE` to use your own tree; the script then leaves that path alone and only builds the catalog.
 
 The Russian and English names of the current patch and the catalog date are set in `data/patch.json` (`nameRu`, `nameEn`, `date`). The script copies them into `data/catalog.json` and does not overwrite `patch.json` itself. In the editor, the Russian locale uses `nameRu`; the others use `nameEn`. The patch wallpaper is `data/bg.jpg`; the editor uses it as the window background. Change the date when new vehicles appear in the catalog, then run `catalog:build` and make a release. Bump the app version when you change the editor itself; leave the catalog date alone in that case.
 
