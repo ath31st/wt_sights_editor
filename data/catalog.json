@@ -1449,6 +1449,24 @@
       ]
     },
     {
+      "id": "cn_zbd_04",
+      "country": "cn",
+      "nameEn": "ZBD04",
+      "nameRu": "ZBD04",
+      "zoomMin": 7.2,
+      "zoomMax": 8,
+      "sights": [
+        "AP_Fast",
+        "APDS",
+        "HE"
+      ],
+      "ammoSpeeds": {
+        "AP_Fast": 970,
+        "APDS": 1180,
+        "HE": 250
+      }
+    },
+    {
       "id": "cn_zbd_04a",
       "country": "cn",
       "nameEn": "ZBD04A",
@@ -3180,6 +3198,17 @@
       }
     },
     {
+      "id": "fr_prtl",
+      "country": "fr",
+      "nameEn": "Cheetah PRTL",
+      "nameRu": "Cheetah PRTL",
+      "zoomMin": 1.5,
+      "zoomMax": 6,
+      "sights": [
+        "AA"
+      ]
+    },
+    {
       "id": "fr_pzkpfw_V_panther_dauphine",
       "country": "fr",
       "nameEn": "Panther \"Dauphiné\"",
@@ -4338,6 +4367,24 @@
       }
     },
     {
+      "id": "germ_leopard_2a8",
+      "country": "germ",
+      "nameEn": "Leopard 2A8",
+      "nameRu": "Leopard 2A8",
+      "zoomMin": 2,
+      "zoomMax": 8,
+      "sights": [
+        "HEAT",
+        "APDS",
+        "HE"
+      ],
+      "ammoSpeeds": {
+        "HEAT": 1190,
+        "APDS": 1750,
+        "HE": 1015
+      }
+    },
+    {
       "id": "germ_leopard_2av",
       "country": "germ",
       "nameEn": "Leopard 2AV",
@@ -4480,8 +4527,8 @@
     {
       "id": "germ_m44",
       "country": "germ",
-      "nameEn": "M44",
-      "nameRu": "M44",
+      "nameEn": "◄M44",
+      "nameRu": "◄M44",
       "zoomMin": 4.1,
       "zoomMax": 8,
       "sights": [
@@ -4815,6 +4862,24 @@
       "nameRu": "Jagdpanther G1",
       "zoomMin": 4.7,
       "zoomMax": 5,
+      "sights": [
+        "AP_Fast",
+        "HEAT",
+        "HE"
+      ],
+      "ammoSpeeds": {
+        "AP_Fast": 1000,
+        "HEAT": 600,
+        "HE": 820
+      }
+    },
+    {
+      "id": "germ_panzerjager_panther_g2",
+      "country": "germ",
+      "nameEn": "Jagdpanther G2",
+      "nameRu": "Jagdpanther G2",
+      "zoomMin": 4,
+      "zoomMax": 10,
       "sights": [
         "AP_Fast",
         "HEAT",
@@ -8234,6 +8299,17 @@
       }
     },
     {
+      "id": "it_lancia_flak38",
+      "country": "it",
+      "nameEn": "Lancia 3Ro (Flak.)",
+      "nameRu": "Lancia 3Ro (Flak.)",
+      "zoomMin": 1.8,
+      "zoomMax": 3.5,
+      "sights": [
+        "AA"
+      ]
+    },
+    {
       "id": "it_lancia3ro_100",
       "country": "it",
       "nameEn": "Lancia 3Ro (100/17)",
@@ -9223,6 +9299,22 @@
       }
     },
     {
+      "id": "it_v_4_straussler",
+      "country": "it",
+      "nameEn": "V-4/40",
+      "nameRu": "V-4/40",
+      "zoomMin": 1.8,
+      "zoomMax": 3.5,
+      "sights": [
+        "AP",
+        "HE"
+      ],
+      "ammoSpeeds": {
+        "AP": 800,
+        "HE": 800
+      }
+    },
+    {
       "id": "it_vbc_pt2",
       "country": "it",
       "nameEn": "VBC (PT2)",
@@ -9342,6 +9434,24 @@
       "ammoSpeeds": {
         "AP_Fast": 835,
         "HE": 870
+      }
+    },
+    {
+      "id": "jp_bmp_3f",
+      "country": "jp",
+      "nameEn": "BMP-3F",
+      "nameRu": "БМП-3Ф",
+      "zoomMin": 4.9,
+      "zoomMax": 5,
+      "sights": [
+        "AP_Fast",
+        "APDS",
+        "HE"
+      ],
+      "ammoSpeeds": {
+        "AP_Fast": 970,
+        "APDS": 1120,
+        "HE": 250
       }
     },
     {
@@ -11228,6 +11338,24 @@
       }
     },
     {
+      "id": "sw_leopard_2a8no",
+      "country": "sw",
+      "nameEn": "Leopard 2A8NO",
+      "nameRu": "Leopard 2A8NO",
+      "zoomMin": 2,
+      "zoomMax": 8,
+      "sights": [
+        "HEAT",
+        "APDS",
+        "HE"
+      ],
+      "ammoSpeeds": {
+        "HEAT": 1190,
+        "APDS": 1750,
+        "HE": 1015
+      }
+    },
+    {
       "id": "sw_lvkv_42",
       "country": "sw",
       "nameEn": "Lvkv 42",
@@ -11420,6 +11548,22 @@
         "AP_Fast": 950,
         "HEAT": 700,
         "HE": 680
+      }
+    },
+    {
+      "id": "sw_pv_m39",
+      "country": "sw",
+      "nameEn": "Pbil m/39",
+      "nameRu": "Pbil m/39",
+      "zoomMin": 1.8,
+      "zoomMax": 3.5,
+      "sights": [
+        "AP_Fast",
+        "HE"
+      ],
+      "ammoSpeeds": {
+        "AP_Fast": 815,
+        "HE": 845
       }
     },
     {
@@ -14116,6 +14260,24 @@
       }
     },
     {
+      "id": "uk_olifant_optimering",
+      "country": "uk",
+      "nameEn": "Optimering",
+      "nameRu": "Optimering",
+      "zoomMin": 3,
+      "zoomMax": 8,
+      "sights": [
+        "HEAT",
+        "APDS",
+        "HE"
+      ],
+      "ammoSpeeds": {
+        "HEAT": 1174,
+        "APDS": 1455,
+        "HE": 732
+      }
+    },
+    {
       "id": "uk_ram_90mm_aa",
       "country": "uk",
       "nameEn": "QF 3.7 Ram",
@@ -14752,6 +14914,17 @@
       "zoomMax": 8,
       "sights": [
         "AA"
+      ]
+    },
+    {
+      "id": "us_ai_mlrs_atacms_m270",
+      "country": "us",
+      "nameEn": "us_ai_mlrs_atacms_m270",
+      "nameRu": "us_ai_mlrs_atacms_m270",
+      "zoomMin": 1.8,
+      "zoomMax": 3.5,
+      "sights": [
+        "AP"
       ]
     },
     {
@@ -15970,6 +16143,20 @@
       }
     },
     {
+      "id": "us_m3a1_stuart_nvidia",
+      "country": "us",
+      "nameEn": "M3A1 TD",
+      "nameRu": "M3A1 TD",
+      "zoomMin": 1.8,
+      "zoomMax": 3.5,
+      "sights": [
+        "AP_Fast"
+      ],
+      "ammoSpeeds": {
+        "AP_Fast": 883
+      }
+    },
+    {
       "id": "us_m3a1_stuart_usmc",
       "country": "us",
       "nameEn": "M3A1 (USMC)",
@@ -17132,6 +17319,24 @@
       }
     },
     {
+      "id": "us_stingray_2",
+      "country": "us",
+      "nameEn": "Stingray II",
+      "nameRu": "Stingray II",
+      "zoomMin": 7,
+      "zoomMax": 7.1,
+      "sights": [
+        "HEAT",
+        "APDS",
+        "HE"
+      ],
+      "ammoSpeeds": {
+        "HEAT": 1174,
+        "APDS": 1455,
+        "HE": 732
+      }
+    },
+    {
       "id": "us_t114",
       "country": "us",
       "nameEn": "T114",
@@ -17143,7 +17348,7 @@
         "HE"
       ],
       "ammoSpeeds": {
-        "HEAT": 502,
+        "HEAT": 503,
         "HE": 498
       }
     },
@@ -17999,6 +18204,28 @@
       ]
     },
     {
+      "id": "ussr_ai_tbm_9k720_k_iskander",
+      "country": "ussr",
+      "nameEn": "ussr_ai_tbm_9k720_k_iskander",
+      "nameRu": "ussr_ai_tbm_9k720_k_iskander",
+      "zoomMin": 1.8,
+      "zoomMax": 3.5,
+      "sights": [
+        "AP"
+      ]
+    },
+    {
+      "id": "ussr_ai_tbm_9k720_m_iskander",
+      "country": "ussr",
+      "nameEn": "ussr_ai_tbm_9k720_m_iskander",
+      "nameRu": "ussr_ai_tbm_9k720_m_iskander",
+      "zoomMin": 1.8,
+      "zoomMax": 3.5,
+      "sights": [
+        "AP"
+      ]
+    },
+    {
       "id": "ussr_ai_tbm_9k79_tochka",
       "country": "ussr",
       "nameEn": "ussr_ai_tbm_9k79_tochka",
@@ -18381,6 +18608,24 @@
       }
     },
     {
+      "id": "ussr_bt_7_m_816",
+      "country": "ussr",
+      "nameEn": "◆BT-7M",
+      "nameRu": "◆БТ-7М",
+      "zoomMin": 1.8,
+      "zoomMax": 3.5,
+      "sights": [
+        "AP",
+        "AP_Fast",
+        "HE"
+      ],
+      "ammoSpeeds": {
+        "AP": 757,
+        "AP_Fast": 985,
+        "HE": 335
+      }
+    },
+    {
       "id": "ussr_bt_7a_f32",
       "country": "ussr",
       "nameEn": "BT-7A (F-32)",
@@ -18456,6 +18701,24 @@
         "AP_Fast": 970,
         "APDS": 1120,
         "HE": 960
+      }
+    },
+    {
+      "id": "ussr_btr_90_2004",
+      "country": "ussr",
+      "nameEn": "BTR-90",
+      "nameRu": "БТР-90",
+      "zoomMin": 4,
+      "zoomMax": 20,
+      "sights": [
+        "AP_Fast",
+        "APDS",
+        "HE"
+      ],
+      "ammoSpeeds": {
+        "AP_Fast": 970,
+        "APDS": 1120,
+        "HE": 185
       }
     },
     {
