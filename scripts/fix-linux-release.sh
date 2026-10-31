@@ -44,6 +44,10 @@ else
   rm -f "${wayland_libs[@]}"
 fi
 
+# GitHub-hosted runners extract the AppImage with a restrictive umask, so the
+# AppDir lands as 0700. Current appimagetool refuses to pack that.
+chmod -R a+rX "$WORKDIR/squashfs-root"
+
 curl -fsSL -o "$WORKDIR/appimagetool" \
   https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-x86_64.AppImage
 chmod +x "$WORKDIR/appimagetool"
