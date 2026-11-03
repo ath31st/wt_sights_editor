@@ -146,6 +146,14 @@ npm run release
 
 Скрипт читает версию из `tauri.conf.json`, пушит `master`, ставит тег `v0.1.1` и пушит его. Сборка бинарников стартует на GitHub.
 
+Если эту версию надо выложить заново, сначала сними тег и релиз:
+
+```bash
+npm run release:delete
+```
+
+Команда удаляет локальный тег, тег на origin и GitHub Release для версии из `tauri.conf.json`. Другую версию можно указать явно: `npm run release:delete -- 0.1.4`. После этого снова `npm run release`.
+
 ## Лицензия
 
 [MIT License](LICENSE)

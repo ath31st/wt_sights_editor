@@ -146,6 +146,14 @@ npm run release
 
 The script reads the version from `tauri.conf.json`, pushes `master`, creates the tag `v0.1.1`, and pushes the tag. The binary build starts on GitHub.
 
+To publish that version again, remove the tag and the release first:
+
+```bash
+npm run release:delete
+```
+
+The command deletes the local tag, the tag on origin, and the GitHub Release for the version in `tauri.conf.json`. Pass another version explicitly with `npm run release:delete -- 0.1.4`. Then run `npm run release` again.
+
 ## License
 
 [MIT License](LICENSE)
