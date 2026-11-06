@@ -1,9 +1,9 @@
 {
   "version": 1,
   "source": "datamine",
-  "patchNameRu": "Небесная одиссея",
-  "patchNameEn": "Celestial Odyssey",
-  "catalogDate": "2026-09-16",
+  "patchNameRu": "Тень Орла",
+  "patchNameEn": "Eagle's Shadow",
+  "catalogDate": "2026-10-31",
   "tanks": [
     {
       "id": "aaa_dummy",
@@ -4372,7 +4372,7 @@
       "nameEn": "Leopard 2A8",
       "nameRu": "Leopard 2A8",
       "zoomMin": 2,
-      "zoomMax": 8,
+      "zoomMax": 14.6,
       "sights": [
         "HEAT",
         "APDS",
@@ -11343,7 +11343,7 @@
       "nameEn": "Leopard 2A8NO",
       "nameRu": "Leopard 2A8NO",
       "zoomMin": 2,
-      "zoomMax": 8,
+      "zoomMax": 14.6,
       "sights": [
         "HEAT",
         "APDS",
@@ -14264,7 +14264,7 @@
       "country": "uk",
       "nameEn": "Optimering",
       "nameRu": "Optimering",
-      "zoomMin": 3,
+      "zoomMin": 2,
       "zoomMax": 8,
       "sights": [
         "HEAT",
